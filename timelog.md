@@ -11,7 +11,8 @@
 * **YOU MUST KEEP THIS UP TO DATE AND UNDER VERSION CONTROL.**
 * This timelog should be filled out honestly, regularly (daily) and accurately. It is for *your* benefit.
 * Follow the structure provided, grouping time by weeks.  Quantise time to the half hour.
-I'm meant to keep to this exact format. Started from when i recieved the project.
+* Meant to keep to this exact format. 
+* Started from when project was given.
 
 ## Week 1
 
@@ -54,3 +55,24 @@ I'm meant to keep to this exact format. Started from when i recieved the project
 
 * *1 hour* Wrote up meeting notes
 * *2 hours* Read research papers
+
+## Week 3
+### 10 Oct 2022
+
+* *2 hours* Researching & creating list of potential organisations to contact
+
+### 11 Oct 2022
+* *1 hour* Looking into ethics surrounding talking to people with intellectual disabilities/brain injuries 
+
+### 12 Oct 2022
+* *2 hours* Writing summaries of papers read
+* *2 hours* Researching different technologies to use in projects
+* *1 hour* Creating list of potential projects
+* *1 hour* Creating lists of potential curriculums 
+
+### 13 Oct 2022
+* *1 hour* Preparing status report and meeting outline & questions
+* *0.5 hour* Supervisor meeting
+
+### 14 Oct 2022
+* *1 hour* Configuring structure and technologies for website
