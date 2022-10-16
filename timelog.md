@@ -3,7 +3,7 @@
 * Dynamic Making Guides
 * Claire Williamson
 * 2464406W
-* Stephen Lindsay
+* Dr Stephen Lindsay
 
 ## Guidance
 
@@ -76,3 +76,7 @@
 
 ### 14 Oct 2022
 * *1 hour* Configuring structure and technologies for website
+* *0.5 hour* Writing up meeting notes
+
+### 16 Oct 2022
+* *1 hour* Looking into ethics process and contacting school chair for advice

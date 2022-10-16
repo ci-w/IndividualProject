@@ -3,7 +3,7 @@
 * Dynamic Making Guides
 * Claire Williamson
 * 2464406W
-* Stephen Lindsay
+* Dr Stephen Lindsay
 
 Week-by-week plan for the whole project.
 
