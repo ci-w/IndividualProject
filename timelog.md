@@ -80,3 +80,10 @@
 
 ### 16 Oct 2022
 * *1 hour* Looking into ethics process and contacting school chair for advice
+* *2 hours* Working on website
+
+## Week 4
+### 17 Oct 2022
+* *2 hour* Organising and consolidating notes
+
+

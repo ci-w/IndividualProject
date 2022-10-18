@@ -14,7 +14,7 @@ Week-by-week plan for the whole project.
 | 2 | 26/9/22 | Received project on 28th <br> Contact supervisor & arrange meeting |
 | 3 | 3/10/22 | First supervisor meeting |
 | 4 | 10/10/22 | Read through papers and collate highlights/general trends <br> Look into the ethics <br> List of potential organisations to contact <br> Look into making projects and what I would need to carry them out |
-| 5 | 17/10/22 |  |
+| 5 | 17/10/22 |Create & host basic website <br> Investigate ethics approval timeline <br> Look into issue of framing  |
 | 6 | 24/10/22 |  |
 | 7 | 31/10/22 | First prototype (including syllabus) <br> Literature review of around 30 papers <br> Engagement with groups  |
 | 8 | 7/11/22 |  |
