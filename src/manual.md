@@ -32,3 +32,6 @@ Removing folder from remote repo that's now in gitingore: <br>
 `git commit -m 'Remove the now ignored directory "some-directory"'`<br>
 `git push origin main`
 
+To format nice in vsc:
+shift alt f
+

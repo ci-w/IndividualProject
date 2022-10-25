@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %} 
+<html>
+<link rel="stylesheet" href="{% static 'basic.css' %}">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>Making Projects</title>
+</head>
+
+<body>
+    {% block header_block %}
+    This is header_block's default content.
+    {% endblock %}
+
+
+    {% block body_block %}
+    This is body_block's default content.
+    {% endblock %}
+
+    {% block footer_block %}
+    This is footer_block's default content.
+    {% endblock %}
+</body>
+
+</html>

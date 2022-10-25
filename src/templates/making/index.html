@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %} 
+<html>
+<link rel="stylesheet" href="{% static 'basic.css' %}">
+<link rel="shortcut icon" type="image/png" href="{% static 'images/temp_icon.png'  %}"/>
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>Making Projects</title>
+</head>
+
+<body>
+    {% block header_block %}
+    <!-- This is header_block's default content. -->
+    <div class="header-grid">
+        <div class="header-icon">
+            <img src="{% static 'images/temp_icon.png' %}" alt="Temporary Icon">
+            <h3 class="header-title">Making Projects</h3>
+        </div>
+        <div class="topnav">
+            <a href="#">Projects</a>
+            <a href="#">Syllabus</a>
+            <a href="#">About</a>
+            
+        </div>
+
+        <div class="search-bar"> Searchbar </div>
+    </div>
+    {% endblock %}
+
+
+    {% block body_block %}
+    <div class="body-text">
+        <h3>Welcome to Making Projects</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Erat pellentesque adipiscing commodo elit at imperdiet. Quam pellentesque nec nam aliquam sem. Risus sed vulputate odio ut. Nulla at volutpat diam ut venenatis tellus in metus. Tempus quam pellentesque nec nam aliquam sem. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. 
+        Vestibulum mattis ullamcorper velit sed ullamcorper morbi. Duis at tellus at urna. Amet aliquam id diam maecenas ultricies mi eget mauris. </p>
+    </div>
+
+    <div class="grid-container">
+        <div class="grid-item"> 
+            <img src="{% static 'images/project_image.png' %}" alt="Temporary Icon">
+            <b>Title</b> <br>
+            <button class="project-type">Electronic</button>
+            <p>Project info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  </p>
+            <a href="#">Link</a>
+            
+        </div>
+        <div class="grid-item">
+            <b>Title</b> <br>
+            <button class="project-type">Electronic</button>
+            <p>Project info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  </p>
+            <a href="#">Link</a>
+        </div>
+        <div class="grid-item">
+            <b>Title</b> <br>
+            <button class="project-type">Electronic</button>
+            <p>Project info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  </p>
+            <a href="#">Link</a>
+        </div>
+        <div class="grid-item">
+            <b>Title</b> <br>
+            <button class="project-type">Electronic</button>
+            <p>Project info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  </p>
+            <a href="#">Link</a>
+        </div>
+        <div class="grid-item">5</div>
+        <div class="grid-item">6</div>
+    </div> 
+    {% endblock %}
+
+    {% block footer_block %}
+    This is footer_block's default content.
+    {% endblock %}
+</body>
+
+</html>
