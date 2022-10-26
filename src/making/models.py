@@ -1,14 +1,31 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
 class Category(models.Model):
-    name = models.CharField(max_length=128, unique=True)
-    def __str__(self):
-        return self.name
+    category = models.CharField(max_length=128)
+    slug = models.SlugField()
 
-class Page(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    class Meta:
+        verbose_name_plural = 'Categories'
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.category)
+        super(Category, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.category
+
+
+class Project(models.Model):    
     title = models.CharField(max_length=128)
-    url = models.URLField()
+    instructions = models.TextField(max_length=500)    
     views = models.IntegerField(default=0)
+    category = models.ManyToManyField(Category)
+    slug = models.SlugField()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Project, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.title

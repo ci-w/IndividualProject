@@ -2,8 +2,7 @@
     display: grid;
     grid-template-columns: auto auto auto;
     background-color: #2196F3;
-    align-items: center;
-    
+    align-items: center;    
     height: 50px;
     
 }
@@ -11,6 +10,7 @@
 /* Style the top navigation bar */
 .topnav {
     overflow: hidden;
+    height: 100%;
   }
   
   /* Style the topnav links */
@@ -18,21 +18,20 @@
     float: left;
     display: block;
     color: #000000;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    
+    text-align: center;      
+    padding-left: 7px;  
+    padding-right: 7px;
+    padding-top: 3%;
+    height: 100%;
+    text-decoration: none;    
   }
   
   /* Change color on hover */
 .topnav a:hover {
     background-color: rgba(211,234,253,255);
     color: black;
-  }
-
-.header-icon {
     
-}
+  }
 
 .header-icon img {
     float: left;
@@ -52,6 +51,8 @@
 body {
     background-color: rgb(229, 241, 245);
     font-family: verdana;
+    padding-left: 40px;
+    padding-right: 40px;
   }
 
 .grid-container {
@@ -93,3 +94,13 @@ body {
     
 }
 
+
+.footer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    align-items: center;    
+    height: 50px;
+    margin-top: 40px;
+    
+}

@@ -36,40 +36,34 @@
     </div>
 
     <div class="grid-container">
+        {% if projects %}
+        
+        {% for project in projects %}
         <div class="grid-item"> 
             <img src="{% static 'images/project_image.png' %}" alt="Temporary Icon">
-            <b>Title</b> <br>
-            <button class="project-type">Electronic</button>
-            <p>Project info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  </p>
+            <b>{{ project.title }}</b> <br>
+            {% for category in project.category.all %}
+                <button class="project-type"> {{ category }}</button>                 
+            {% endfor %}           
+            
+            <p> {{ project.instructions }} </p>
             <a href="#">Link</a>
             
-        </div>
-        <div class="grid-item">
-            <b>Title</b> <br>
-            <button class="project-type">Electronic</button>
-            <p>Project info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  </p>
-            <a href="#">Link</a>
-        </div>
-        <div class="grid-item">
-            <b>Title</b> <br>
-            <button class="project-type">Electronic</button>
-            <p>Project info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  </p>
-            <a href="#">Link</a>
-        </div>
-        <div class="grid-item">
-            <b>Title</b> <br>
-            <button class="project-type">Electronic</button>
-            <p>Project info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  </p>
-            <a href="#">Link</a>
-        </div>
-        <div class="grid-item">5</div>
-        <div class="grid-item">6</div>
+        </div>        
+        {% endfor %}
+        
+        {% else %}
+        <strong>There are no projects present.</strong>
+        {% endif %}        
     </div> 
     {% endblock %}
 
     {% block footer_block %}
+    <div class="footer"> </div>
     This is footer_block's default content.
     {% endblock %}
+
+
 </body>
 
 </html>
