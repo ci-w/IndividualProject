@@ -18,3 +18,14 @@ def index(request):
 
 def about(request):
     return HttpResponse("Hiii")
+
+def show_project(request, project_name_slug):
+    context_dict = {}
+    try:
+        # is there a project with the given name?
+        project = Project.objects.get(slug=project_name_slug)
+        # add it to context dictionary
+        context_dict['project'] = project
+    except Project.DoesNotExist:
+        context_dict['project'] = None;
+    return render(request, 'making/project.html', context=context_dict)

@@ -21,7 +21,7 @@ class Project(models.Model):
     instructions = models.TextField(max_length=500)    
     views = models.IntegerField(default=0)
     category = models.ManyToManyField(Category)
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
