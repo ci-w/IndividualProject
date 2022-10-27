@@ -84,6 +84,38 @@
 
 ## Week 4
 ### 17 Oct 2022
-* *2 hour* Organising and consolidating notes
+* *2 hours* Organising and consolidating notes
+
+### 18 Oct 2022
+* *2 hours* Setting up virtual environment for website, had to change from virtualenv to anaconda
+
+### 19 Oct 2022
+* *0.5 hours* Configuring gitignore and django
+* *2 hours* Working on website backend structure
+
+### 20 Oct 2022
+* *0.5 hours* Supervisor meeting
+* *0.5 hours* Writing meeting minutes
+* *0.5 hours* Contacting ethics advisor again
+* *2 hours* Setting up website media/static/template files
+
+## Week 5
+### 24 Oct 2022
+* *1 hour* Creating models for projects and categories, configuring site admin
+* *2 hours* Writing CSS files for website
+
+### 25 Oct 2022
+* *3 hours* Working on database, writing population script
+* *2 hours* Working on template and views to use the CSS + database
+
+### 26 Oct 2022
+* *1 hour* Configuring url structure
+* *2 hours* Adding CSS to data given by database
+
+### 27 Oct 2022
+* *3 hours* Setting up individual pages for each project, with CSS/urls/html
+
+
+
 
 
