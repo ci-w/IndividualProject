@@ -115,6 +115,39 @@
 ### 27 Oct 2022
 * *3 hours* Setting up individual pages for each project, with CSS/urls/html
 
+## Week 6
+(minimal work this week due to ill health & other projects)
+### 31 Oct 2022
+* *2 hours* Working on site being dynamic WRT to projects shown
+
+### 1 Nov 2022
+* *2 hours* Fixing CSS 
+
+### 2 Nov 2022
+* *0.5 hour* Considering ethics 
+* *1 hour* Completing basic ethics form + sending to supervisor
+
+## Week 7
+### 7 Nov 2022
+* *1 hour* Researching hosting platforms
+* *3 hours* Trying to host site on pythonAnywhere
+
+### 8 Nov 2022
+* *2 hours* Making changes to website to make it easier to host
+
+### 9 Nov 2022
+* *2 hours* Getting site working on pythonanywhere
+* *1 hour* Creating a plan
+
+## Week 8
+### 14 Nov 2022
+* *2 hours* Finding & adding relevant research papers to Zotero
+
+### 15 Nov 2022
+* *3 hours* Writing paper summaries 
+* *1 hour* Planning lit review
+* *1 hour* Consolidating aims of the project
+
 
 
 
