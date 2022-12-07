@@ -13,10 +13,12 @@
     {% block header_block %}
     <!-- This is header_block's default content. -->
     <div class="header-grid">
-        <a href="/making/" class="header-icon">
-            <img src="{% static 'images/temp_icon.png' %}" alt="Temporary Icon">
-            <h3 class="header-title">Making Projects</h3>
-        </a>
+        <div class="header-icon">
+            <a href="/making/">
+                <img src="{% static 'images/temp_icon.png' %}" alt="Temporary Icon">
+                <h3 class="header-title">Making Projects</h3>
+            </a>
+        </div>
         <div class="topnav">
             <a href="#">Projects</a>
             <a href="#">Syllabus</a>

@@ -148,6 +148,18 @@
 * *1 hour* Planning lit review
 * *1 hour* Consolidating aims of the project
 
+## Week 9 
+### 21 Nov 2022
+
+## Week 10 
+### 28 Nov 2022 
+
+## Week 11 
+### 5 Dec 2022 
+* *2 hours* Writing paper summaries  
+* *2 hours* Editing CSS 
+* *2 hours* Fixing hosting problems
+
 
 
 
