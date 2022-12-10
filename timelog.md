@@ -160,6 +160,12 @@
 * *2 hours* Editing CSS 
 * *2 hours* Fixing hosting problems
 
+### 7 Dec 2022
+* *3 hours* Working on lit review 
+
+### 10 Dec 2022
+* *4 hours* Working on CSS
+
 
 
 

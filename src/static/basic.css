@@ -1,104 +1,166 @@
 .header-grid {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #2196F3;
+  background-color: #39a1f4;
+  color: whitesmoke; 
   align-items: center;
-  height: 50px;
-  margin-bottom: 40px;
+  height: 3em;
+ /* margin-bottom: 20px;*/
+  overflow: hidden;
 }
+
+.header-icon { 
+  height: 100%;
+}
+
+
+
 
 .header-icon img {
   float: left;
   vertical-align: middle;
   text-align: left;
+  object-fit: contain;
+  max-height: 3em;
 }
 
-.header-title {
+.header-icon a:visited {
+  color: inherit;
+}
+
+/* need to mess around with this being a h3 */
+.header-title {  
   float: left;
   text-align: left;
   padding: 0px 4px;
+  min-height: 100%;
+  line-height: 3em;
   margin: 0;
-  line-height: 50px;
+  
 }
 
 /* Style the top navigation bar */
-.topnav {  
+.topnav {
   overflow: hidden;
   height: 100%;
+ 
 }
 
 /* Style the topnav links */
 /* need to make all these links the same size */
 .topnav a {
-  line-height: 50px;
-  color: #000000;
+  line-height: 3em;
+  color: whitesmoke;
   text-align: center;
   padding-left: 7px;
-  padding-right: 7px;  
-  padding-top: 15.4px;
-  padding-bottom: 15.4px; 
+  padding-right: 7px;
+  display: block;
+  float: left;
   text-decoration: none;
- 
+  height: 100%;
+  
 }
 
 /* Change color on hover */
 .topnav a:hover {
-  background-color: rgba(211, 234, 253, 255);
+  /*background-color: rgba(211, 234, 253, 255);*/
+  background-color: #6ab8f7;
+}
+
+.search-bar { 
+  height: 100%;
+  line-height: 3em;
+  text-align: right;
+  padding-right: 5%;
 }
 
 body {
-  background-color: rgb(229, 241, 245);
+  background-color: whitesmoke;
   font-family: verdana;
   padding-left: 50px;
   padding-right: 50px;
+  color: #333;
+} 
+
+.body-text { 
+  
+  border-radius: 5px;
 }
 
-
+.body-text h3 { 
+  color: #2196f3;
+}
 
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #2196F3;
+  background-color: #6ab8f7;
   padding: 10px;
+  margin-left: 2%;
+  margin-right: 2%; 
+  border-radius: 5px;
+  
 }
 
 .grid-item {
-  background-color: rgba(211, 234, 253, 255);
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  /*background-color: rgba(211, 234, 253, 255);*/
+  background-color: whitesmoke;
+  /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+  border: 1px solid #6ab8f7;
   padding: 10px 20px;
   font-size: smaller;
   text-align: left;
 }
 
 .grid-item p {
-  width: 50%;
+  /*width: 50%; */  
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.grid-item h4 {
+  color: #2196f3; 
+  margin-top: 0;
+  margin-bottom: 0.25em;  
 }
 
 .grid-item img {
   float: right;
-  width: 50%;
-  height: 100%;
+  /*height: 100%;*/
+  /*margin-top: 2%;*/
   border-radius: 5%;
+  object-fit: contain;
+  max-width: 75%;
+  max-height: 75%;
 }
 
-.project-type {
-  border-radius: 40%;
-  background-color: aquamarine;
+.type-buttons { 
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+
+.project-type {  
+  border-radius: 1em;
+  background-color: #fddbee;
   text-decoration: none;
-  border-width: 1px;
-  border-color: darkcyan;
-  padding-top: 0.1em; 
+  border-width: 0;  
+  padding-top: 0.1em;
   padding-bottom: 0.25em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
   margin: 2px;
   text-align: center;
- /* line-height: .95em;  Reduce the line height 
+  color: #333;
+  
+  /* line-height: .95em;  Reduce the line height 
   min-height: 1.2em; */
-}
+} 
 
 .footer {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #2196F3;
+  background-color: #39a1f4;
   align-items: center;
   height: 50px;
   margin-top: 40px;
