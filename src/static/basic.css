@@ -5,7 +5,7 @@
   color: whitesmoke; 
   align-items: center;
   height: 3em;
- /* margin-bottom: 20px;*/
+  margin-bottom: 1.5em;
   overflow: hidden;
 }
 
@@ -13,13 +13,9 @@
   height: 100%;
 }
 
-
-
-
 .header-icon img {
   float: left;
-  vertical-align: middle;
-  text-align: left;
+  /*text-align: left;*/
   object-fit: contain;
   max-height: 3em;
 }
@@ -36,14 +32,14 @@
   min-height: 100%;
   line-height: 3em;
   margin: 0;
+  font-weight: bold;
   
 }
 
 /* Style the top navigation bar */
 .topnav {
   overflow: hidden;
-  height: 100%;
- 
+  height: 100%; 
 }
 
 /* Style the topnav links */
@@ -57,13 +53,11 @@
   display: block;
   float: left;
   text-decoration: none;
-  height: 100%;
-  
+  /*height: 100%;*/  
 }
 
 /* Change color on hover */
 .topnav a:hover {
-  /*background-color: rgba(211, 234, 253, 255);*/
   background-color: #6ab8f7;
 }
 
@@ -77,18 +71,24 @@
 body {
   background-color: whitesmoke;
   font-family: verdana;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding-left: 3.5em;
+  padding-right: 3.5em;
   color: #333;
 } 
 
 .body-text { 
-  
-  border-radius: 5px;
+  margin-left: 1em;
+  margin-right: 1em;
 }
 
 .body-text h3 { 
   color: #2196f3;
+  margin: 0;
+  line-height: 100%;
+}
+
+.body-text p {
+  font-size: 0.9em;
 }
 
 .grid-container {
@@ -98,23 +98,20 @@ body {
   padding: 10px;
   margin-left: 2%;
   margin-right: 2%; 
-  border-radius: 5px;
-  
+  border-radius: 5px;  
 }
 
 .grid-item {
   overflow: hidden;
   /*background-color: rgba(211, 234, 253, 255);*/
   background-color: whitesmoke;
-  /*border: 1px solid rgba(0, 0, 0, 0.8);*/
   border: 1px solid #6ab8f7;
   padding: 10px 20px;
   font-size: smaller;
   text-align: left;
 }
 
-.grid-item p {
-  /*width: 50%; */  
+.grid-item p { 
   margin-top: 0;
   margin-bottom: 0.5em;
 }
@@ -152,9 +149,6 @@ body {
   margin: 2px;
   text-align: center;
   color: #333;
-  
-  /* line-height: .95em;  Reduce the line height 
-  min-height: 1.2em; */
 } 
 
 .footer {
@@ -162,6 +156,6 @@ body {
   grid-template-columns: auto auto auto;
   background-color: #39a1f4;
   align-items: center;
-  height: 50px;
-  margin-top: 40px;
+  height: 3em;
+  margin-top: 1.5em;
 }

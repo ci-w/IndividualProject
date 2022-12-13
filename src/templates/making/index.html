@@ -1,77 +1,38 @@
-<!DOCTYPE html>
+{% extends 'making/base.html' %}
 {% load static %}
-<html>
-<link rel="stylesheet" href="{% static 'basic.css' %}">
-<link rel="shortcut icon" type="image/png" href="{% static 'images/temp_icon.png'  %}" />
 
-<head lang="en">
-    <meta charset="UTF-8" />
-    <title>Making Projects</title>
-</head>
+{% block body_block %}
+<div class="body-text">
+    <h3>Welcome to Making Projects</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Erat pellentesque adipiscing commodo elit at imperdiet. Quam pellentesque nec nam aliquam sem.
+        Risus sed vulputate odio ut. Nulla at volutpat diam ut venenatis tellus in metus. Tempus quam pellentesque
+        nec nam aliquam sem. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida.
+        Vestibulum mattis ullamcorper velit sed ullamcorper morbi. Duis at tellus at urna. Amet aliquam id diam
+        maecenas ultricies mi eget mauris. </p>
+</div>
 
-<body>
-    {% block header_block %}
-    <!-- This is header_block's default content. -->
-    <div class="header-grid">
-        <div class="header-icon">
-            <a href="/making/">
-                <img src="{% static 'images/temp_icon.png' %}" alt="Temporary Icon">
-                <h3 class="header-title">Making Projects</h3>
-            </a>
+<div class="grid-container">
+    {% if projects %}
+
+    {% for project in projects %}
+    <div class="grid-item">
+
+        <h4>{{ project.title }}</h4>
+        <div class="type-buttons">
+            {% for category in project.category.all %}
+            <button class="project-type"> {{ category }}</button>
+            {% endfor %}
         </div>
-        <div class="topnav">
-            <a href="#">Projects</a>
-            <a href="#">Syllabus</a>
-            <a href="#">About</a>
-        </div>
+        <img src="{% static 'images/project_image.png' %}" alt="Temporary Icon">
+        <p> {{ project.instructions }} </p>
+        <a href="/making/project/{{ project.slug }}/">Link</a>
 
-        <div class="search-bar"> Searchbar </div>
     </div>
-    {% endblock %}
+    {% endfor %}
 
-
-    {% block body_block %}
-    <div class="body-text">
-        <h3>Welcome to Making Projects</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Erat pellentesque adipiscing commodo elit at imperdiet. Quam pellentesque nec nam aliquam sem.
-            Risus sed vulputate odio ut. Nulla at volutpat diam ut venenatis tellus in metus. Tempus quam pellentesque
-            nec nam aliquam sem. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida.
-            Vestibulum mattis ullamcorper velit sed ullamcorper morbi. Duis at tellus at urna. Amet aliquam id diam
-            maecenas ultricies mi eget mauris. </p>
-    </div>
-
-    <div class="grid-container">
-        {% if projects %}
-
-        {% for project in projects %}
-        <div class="grid-item">
-            
-            <h4>{{ project.title }}</h4> 
-            <div class="type-buttons">
-                {% for category in project.category.all %}
-                <button class="project-type"> {{ category }}</button>
-                {% endfor %}
-            </div>      
-            <img src="{% static 'images/project_image.png' %}" alt="Temporary Icon">
-            <p> {{ project.instructions }} </p>
-            <a href="/making/project/{{ project.slug }}/">Link</a>
-
-        </div>
-        {% endfor %}
-
-        {% else %}
-        <strong>There are no projects present.</strong>
-        {% endif %}
-    </div>
-    {% endblock %}
-
-    {% block footer_block %}
-    <div class="footer"> </div>
-    <!-- This is footer_block's default content. -->
-    {% endblock %}
-
-
-</body>
-
-</html>
+    {% else %}
+    <strong>There are no projects present.</strong>
+    {% endif %}
+</div>
+{% endblock %}

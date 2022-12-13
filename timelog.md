@@ -166,6 +166,14 @@
 ### 10 Dec 2022
 * *4 hours* Working on CSS
 
+### 11 Dec 2022
+* *3 hours* Reading/summarising papers 
+
+## Week 12 
+### 13 Dec 2022
+* *3 hours* Working on lit review 
+
+
 
 
 
