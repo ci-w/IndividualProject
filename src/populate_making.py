@@ -8,16 +8,18 @@ from making.models import Category, Project
 def populate():
     # Creating lists of dictionaries with the pages to add to each category
     projects = [
-        {'title': 'Project 1',
-        'instructions': 'Project info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        {'title': 'Light up card',
+        'description': 'Use paper electronics to create a beautiful light-up greeting card.',
+        'instructions': 'You will need: card, LEDs, tape, scissors. Create a design on the card. Create holes in the card with the scissors for the LEDs. Thread through the LEDs through the holes. Secure them with the tape. Sort out the wires. Present the card.',
         'categories': ['electronic']},
-        {'title': 'Project 2',
-        'instructions': 'Project info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        'categories': ['electronic', '3D printing']},
-        {'title': 'Project 3',
-        'instructions': 'Project info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        'categories': ['3D printing']}
-
+        {'title': 'Braille dice',
+        'description': '3D print a set of dice that have braille numbers.',
+        'instructions': 'You will need: a 3D printer, printer filament of choice, sandpaper. Download the dice files. Load them up in the 3D printer. Load up the filament. Set it to print the dice. Sand printed dice if needed.',
+        'categories': ['3D printing']},
+        {'title': 'Creature',
+        'description': 'Create a 3D printed creature with light up eyes.',
+        'instructions': 'You will need: a 3D printer, LEDs, sandpaper, printer filament, tape. Download the creature file. Load file into printer. Load filament into printer. Print the file. Sand edges of finished creature if needed. Put LEDs through the eye holes. Tape the wiring to the inside of the creature. ',
+        'categories': ['electronic','3D printing']}
     ]
 
     # List of all the different categories
@@ -34,7 +36,7 @@ def populate():
     
 
     def add_project(p):
-        c = Project.objects.get_or_create(title=p['title'], instructions=p['instructions'])[0]
+        c = Project.objects.get_or_create(title=p['title'], description=p['description'], instructions=p['instructions'])[0]
         
         c.save()
 

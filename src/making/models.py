@@ -18,6 +18,7 @@ class Category(models.Model):
 
 class Project(models.Model):    
     title = models.CharField(max_length=128)
+    description = models.TextField(max_length=200)
     instructions = models.TextField(max_length=500)    
     views = models.IntegerField(default=0)
     category = models.ManyToManyField(Category)

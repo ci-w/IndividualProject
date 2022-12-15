@@ -10,8 +10,12 @@
         {% endfor %}           
         
         <p> {{ project.instructions }} </p>
-        <img src="{% static 'images/project_image.png' %}" alt="Temporary Icon">   
-    
+        
+        {% with 'images/'|add:project.slug|add:'.png' as project_image %}
+            <img src="{% static project_image %}" alt="picture of the project">
+        {% endwith %}
+
+
     {% else %} 
     <b>Project not found.</b>
     {% endif %}

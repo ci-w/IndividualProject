@@ -5,8 +5,7 @@ from making.models import Category, Project
 
 def index(request):
     # Construct a dictionary to pass to the template engine as its context.
-    # Note the key boldmessage matches to {{ boldmessage }} in the template!
-    
+        
     project_list = Project.objects.order_by('title')[:6]
     context_dict = {}
     context_dict['projects'] = project_list

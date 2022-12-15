@@ -23,7 +23,17 @@ Running a server: (while in src folder) <br>
 Pipe environment requirements to file: <br>
 `conda list > requirements.txt` <br>
 Creating project from this: <br>
-`pip install -r requirements.txt`
+`pip install -r requirements.txt` <br>
+
+Population script 
+` python populate_making.py ` 
+
+Changing models 
+` python manage.py makemigrations making ` <br>
+` python manage.py migrate `
+If you delete the database, have to make a new superuser account:
+` python manage.py createsuperuser `
+
 
 
 ## GIT
