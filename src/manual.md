@@ -44,6 +44,7 @@ Removing folder from remote repo that's now in gitingore: <br>
 
 ## Notes
 To format nicely in vsc: shift alt f <br>
+To format (soft) line wrapping: alt z <br>
 Potential hosting sites: pythonanywhere & surge <br>
 
 To get django site to run on local: <br>

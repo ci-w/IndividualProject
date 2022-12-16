@@ -15,50 +15,40 @@
 * Started from when project was given.
 
 ## Week 1
-
 ### 28 Sept 2022
-
 * *2 hours* Read the project guidance notes 
 
 ### 29 Sept 2022
-
 * *1 hour* Worked out a rough timeline for the project
 * *1 hour* Researched reference managers
 
 ### 2 Oct 2022
-
 * *0.5 hour* Set up Git version control 
 * *0.5 hour* Created GitLab repository and cloned the template for the projects
 * *1 hour* Added information to the template 
 
 ## Week 2
 ### 3 Oct 2022
-
 * *1 hour* Reading project description and created potential ideas/implementations to discuss
 * *0.5 hour* Chose Zotero as a reference manager, installed and configured it
 
 ### 4 Oct 2022
-
 * *2 hours* Researched profile matching algorithms
 * *1 hour* Worked out what questions I needed to ask at meeting
 
 ### 5 Oct 2022
-
 * *2 hours* Wrote up status report, questions, and ideas for meeting
 
 ### 6 Oct 2022
-
 * *1 hour* Supervisor meeting
 * *0.5 hour* Converted timeline to .md file
 
 ### 7 Oct 2022
-
 * *1 hour* Wrote up meeting notes
 * *2 hours* Read research papers
 
 ## Week 3
 ### 10 Oct 2022
-
 * *2 hours* Researching & creating list of potential organisations to contact
 
 ### 11 Oct 2022
@@ -172,6 +162,12 @@
 ## Week 12 
 ### 13 Dec 2022
 * *3 hours* Working on lit review 
+* *2 hours* Populating website 
+* *1 hour* Backend/database work 
+
+### 14 Dec 2022
+* *0.5 hours* Supervisor meeting 
+* *3 hours* Working on status report 
 
 
 
