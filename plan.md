@@ -29,16 +29,17 @@ Week-by-week plan for the whole project.
 ## Spring Semester
 | Week | Date | Aims |
 | ----- | ------------- | ------------- |
-| 13 | 9/1/23 |  |
-| 14 | 16/1/23 |  |
-| 15 | 23/1/23 |  |
-| 16 | 30/1/23 |  |
-| 17 | 6/2/23 |  |
-| 18 | 13/2/23 |  |
-| 19 | 20/2/23 | |
-| 20 | 27/2/23 |  |
-| 21 | 6/3/23 |  |
-| 22 | 13/3/23 | **Term ends** |
-| 23 | 20/3/23 | Dissertation submission deadline and presentations |
+| Before | semester |  Contact email scripts, finished lit review, website that allows profile creation and modification
+| 13 / 1 | 9/1/23 | Contact organisations, add ”syllabus” functionality to website. |
+| 14 / 2| 16/1/23 | Collect initial feedback about project from organisations. Implement dynamic project view. Make decision on ethics approval process. |
+| 15 / 3| 23/1/23 | Integrate syllabus and dynamic projects.  |
+| 16 / 4 | 30/1/23 | Collate project tutorials, carry out some to gain in-depth knowledge/”case studies”. |
+| 17 / 5| 6/2/23 | Implement feedback system for projects. Start write up.|
+| 18  / 6| 13/2/23 | Write test suite and final evaluation plan for project. |
+| 19 / 7 | 20/2/23 | Finish implementation, taking into account any feedback from organisations. |
+| 20 / 8 | 27/2/23 | Evaluation experiments run. |
+| 21 / 9 | 6/3/23 | Submit draft to supervisor. |
+| 22 /10 | 13/3/23 | **Term ends** |
+| 23 /11 | 20/3/23 | Dissertation submission deadline and presentations |
 
 ## Final deadline: 24th March 2023 at 5pm

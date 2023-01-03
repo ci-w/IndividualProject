@@ -38,7 +38,7 @@ Sources of potential conflict:
 <li>makers traditionally creating items for themselves, having to adapt to making something for someone else</li> </ul>
 </p>
 <b>Relevance</b>
-<p>The DSO that was involved works mostly with people with intellectual disabilities. However not looking at disabled people making DIY-AT for themselves, but someone else making it for them. More of an overview of different potential issues that could arise from these groups working together to create assistive technology. Not incredibly relevant but raises interesting points on the interaction between communities.</p>
+<p>The DSO that was involved works mostly with people with intellectual disabilities. However not looking at disabled people making DIY-AT for themselves, but someone else making it for them. More of an overview of different potential issues that could arise from these groups working together to create assistive technology. Not incredibly relevant but raises interesting points on the interaction between communities. Only 5 pages. </p>
 <hr />
 
 <hr /> 
@@ -49,11 +49,11 @@ Sources of potential conflict:
 <ul><li>Lack of confidence in DIY from non-makers a barrier to creating DIY-AT. Suggestion that online resources alone wouldn’t be enough to get people making DIY-AT/more confident, but a practical demonstration of these technologies might be. DIY-AT for children needs to be really robust.</li>
 <li>Concerned with the aesthetics of the DIY-AT – ones that highlight/make apparent the users disability are more likely to be abandoned. Concern that DIY-AT would be rougher/unfinished compared to other (commercial) AT which would make it stand out more. </li>
 <li>Concern about the safety of DIY-AT in situations. Professional AT companies go through a rigorous risk assessment with each piece of their AT – worry that non-professionals wouldn’t do this, or even know how to do this. Concern about people following online tutorials to create DIY-AT without having the relevant skills and therefore creating something that is unsafe. </li>
-<li>Use of DIY-AT that might negatively impact the disabled user – need to have a medical professional involved in the discussion of using that specific AT. 
-Then suggests that the process of rapid prototyping could help with some of these concerns. Talking about introducing non-makers (ie. parents of disabled children, teachers) to making DIY-AT, OR connecting these people with existing makers, both in allowing those makers to create DIY-AT for them and giving advice to these non-makers. </li></ul>
+<li>Use of DIY-AT that might negatively impact the disabled user – need to have a medical professional involved in the discussion of using that specific AT. </li></ul>
+Then suggests that the process of rapid prototyping could help with some of these concerns. Talking about introducing non-makers (ie. parents of disabled children, teachers) to making DIY-AT, OR connecting these people with existing makers, both in allowing those makers to create DIY-AT for them and giving advice to these non-makers.
 </p>
 <b>Relevance</b>
-<p>Looking at children rather than adults. Looking at non-disabled people creating DIY-AT for disabled people. </p>
+<p>Looking at children rather than adults. Looking at non-disabled people creating DIY-AT for disabled people. 10 pages. </p>
 <hr />
 
 <hr /> 
@@ -61,6 +61,7 @@ Then suggests that the process of rapid prototyping could help with some of thes
 <p>Jacob O. Wobbrock, Shaun K. Kane, Krzysztof Z. Gajos, Susumu Harada, and Jon Froehlich. 2011. <mark>Ability-Based Design: Concept, Principles and Examples.</mark> ACM Trans. Access. Comput. 3, 3 (April 2011), 9:1-9:27. DOI:https://doi.org/10.1145/1952383.1952384</p>
 <b>Summary</b>
 <p>Introduces the concept of “ability based design”, creating accessible technology by focusing on the abilities of disabled users, rather than their disabilities. Suggests that failing in current AT may be because it’s focused on disability rather than ability. The idea that the (software) system should change to fit the users need, rather than the other way around. Discusses this idea. More about making something accessible for one specific user. Gives 7 principles to follow/consider. Then talks about examples of projects that informed these principles. </p>
+
 <b>Relevance</b>
 <p>Maybe my project is about this? RE being dynamic to fit the needs of the user, rather than making the user having to make changes to create the project? </p>
 <hr />
@@ -207,4 +208,47 @@ Recommendations:
 <p>Isn’t incredibly in depth, especially surrounding the actual modifications made and does not give a detailed write up of the “experiment”. Raises some good points about libraries, and gives some general advice on such events. Did include adults with cognitive abilities, which is relevant. 
 Should probably look to see if they did any further papers on this topic. 
 </p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Manesha Andradi. 2022. Socially Connecting Adults with Intellectual Disabilities Through Inclusive Co-Design of Tangible and Visual Technology. In Proceedings of the 24th International ACM SIGACCESS Conference on Computers and Accessibility (ASSETS ’22), Association for Computing Machinery, New York, NY, USA, 1–5. DOI:https://doi.org/10.1145/3517428.3550416
+</p>
+<b>Summary</b>
+<p>Idea of using tangible/visual technologies to make opportunities for people with IDs to connect/grow social connections. Looking at how you can do this.
+Discusses a 3 stage research plan that's been created to explore tangible and visual technologies, and provides findings from completing the first year of this research. Presents a broad research plan, what's been completed, and opportunities for novel research in the form of new technologies and design frameworks. 
+
+High % of people with ID are lonely.  </p>
+<b>Relevance</b>
+<p>5 pages long. First year of their PhD research. Starting point of a non-residential hub for people with IDs.  </p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Hashini Senaratne, Swamy Ananthanarayan, and <mark>Kirsten Ellis</mark>. 2022. TronicBoards: An Accessible Electronics Toolkit for People with Intellectual Disabilities. In Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems (CHI ’22), Association for Computing Machinery, New York, NY, USA, 1–15. DOI:https://doi.org/10.1145/3491102.3517483
+</p>
+<b>Summary</b>
+<p>They created an electronic toolkit specifically aimed for people with IDs. Evaluated it one-on-one with 10 participants using a guided exploration approach. Analysis revealed participants were able to create simple sensor-based interactive circuits with varying levels of assistance. 
+Reports strengths/weaknesses of it, and the implications for designing inclusive electronic toolkits for people with IDs. Focus on considering design elements that improve functionality, comprehensibilty, and agency.  </p>
+<b>Relevance</b>
+<p>15 pages long. Looks good come back to this.</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Erin Buehler, Stacy Branham, Abdullah Ali, Jeremy J. Chang, Megan Kelly Hofmann, Amy Hurst, and Shaun K. Kane. 2015. Sharing is Caring: Assistive Technology Designs on Thingiverse. In Proceedings of the 33rd Annual ACM Conference on Human Factors in Computing Systems (CHI ’15), Association for Computing Machinery, New York, NY, USA, 525–534. DOI:https://doi.org/10.1145/2702123.2702525
+</p>
+<b>Summary</b>
+<p>Looking at the designs and motivations of AT on thingiverse. Questioned the designers of the ATs. Majority of AT for 3D printers. Shows a bunch of AT designs/their search to get them all. 363 unique designs uploaded by 273 designers. </p>
+<b>Relevance</b>
+<p>10 pages. Will be useful if I need to look at AT/designer motivations more. </p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>reference</p>
+<b>Summary</b>
+<p>summary</p>
+<b>Relevance</b>
+<p>relevance</p>
 <hr />
