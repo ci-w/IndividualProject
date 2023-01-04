@@ -212,7 +212,7 @@ Should probably look to see if they did any further papers on this topic.
 
 <hr /> 
 <b>ACM Reference</b> 
-<p>Manesha Andradi. 2022. Socially Connecting Adults with Intellectual Disabilities Through Inclusive Co-Design of Tangible and Visual Technology. In Proceedings of the 24th International ACM SIGACCESS Conference on Computers and Accessibility (ASSETS ’22), Association for Computing Machinery, New York, NY, USA, 1–5. DOI:https://doi.org/10.1145/3517428.3550416
+<p>Manesha Andradi. 2022. <mark>Socially Connecting Adults with Intellectual Disabilities Through Inclusive Co-Design of Tangible and Visual Technology.</mark> In Proceedings of the 24th International ACM SIGACCESS Conference on Computers and Accessibility (ASSETS ’22), Association for Computing Machinery, New York, NY, USA, 1–5. DOI:https://doi.org/10.1145/3517428.3550416
 </p>
 <b>Summary</b>
 <p>Idea of using tangible/visual technologies to make opportunities for people with IDs to connect/grow social connections. Looking at how you can do this.
@@ -225,7 +225,7 @@ High % of people with ID are lonely.  </p>
 
 <hr /> 
 <b>ACM Reference</b> 
-<p>Hashini Senaratne, Swamy Ananthanarayan, and <mark>Kirsten Ellis</mark>. 2022. TronicBoards: An Accessible Electronics Toolkit for People with Intellectual Disabilities. In Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems (CHI ’22), Association for Computing Machinery, New York, NY, USA, 1–15. DOI:https://doi.org/10.1145/3491102.3517483
+<p>Hashini Senaratne, Swamy Ananthanarayan, and <mark>Kirsten Ellis</mark>. 2022. <mark>TronicBoards: An Accessible Electronics Toolkit for People with Intellectual Disabilities.</mark> In Proceedings of the 2022 CHI Conference on Human Factors in Computing Systems (CHI ’22), Association for Computing Machinery, New York, NY, USA, 1–15. DOI:https://doi.org/10.1145/3491102.3517483
 </p>
 <b>Summary</b>
 <p>They created an electronic toolkit specifically aimed for people with IDs. Evaluated it one-on-one with 10 participants using a guided exploration approach. Analysis revealed participants were able to create simple sensor-based interactive circuits with varying levels of assistance. 
@@ -236,7 +236,7 @@ Reports strengths/weaknesses of it, and the implications for designing inclusive
 
 <hr /> 
 <b>ACM Reference</b> 
-<p>Erin Buehler, Stacy Branham, Abdullah Ali, Jeremy J. Chang, Megan Kelly Hofmann, Amy Hurst, and Shaun K. Kane. 2015. Sharing is Caring: Assistive Technology Designs on Thingiverse. In Proceedings of the 33rd Annual ACM Conference on Human Factors in Computing Systems (CHI ’15), Association for Computing Machinery, New York, NY, USA, 525–534. DOI:https://doi.org/10.1145/2702123.2702525
+<p>Erin Buehler, Stacy Branham, Abdullah Ali, Jeremy J. Chang, Megan Kelly Hofmann, Amy Hurst, and Shaun K. Kane. 2015. <mark>Sharing is Caring: Assistive Technology Designs on Thingiverse.</mark> In Proceedings of the 33rd Annual ACM Conference on Human Factors in Computing Systems (CHI ’15), Association for Computing Machinery, New York, NY, USA, 525–534. DOI:https://doi.org/10.1145/2702123.2702525
 </p>
 <b>Summary</b>
 <p>Looking at the designs and motivations of AT on thingiverse. Questioned the designers of the ATs. Majority of AT for 3D printers. Shows a bunch of AT designs/their search to get them all. 363 unique designs uploaded by 273 designers. </p>
@@ -246,7 +246,84 @@ Reports strengths/weaknesses of it, and the implications for designing inclusive
 
 <hr /> 
 <b>ACM Reference</b> 
-<p>reference</p>
+<p>Vivian Genaro Motti. 2019. <mark>Designing emerging technologies for and with neurodiverse users.</mark> In Proceedings of the 37th ACM International Conference on the Design of Communication (SIGDOC ’19), Association for Computing Machinery, New York, NY, USA, 1–10. DOI:https://doi.org/10.1145/3328020.3353946
+</p>
+<b>Summary</b>
+<p>Presenting the findings of a lit review on smart technologies for neurodiverse users. 
+Their definition of neurodiverse includes: learning difficulities, cognitive impairments, IDs/developmental disabilities. 
+Notes the importance of: inclusive + participatory design, reframing neurological conditions by focusing on strengths rather than limitations. 
+Lit review found: 15 theoretical contributions (5 prev reviews, 2 theoretical frameworks, 8 design principles + rec's ), 38 tech development + research studies (9 tangible interfaces, 9 games, 8 mobile apps, 8 wearables, 4 other apps).
+Notes that they tended to use similar experimental design to traditional HCI methods - qualitative including interviews, questionaires, and ethnographic studies.
+Also notes that participants are skewed towards children and males, most involve caregivers/practitioners. Mostly small sample sizes (>50) and few involve adults. 
+Design reccomendations: 
+<ul><li>make instructions clear + accessible</li>
+<li>preference for multimodal feedback in output responses</li>
+<li>strive for customisation - to meet the diverse needs </ul>
+</p>
+<b>Relevance</b>
+<p>6 pages, +4 pages of references. I don't like the opinion (stated as fact), that neurodiversity isn't a disability - it seems to misunderstand the concept of disability. Cites a paper that claims they aren't disabilities because they have positive aspects (ignoring the fact that many of their so called "traditional" disabilities also have positive aspects). Also the label of neurodiversity doesn't usually include IDs/cerebral palsey as stated in this paper, which could lead to an underepresentation of these conditions when looking at papers about neurodiversity. Also includes a study aimed at people with bipolar ??
+Couldn't really find anything focused/applicable to my research. Mostly things aimed at children/neurodiversity.</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Kevin Lefeuvre, Sören Totzauer, Andreas Bischof, Albrecht Kurze, Michael Storz, Lisa Ullmann, and Arne Berger. 2016. <mark>Loaded Dice: Exploring the Design Space of Connected Devices with Blind and Visually Impaired People.</mark> In Proceedings of the 9th Nordic Conference on Human-Computer Interaction (NordiCHI ’16), Association for Computing Machinery, New York, NY, USA, 1–10. DOI:https://doi.org/10.1145/2971485.2971524
+</p>
+<b>Summary</b>
+<p>Presents "loaded dice" two wireless Arduino based 3D printed cubes, with various sensors in one, and actuators in the other. Intended to support co-design acitivies with blind/visually impaired people within the design space of smart connected devices. 
+Describes the design rationale + process, the tool itself, and analysis of how co-designers utilised it during a workshop.</p>
+<b>Relevance</b>
+<p>9 pages, +1 of references. Aimed more at visual impairments, so not incredibly relevant. Could still see if design/evaluation style is relevant. Probably should read more. </p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Ben Leduc-Mills, Jaymes Dec, and John Schimmel. 2013. <mark>Evaluating accessibility in fabrication tools for children.</mark> In Proceedings of the 12th International Conference on Interaction Design and Children (IDC ’13), Association for Computing Machinery, New York, NY, USA, 617–620. DOI:https://doi.org/10.1145/2485760.2485882
+</p>
+<b>Summary</b>
+<p>Looking at childrens fabrication activities through the lense of accessibility. Presents initial challenges, frameworks and best practices, examples of current relevant research, and discussion/conclusions.
+Talks about AT/DIY-AT too.</p>
+<b>Relevance</b>
+<p>Aimed at children so not relevant in that aspect. Workshop summary, only 3 pages. Could look at the references for more papers on tangible learning.</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Amy Hurst and Jasmine Tobias. 2011. <mark>Empowering individuals with do-it-yourself assistive technology.</mark> In The proceedings of the 13th international ACM SIGACCESS conference on Computers and accessibility (ASSETS ’11), Association for Computing Machinery, New York, NY, USA, 11–18. DOI:https://doi.org/10.1145/2049536.2049541
+</p>
+<b>Summary</b>
+<p>Investigating the potential for DIY-AT. Talks about how DIY-AT can be used by non-engineers to create tools that improve the adoption process/rates. Discusses DIY experiences/impressions from people who have either built DIY-AT or rely on it. Finds that increased control over design elements, passion, and cost motivate people to make their own DIY-AT. Gives some design rec's.
+Talks about this DIY-AT tutorial site, I couldn't find it online anywhere.
+ </p>
+<b>Relevance</b>
+<p>8 pages. Probably would want to read more about this maybe.</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Sarah Wille, Jeanne Century, and Miriam Pike. 2017. <mark>Exploratory Research to Expand Opportunities in Computer Science for Students with Learning Differences.</mark> Computing in Science & Engineering 19, 3 (May 2017), 40–50. DOI:https://doi.org/10.1109/MCSE.2017.43
+</p>
+<b>Summary</b>
+<p>summary</p>
+<b>Relevance</b>
+<p>Is this a newspaper article ? Seems to be aimed only at K-12 education, so children so not applicable. Also only really looking at learning difficulties. </p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Lukas Hellwig, Lisa Preissner, Jan Pawlowski, and Wolfgang Deiters. 2022. <mark> How digital fabrication technologies within digitalized innovation environments lead to participative aid development.</mark> Journal of Enabling Technologies 16, 3 (January 2022), 219–230. DOI:https://doi.org/10.1108/JET-01-2022-0013
+</p>
+<b>Summary</b>
+<p>Aims to provide a comprehensive understanding of participatory development processes within digitalised innovation environments along with the influencing factors.
+Participants were thalidomide-affected people. Talking about DIY-AT </p>
+<b>Relevance</b>
+<p>Peer reviewed research paper :) 12 pages</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Marcelo Worsley and David Bar-El. 2022. <mark>Inclusive Making: designing tools and experiences to promote accessibility and redefine making.</mark> Computer Science Education 32, 2 (April 2022), 155–187. DOI:https://doi.org/10.1080/08993408.2020.1863705
+</p>
 <b>Summary</b>
 <p>summary</p>
 <b>Relevance</b>
