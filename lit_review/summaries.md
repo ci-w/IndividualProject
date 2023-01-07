@@ -5,6 +5,11 @@
 <p>summary</p>
 <b>Relevance</b>
 <p>relevance</p>
+<b>Meta</b>
+<p> pages long. <br>
+Cited by: x on SCOPUS,
+x on Google Scholar,
+x on ACM</p>
 <hr />
 
 <hr /> 
@@ -15,7 +20,11 @@
 Evaluated them by interviewing makers, special educational needs teachers, and support coaches. Used this feedback to create a number of maker workshops using TapeBlocks for young adults with intellectual disabilities. 
 </p>
 <b>Relevance</b>
-<p>relevance</p>
+<p>Super relevant :)</p>
+<b>Meta</b>
+<p>Cited by: 7 on SCOPUS,
+10 on Google Scholar,
+5 on ACM</p>
 <hr />
 
 <hr /> 
@@ -25,6 +34,10 @@ Evaluated them by interviewing makers, special educational needs teachers, and s
 <p>Looking at the impact and roles makerspaces have in public life through site visits and interviews at makerspaces in the UK. Also looks at how to extend the positive benefits to people currently outwith the community and how to remove barriers to this. Mentions the large positive social aspect of makerspaces. Looking at including the disabled community. </p>
 <b>Relevance</b>
 <p>relevance</p>
+<b>Meta</b>
+<p>Cited by: 100 on SCOPUS,
+185 on Google Scholar,
+85 on ACM</p>
 <hr />
 
 <hr /> 
@@ -38,7 +51,12 @@ Sources of potential conflict:
 <li>makers traditionally creating items for themselves, having to adapt to making something for someone else</li> </ul>
 </p>
 <b>Relevance</b>
-<p>The DSO that was involved works mostly with people with intellectual disabilities. However not looking at disabled people making DIY-AT for themselves, but someone else making it for them. More of an overview of different potential issues that could arise from these groups working together to create assistive technology. Not incredibly relevant but raises interesting points on the interaction between communities. Only 5 pages. </p>
+<p>The DSO that was involved works mostly with people with intellectual disabilities. However not looking at disabled people making DIY-AT for themselves, but someone else making it for them. More of an overview of different potential issues that could arise from these groups working together to create assistive technology. Not incredibly relevant but raises interesting points on the interaction between communities. </p>
+<b>Meta</b>
+<p>5 pages <br>
+Cited by: 11 on SCOPUS, 
+17 on Google Scholar,
+10 on ACM</p>
 <hr />
 
 <hr /> 
@@ -53,7 +71,12 @@ Sources of potential conflict:
 Then suggests that the process of rapid prototyping could help with some of these concerns. Talking about introducing non-makers (ie. parents of disabled children, teachers) to making DIY-AT, OR connecting these people with existing makers, both in allowing those makers to create DIY-AT for them and giving advice to these non-makers.
 </p>
 <b>Relevance</b>
-<p>Looking at children rather than adults. Looking at non-disabled people creating DIY-AT for disabled people. 10 pages. </p>
+<p>Looking at children rather than adults. Looking at non-disabled people creating DIY-AT for disabled people. </p>
+<b>Meta</b>
+<p>10 pages <br>
+Cited by: 57 on SCOPUS,
+93 on Google Scholar,
+47 on ACM</p>
 <hr />
 
 <hr /> 
@@ -62,8 +85,23 @@ Then suggests that the process of rapid prototyping could help with some of thes
 <b>Summary</b>
 <p>Introduces the concept of “ability based design”, creating accessible technology by focusing on the abilities of disabled users, rather than their disabilities. Suggests that failing in current AT may be because it’s focused on disability rather than ability. The idea that the (software) system should change to fit the users need, rather than the other way around. Discusses this idea. More about making something accessible for one specific user. Gives 7 principles to follow/consider. Then talks about examples of projects that informed these principles. </p>
 
+<b>Notes</b>
+<p>Example of a system that automatically adapts - "SUPPLE". 
+"Identify abilities in a <b>reliable</b> fashion." 
+Explains a lot of similar/different design ideologies, in relation to their idea of ability based design. 
+</p>
+
+<b>Opinion</b>
+<p> Obviously political/disability academia sphere of how to talk about/design for/consider "dis"ability. Slightly out of my intentions but yk. 
+</p>
+
 <b>Relevance</b>
 <p>Maybe my project is about this? RE being dynamic to fit the needs of the user, rather than making the user having to make changes to create the project? </p>
+
+<b>Meta</b>
+<p>Cited by: 291 on SCOPUS,
+465 on Google Scholar,
+284 on ACM</p>
 <hr />
 
 <hr /> 
@@ -82,6 +120,11 @@ Lists some sample recommendations in the paper, but they have also summarised th
 </p>
 <b>Relevance</b>
 <p>Makes concrete suggestions on how to improve specific issues in maker spaces. Linked checklist could be of some use (as a resource to give to makerspaces). However the disabilities studied don’t include ones completely relevant. </p>
+
+<b>Meta</b>
+<p>Cited by: 
+18 on Google Scholar
+</p>
 <hr />
 
 <hr /> 
@@ -101,6 +144,10 @@ This paper doesn’t actually cover the workshop lol
 </p>
 <b>Relevance</b>
 <p>relevance</p>
+<b>Meta</b>
+<p>Cited by: 14 on SCOPUS,
+24 on Google Scholar,
+16 on ACM</p>
 <hr />
 
 <hr /> 
@@ -118,6 +165,10 @@ This paper doesn’t actually cover the workshop lol
 </p>
 <b>Relevance</b>
 <p>Seems very relevant, just came out recently, do a more in depth review of this one. </p>
+<b>Meta</b>
+<p>Cited by: 0 on SCOPUS,
+0 on Google Scholar,
+0 on ACM</p>
 <hr />
 
 <hr /> 
@@ -127,17 +178,27 @@ This paper doesn’t actually cover the workshop lol
 <p>Looking at the public adoption of the Chibitronics circuit sticker toolkit. </p>
 <b>Relevance</b>
 <p>relevance</p>
+<b>Meta</b>
+<p>Cited by: 16 on SCOPUS,
+3 on Google Scholar,
+10 on ACM</p>
 <hr />
 
 <hr /> 
 <b>ACM Reference</b> 
-<p>Leandro Soares Guedes, Ryan Colin Gibson, Kirsten Ellis, Laurianne Sitbon, and Monica Landoni. 2022. <mark>Designing with and for People with Intellectual Disabilities.</mark> In The 24th International ACM SIGACCESS Conference on Computers and Accessibility (ASSETS ’22), October 23–26, 2022, Athens, Greece. ACM, New York, NY, USA, 6 pages. https://doi.org/10.1145/3517428.3550406</p>
+<p>Leandro Soares Guedes, Ryan Colin Gibson, <mark>Kirsten Ellis</mark>, Laurianne Sitbon, and Monica Landoni. 2022. <mark>Designing with and for People with Intellectual Disabilities.</mark> In The 24th International ACM SIGACCESS Conference on Computers and Accessibility (ASSETS ’22), October 23–26, 2022, Athens, Greece. ACM, New York, NY, USA, 6 pages. https://doi.org/10.1145/3517428.3550406</p>
 <b>Summary</b>
 <p>Half day workshop. Idea of AT being abandoned due to all stakeholders not being involved in the design/evaluation process, resulting in AT that doesn’t meet their needs. Workshop aim is to gather relevant researchers to share experiences on how to design for/with people with ID. Outcome: filling a gap on available guidelines to include people with IDs in research through more accessible protocols. Which would result in better personalised/fit for purpose technologies. </p>
 <b>Relevance</b>
-<p>Paper relevance. Seems to be a very useful starting off point/getting links in the topic of designing things for people with IDs/cognitive impairments. 
+<p>Seems to be a very useful starting off point/getting links in the topic of designing things for people with IDs/cognitive impairments. 
 NEED TO WRITE MORE FOR THIS
 </p>
+<b>Relevance</b>
+<p>relevance</p>
+<b>Meta</b>
+<p>Cited by: 0 on SCOPUS,
+0 on Google Scholar,
+0 on ACM</p>
 <hr />
 
 <hr /> 
@@ -147,6 +208,10 @@ NEED TO WRITE MORE FOR THIS
 <p>Looking at how to adapt DIY practices for designing for people with disabilities. Does this by interviewing stakeholders in the disability services sector and observing local makerspaces to understand current practices. </p>
 <b>Relevance</b>
 <p>This is linked/basically the same as another paper (linked in zotero)</p>
+<b>Meta</b>
+<p>Cited by: 11 on SCOPUS,
+17 on Google Scholar,
+7 on ACM</p>
 <hr />
 
 <hr /> 
@@ -161,6 +226,13 @@ They considered how disabled people already do/can make use of digital fab tools
 </p>
 <b>Relevance</b>
 <p>13 pages long. Do a more in depth summary of this. </p>
+<b>Meta</b>
+<p>13 pages long. <br>
+Cited by:
+56 on Scopus,
+33 on WOS,
+45 on Google Scholar,
+52 on ACM</p>
 <hr />
 
 <hr /> 
@@ -170,6 +242,11 @@ They considered how disabled people already do/can make use of digital fab tools
 <p>Looking at how hackerspaces work. And how they impact HCI.</p>
 <b>Relevance</b>
 <p>10 pages. </p>
+<b>Meta</b>
+<p>10 pages <br>
+Cited by: 152 on SCOPUS,
+297 on Google Scholar,
+139 on ACM</p>
 <hr />
 
 <hr /> 
@@ -208,6 +285,10 @@ Recommendations:
 <p>Isn’t incredibly in depth, especially surrounding the actual modifications made and does not give a detailed write up of the “experiment”. Raises some good points about libraries, and gives some general advice on such events. Did include adults with cognitive abilities, which is relevant. 
 Should probably look to see if they did any further papers on this topic. 
 </p>
+<b>Meta</b>
+<p>Cited by: 46 on SCOPUS,
+93 on Google Scholar,
+n/a on ACM</p>
 <hr />
 
 <hr /> 
@@ -218,9 +299,13 @@ Should probably look to see if they did any further papers on this topic.
 <p>Idea of using tangible/visual technologies to make opportunities for people with IDs to connect/grow social connections. Looking at how you can do this.
 Discusses a 3 stage research plan that's been created to explore tangible and visual technologies, and provides findings from completing the first year of this research. Presents a broad research plan, what's been completed, and opportunities for novel research in the form of new technologies and design frameworks. 
 
-High % of people with ID are lonely.  </p>
+High % of people with ID are lonely. </p>
 <b>Relevance</b>
 <p>5 pages long. First year of their PhD research. Starting point of a non-residential hub for people with IDs.  </p>
+<b>Meta</b>
+<p>Cited by: 0 on SCOPUS,
+0 on Google Scholar,
+0 on ACM</p>
 <hr />
 
 <hr /> 
@@ -229,9 +314,13 @@ High % of people with ID are lonely.  </p>
 </p>
 <b>Summary</b>
 <p>They created an electronic toolkit specifically aimed for people with IDs. Evaluated it one-on-one with 10 participants using a guided exploration approach. Analysis revealed participants were able to create simple sensor-based interactive circuits with varying levels of assistance. 
-Reports strengths/weaknesses of it, and the implications for designing inclusive electronic toolkits for people with IDs. Focus on considering design elements that improve functionality, comprehensibilty, and agency.  </p>
+Reports strengths/weaknesses of it, and the implications for designing inclusive electronic toolkits for people with IDs. Focus on considering design elements that improve functionality, comprehensibility, and agency.  </p>
 <b>Relevance</b>
 <p>15 pages long. Looks good come back to this.</p>
+<b>Meta</b>
+<p>Cited by: 0 on SCOPUS,
+0 on Google Scholar,
+0 on ACM</p>
 <hr />
 
 <hr /> 
@@ -242,6 +331,10 @@ Reports strengths/weaknesses of it, and the implications for designing inclusive
 <p>Looking at the designs and motivations of AT on thingiverse. Questioned the designers of the ATs. Majority of AT for 3D printers. Shows a bunch of AT designs/their search to get them all. 363 unique designs uploaded by 273 designers. </p>
 <b>Relevance</b>
 <p>10 pages. Will be useful if I need to look at AT/designer motivations more. </p>
+<b>Meta</b>
+<p>Cited by: 117 on SCOPUS,
+194 on Google Scholar,
+105 on ACM</p>
 <hr />
 
 <hr /> 
@@ -250,12 +343,12 @@ Reports strengths/weaknesses of it, and the implications for designing inclusive
 </p>
 <b>Summary</b>
 <p>Presenting the findings of a lit review on smart technologies for neurodiverse users. 
-Their definition of neurodiverse includes: learning difficulities, cognitive impairments, IDs/developmental disabilities. 
+Their definition of neurodiverse includes: learning difficulties, cognitive impairments, IDs/developmental disabilities. 
 Notes the importance of: inclusive + participatory design, reframing neurological conditions by focusing on strengths rather than limitations. 
 Lit review found: 15 theoretical contributions (5 prev reviews, 2 theoretical frameworks, 8 design principles + rec's ), 38 tech development + research studies (9 tangible interfaces, 9 games, 8 mobile apps, 8 wearables, 4 other apps).
-Notes that they tended to use similar experimental design to traditional HCI methods - qualitative including interviews, questionaires, and ethnographic studies.
+Notes that they tended to use similar experimental design to traditional HCI methods - qualitative including interviews, questionnaires, and ethnographic studies.
 Also notes that participants are skewed towards children and males, most involve caregivers/practitioners. Mostly small sample sizes (>50) and few involve adults. 
-Design reccomendations: 
+Design recommendations: 
 <ul><li>make instructions clear + accessible</li>
 <li>preference for multimodal feedback in output responses</li>
 <li>strive for customisation - to meet the diverse needs </ul>
@@ -263,6 +356,10 @@ Design reccomendations:
 <b>Relevance</b>
 <p>6 pages, +4 pages of references. I don't like the opinion (stated as fact), that neurodiversity isn't a disability - it seems to misunderstand the concept of disability. Cites a paper that claims they aren't disabilities because they have positive aspects (ignoring the fact that many of their so called "traditional" disabilities also have positive aspects). Also the label of neurodiversity doesn't usually include IDs/cerebral palsey as stated in this paper, which could lead to an underepresentation of these conditions when looking at papers about neurodiversity. Also includes a study aimed at people with bipolar ??
 Couldn't really find anything focused/applicable to my research. Mostly things aimed at children/neurodiversity.</p>
+<b>Meta</b>
+<p>Cited by: 5 on SCOPUS,
+16 on Google Scholar,
+7 on ACM</p>
 <hr />
 
 <hr /> 
@@ -274,6 +371,10 @@ Couldn't really find anything focused/applicable to my research. Mostly things a
 Describes the design rationale + process, the tool itself, and analysis of how co-designers utilised it during a workshop.</p>
 <b>Relevance</b>
 <p>9 pages, +1 of references. Aimed more at visual impairments, so not incredibly relevant. Could still see if design/evaluation style is relevant. Probably should read more. </p>
+<b>Meta</b>
+<p>Cited by: 20 on SCOPUS,
+45 on Google Scholar,
+28 on ACM</p>
 <hr />
 
 <hr /> 
@@ -297,6 +398,10 @@ Talks about this DIY-AT tutorial site, I couldn't find it online anywhere.
  </p>
 <b>Relevance</b>
 <p>8 pages. Probably would want to read more about this maybe.</p>
+<b>Meta</b>
+<p>Cited by: 167 on SCOPUS,
+279 on Google Scholar,
+149 on ACM</p>
 <hr />
 
 <hr /> 
@@ -311,13 +416,17 @@ Talks about this DIY-AT tutorial site, I couldn't find it online anywhere.
 
 <hr /> 
 <b>ACM Reference</b> 
-<p>Lukas Hellwig, Lisa Preissner, Jan Pawlowski, and Wolfgang Deiters. 2022. <mark> How digital fabrication technologies within digitalized innovation environments lead to participative aid development.</mark> Journal of Enabling Technologies 16, 3 (January 2022), 219–230. DOI:https://doi.org/10.1108/JET-01-2022-0013
+<p>Lukas Hellwig, Lisa Preissner, Jan Pawlowski, and Wolfgang Deiters. 2022. <mark>How digital fabrication technologies within digitalized innovation environments lead to participative aid development.</mark> Journal of Enabling Technologies 16, 3 (January 2022), 219–230. DOI:https://doi.org/10.1108/JET-01-2022-0013
 </p>
 <b>Summary</b>
 <p>Aims to provide a comprehensive understanding of participatory development processes within digitalised innovation environments along with the influencing factors.
 Participants were thalidomide-affected people. Talking about DIY-AT </p>
 <b>Relevance</b>
 <p>Peer reviewed research paper :) 12 pages</p>
+<b>Meta</b>
+<p>Cited by: 0 on SCOPUS,
+0 on Google Scholar,
+0 on ACM</p>
 <hr />
 
 <hr /> 
@@ -325,7 +434,219 @@ Participants were thalidomide-affected people. Talking about DIY-AT </p>
 <p>Marcelo Worsley and David Bar-El. 2022. <mark>Inclusive Making: designing tools and experiences to promote accessibility and redefine making.</mark> Computer Science Education 32, 2 (April 2022), 155–187. DOI:https://doi.org/10.1080/08993408.2020.1863705
 </p>
 <b>Summary</b>
+<p>Description of a university course to help broaden students awareness of accessibility in computing and promote accessible making solutions. Aims to engage students in critical examinations of making, and allowing them to design accessible interfaces and experiences. Paper studies the course design and its impact on students. Analysis used grounded-theory to code responses and identify emergent themes.  </p>
+<b>Findings/Notes?</b>
+<p>They deem making "as a specific form of computing that connects the digital and the physical" and as applied computer science. 
+Notes most of the literature/focus on accessible computing is web accessibility/word processing. 
+Looks at the motiviations students have for taking this course (not really relevant to me?).
+Based their course design on: making, user-centered design, and critical disabilities studies. 
+Shows students motivations for the course, and various projects created by students. 
+ </p>
+<b>Relevance</b>
+<p>They define disability as including vision/hearing/speech/motor/neurological/cognitive impairments. US-context based. Notes most other projects about engaging communities in CS are aimed at K-12 students. Not incredibly relevant but may be good to point out as a "steps are being taken to teach CS students abt these areas", and to take away anything they learnt about accessible making.  Goes into more detail about the course content/groups of issues highlighted. Why didnt they record the demographic of disabled students? </p>
+<b>Meta</b>
+<p> 29 pages long, +4 pages of references. <br>
+Cited by: 4 on SCOPUS,
+8 on Google Scholar,
+0 on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Ron Wakkary, Markus Lorenz Schilling, Matthew A. Dalton, Sabrina Hauser, Audrey Desjardins, Xiao Zhang, and Henry W.J. Lin. 2015. <mark>Tutorial Authorship and Hybrid Designers: The Joy (and Frustration) of DIY Tutorials.</mark> In Proceedings of the 33rd Annual ACM Conference on Human Factors in Computing Systems (CHI ’15), Association for Computing Machinery, New York, NY, USA, 609–618. DOI:https://doi.org/10.1145/2702123.2702550
+</p>
+<b>Summary</b>
+<p>Talking about the importance of tutorial authorship to help maintain and improve the quality of DIY tutorials. Examining quality of DIY tutorials. Looking at 3 main issues: 
+<ul><li>competences, components and tools</li>
+<li>sequencing</li>
+<li>communication</li></ul> 
+Gives practical guidelines and structural themes including: accurate information, competences and tools, and tutorial format. Asks the questions: what's the quality of a typical DIY tutorial? what role can interaction designers play in supporting and enhancing the quality of tutorials in the practices of DIY? </p>
+<b>Findings/Notes</b>
+<p>They found and carried out 10 tutorials. Talks about the practice of technical writing - a style of writing that allows any user to read and clearly understand text/images/etc that informs the reader about a technology/service/product. Aims to fufill requirements of accuracy, understandability, and accessibility. Notes the lack of interaction between DIY community/tutorials and it.   </p>
+<b>Relevance</b>
+<p>Stuff about hybrid design I dont understand.</p>
+<b>Meta</b>
+<p>10 pages long. <br>
+Cited by: x on SCOPUS,
+47 on Google Scholar,
+21 on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>JooYoung Seo. 2019. <mark>Is the Maker Movement Inclusive of ANYONE?: Three Accessibility Considerations to Invite Blind Makers to the Making World.</mark> TechTrends 63, 5 (September 2019), 514–520. DOI:https://doi.org/10.1007/s11528-019-00377-3
+</p>
+<b>Summary</b>
+<p>Looking at the lack of inclusivity for visually impaired people in the maker movement. Explored 3 online communities for blind makers, highlights 3 imperative challenges that need attention: inaccessible/undocumented instructions for maker toolkits (relevant to me?), a less tangible design of making board, a lack of multi-sensory modules. Then gives corresponding practical reccomendations. </p>
+<b>Relevance</b>
+<p>About visual impairments. Author is blind!!!</p>
+<b>Meta</b>
+<p> pages long. <br>
+Cited by: x on SCOPUS,
+21 on Google Scholar,
+x on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Nic Hollinworth, Faustina Hwang, Kate Allen, Gosia Malgosia Kwiatkowska, and Andy Minnion. 2014. <mark>Making electronics more accessible to people with learning disabilities.</mark> In CHI ’14 Extended Abstracts on Human Factors in Computing Systems (CHI EA ’14), Association for Computing Machinery, New York, NY, USA, 1255–1260. DOI:https://doi.org/10.1145/2559206.2581175
+</p>
+<b>Summary</b>
+<p>Extended 'littlebits' electronic components by attatching them to a larger base, designed to make it easier to pick up/handle, and assemble into circuits for people with learning disabilities. Basically co-designing this electronics kit to make it more accessible to people with IDs. </p>
+<b>Relevance</b>
+<p>A "work in progress" paper, extended abstract? This is part of a bigger (interdisciplinary) project "Interactive sensory objects for and by people with learning disabilities". Pretty good in a "looking at how electronics can be adapted for these people" and "this is how they did that". </p>
+<b>Meta</b>
+<p>6 pages long. <br>
+Cited by: 4 on SCOPUS,
+7 on Google Scholar,
+3 on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Amy Hurst and Shaun Kane. 2013. <mark>Making “making” accessible.</mark> In Proceedings of the 12th International Conference on Interaction Design and Children (IDC ’13), Association for Computing Machinery, New York, NY, USA, 635–638. DOI:https://doi.org/10.1145/2485760.2485883
+</p>
+<b>Summary</b>
+<p>summary</p>
+<b>Relevance</b>
+<p>More talking about DIY-AT?</p>
+<b>Meta</b>
+<p>4 pages long. A workshop paper <br>
+Cited by: x on SCOPUS,
+114 on Google Scholar,
+63 on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Ingo Karl Bosse and Bastian Pelka. 2020. <mark>Peer production by persons with disabilities – opening 3D-printing aids to everybody in an inclusive MakerSpace.</mark> Journal of Enabling Technologies 14, 1 (January 2020), 41–53. DOI:https://doi.org/10.1108/JET-07-2019-0037
+</p>
+<b>Summary</b>
 <p>summary</p>
 <b>Relevance</b>
 <p>relevance</p>
+<b>Meta</b>
+<p>13 pages long. <br>
+Cited by: 7 on SCOPUS,
+15 on Google Scholar,
+x on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Brian J. Rosmaita. 2006. <mark>Accessibility first! a new approach to web design.</mark> In Proceedings of the 37th SIGCSE technical symposium on Computer science education (SIGCSE ’06), Association for Computing Machinery, New York, NY, USA, 270–274. DOI:https://doi.org/10.1145/1121341.1121426
+</p>
+<b>Summary</b>
+<p>summary</p>
+<b>Relevance</b>
+<p>relevance</p>
+<b>Meta</b>
+<p> pages long. <br>
+Cited by: 41 on SCOPUS,
+78 on Google Scholar,
+32 on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Alexa F. Siu, Joshua Miele, and Sean Follmer. 2018. <mark>An Accessible CAD Workflow Using Programming of 3D Models and Preview Rendering in A 2.5D Shape Display.</mark> In Proceedings of the 20th International ACM SIGACCESS Conference on Computers and Accessibility (ASSETS ’18), Association for Computing Machinery, New York, NY, USA, 343–345. DOI:https://doi.org/10.1145/3234695.3240996
+</p>
+<b>Summary</b>
+<p>Blind/visual impairments.</p>
+<b>Relevance</b>
+<p>relevance</p>
+<b>Meta</b>
+<p>2 pages long. <br>
+Cited by: 7 on SCOPUS,
+8 on Google Scholar,
+7 on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Laurianne Sitbon, Andrew Bayor, Filip Bircanin, Stewart Koplick, and Margot Brereton. 2018. <mark>An Exploration of How People with Intellectual Disability Engage with Online Information Retrieval.</mark> In Extended Abstracts of the 2018 CHI Conference on Human Factors in Computing Systems (CHI EA ’18), Association for Computing Machinery, New York, NY, USA, 1–6. DOI:https://doi.org/10.1145/3170427.3188599
+</p>
+<b>Summary</b>
+<p>summary</p>
+<b>Relevance</b>
+<p>relevance</p>
+<b>Meta</b>
+<p>6 pages long. <br>
+Cited by: 19 on SCOPUS,
+26 on Google Scholar,
+12 on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Nic Hollinworth, Kate Allen, Gosia Kwiatkowska, Andy Minnion, and Faustina Hwang. 2014. <mark>Interactive sensory objects for and by people with learning disabilities.</mark> SIGACCESS Access. Comput. 109 (June 2014), 11–20. DOI:https://doi.org/10.1145/2637487.2637489
+</p>
+<b>Summary</b>
+<p>summary</p>
+<b>Relevance</b>
+<p>relevance</p>
+<b>Meta</b>
+<p>10 pages long. <br>
+Cited by: 4 on SCOPUS,
+7 on Google Scholar,
+2 on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Erin Buehler, Niara Comrie, Megan Hofmann, Samantha McDonald, and Amy Hurst. 2016. <mark>Investigating the Implications of 3D Printing in Special Education.</mark> ACM Trans. Access. Comput. 8, 3 (March 2016), 11:1-11:28. DOI:https://doi.org/10.1145/2870640
+</p>
+<b>Summary</b>
+<p>summary</p>
+<b>Relevance</b>
+<p>relevance</p>
+<b>Meta</b>
+<p> pages long. <br>
+Cited by: 65 on SCOPUS,
+126 on Google Scholar,
+56 on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Kristen Shinohara, Cynthia L. Bennett, Wanda Pratt, and Jacob O. Wobbrock. 2018. <mark>Tenets for Social Accessibility: Towards Humanizing Disabled People in Design.</mark> ACM Trans. Access. Comput. 11, 1 (March 2018), 6:1-6:31. DOI:https://doi.org/10.1145/3178855
+</p>
+<b>Summary</b>
+<p>summary</p>
+<b>Relevance</b>
+<p>relevance</p>
+<b>Meta</b>
+<p>x pages long. <br>
+Cited by: 31 on SCOPUS,
+51 on Google Scholar,
+30 on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>Austin L. Toombs, Shaowen Bardzell, and Jeffrey Bardzell. 2015. <mark>The Proper Care and Feeding of Hackerspaces: Care Ethics and Cultures of Making.</mark> In Proceedings of the 33rd Annual ACM Conference on Human Factors in Computing Systems (CHI ’15), Association for Computing Machinery, New York, NY, USA, 629–638. DOI:https://doi.org/10.1145/2702123.2702522
+</p>
+<b>Summary</b>
+<p>summary</p>
+<b>Relevance</b>
+<p>relevance</p>
+<b>Meta</b>
+<p>10 pages long. <br>
+Cited by: 110 on SCOPUS,
+186 on Google Scholar,
+105 on ACM</p>
+<hr />
+
+<hr /> 
+<b>ACM Reference</b> 
+<p>reference</p>
+<b>Summary</b>
+<p>summary</p>
+<b>Relevance</b>
+<p>relevance</p>
+<b>Meta</b>
+<p> pages long. <br>
+Cited by: x on SCOPUS,
+x on Google Scholar,
+x on ACM</p>
 <hr />
