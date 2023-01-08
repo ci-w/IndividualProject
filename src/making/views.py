@@ -1,7 +1,8 @@
 from http.client import HTTPResponse
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login 
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 from making.models import Category, Project
@@ -32,6 +33,18 @@ def show_project(request, project_name_slug):
     except Project.DoesNotExist:
         context_dict['project'] = None;
     return render(request, 'making/project.html', context=context_dict)
+
+def search(request):
+    if request.method == 'POST': 
+        query_name = request.POST.get('name', None)
+        if query_name:
+            results = Project.objects.filter(title__contains=query_name)
+            return render(request, 'making/search.html', {'results':results})
+
+
+    return render(request, 'making/search.html')
+
+
 
 def register(request):
     # tells the template if registration was successful 
@@ -89,3 +102,8 @@ def user_login(request):
             return HttpResponse("Invalid login details.")
     else: 
         return render(request, 'making/login.html')
+
+@login_required 
+def user_logout(request):
+    logout(request)
+    return redirect(reverse('making:index'))
