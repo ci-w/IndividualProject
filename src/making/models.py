@@ -1,5 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     category = models.CharField(max_length=128)
@@ -30,3 +31,12 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+class UserProfile(models.Model):
+    # required, links UserProfile to a User model instance
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # The additional attributes we wish to include.
+    # need to decide what these are
+    requirements = models.TextField(max_length=200)
+    def __str__(self):
+        return self.user.username

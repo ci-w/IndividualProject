@@ -18,7 +18,12 @@ PDP = Participatory development process
 DIE = digitalised innovation environments 
 K-12 = kindergarten to 12th grade (17/18yrs) 
 critical disability studies = a political, historical and academic lense used to consider the barriers that hinder people with disabilities from participating (in the maker movement)
-I should be thinking about plain language and technical writing. </p>
+I should be thinking about plain language and technical writing.
+Issues
+- identify the abilities of the user 
+- adapt the interface to reflect these
+- allow user to see what adaptions have been made, and change them 
+- constantly evolve with the user </p>
 
 ## Websites
 - https://www.diyability.org/
