@@ -167,10 +167,40 @@
 
 ### 14 Dec 2022
 * *0.5 hours* Supervisor meeting 
-* *3 hours* Working on status report 
+* *3 hours* Working on status report  
+
+### 15 Dec 2022
+* *5 hours* Working on status report
+
+### 16 Dec 2022
+* *3 hours* Applying feedback to status report 
+
+# Semester 2 
+## Winter Holiday 
+### 2 Jan 2023
+* *4 hours* Working on lit review/background 
+
+### 3 Jan 2023 
+* *4 hours* lit review/background/design 
+
+### 4 Jan 2023 
+* *2 hours* adding user functionality to website 
+* *2 hours* writing up notes 
+
+### 5 Jan 2023 
+* *3 hours* user/login/logout functionality
+
+### 6 Jan 2023 
+* *2 hours* project background 
+* *1 hour* creating email scripts for organisations 
+
+### 7 Jan 2023
+* *4 hours* adding basic search function to website, researching technologies
 
 
-
+## Week 13
+### 9 Jan 2023
+* * hour* 
 
 
 
