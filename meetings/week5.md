@@ -17,4 +17,4 @@ Invited to a zoom meeting with supervisor and Dr Kirsten Ellis to discuss my pro
 * Sort out standard ethics paperwork
 * Reply to ethics advice email
 
-Next meeting: Wednesday 26th Oct 2.45pm 
+Next meeting: Wednesday 26th Oct 2.45pm (Supervisor cancelled)
