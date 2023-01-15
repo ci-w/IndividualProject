@@ -215,4 +215,8 @@
 ### 13 Jan 2023
 * *0.5 hour* meeting with supervisor
 
-
+### 15 Jan 2023
+* *1 hour* added types of user requirements to user profile model
+* *1 hour* added page to show users profile
+* *1 hour* added page/form to update users profile 
+* *0.5 hour* updated links/page views
