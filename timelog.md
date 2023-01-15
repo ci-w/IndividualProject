@@ -200,7 +200,19 @@
 
 ## Week 13
 ### 9 Jan 2023
-* * hour* 
+* *1 hour* making website responsive
 
+### 10 Jan 2023
+* *1 hour* writing up meeting plan/notes
+
+### 11 Jan 2023 
+* *2 hours* adding login/logout/register/profile buttons
+* *1 hour* adding dynamic alt text functionality for project images
+
+### 12 Jan 2023
+* *1 hour* refactoring url structure
+
+### 13 Jan 2023
+* *0.5 hour* meeting with supervisor
 
 

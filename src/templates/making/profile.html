@@ -1,0 +1,16 @@
+{% extends 'making/base.html' %}
+{% load static %} 
+
+{% block body_block %}
+    {% if user %} 
+        <b>{{ user.username }}</b> <br>       
+        
+        {{ user_profile.requirements }}
+
+        <a href="{% url 'making:update' %}">Update Profile</a>
+
+
+    {% else %} 
+    <b>User not found.</b>
+    {% endif %}
+{% endblock %}

@@ -11,5 +11,3 @@ https://twitter.com/WeAreUpland
 https://glasgowtoollibrary.com/
 there seems to be more "hackerspaces", would these be applicable?
 https://designinglibraries.org.uk/index.asp?PageID=1488
-https://librarymakers.net/
-myminifactory.com (like thingiverse)

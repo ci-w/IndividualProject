@@ -39,7 +39,10 @@ class UserProfile(models.Model):
     # required, links UserProfile to a User model instance
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # The additional attributes we wish to include.
-    # need to decide what these are
+    # need to decide what these are 
+    has_3D_printer = models.BooleanField(null=True)
+    dexterity_level = models.IntegerField(null=True)
+    instruction_level = models.IntegerField(null=True)
     requirements = models.TextField(max_length=200)
     def __str__(self):
         return self.user.username

@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
 from making.models import Category, Project
-from making.forms import UserForm, UserProfileForm
+from making.forms import UserForm, UserProfileForm, ProfileUpdateForm
 
 def index(request):
     # Construct a dictionary to pass to the template engine as its context.
@@ -16,7 +16,7 @@ def index(request):
     context_dict['projects'] = project_list
     
     # Return a rendered response to send to the client.
-    # We make use of the shortcut function to make our lives easier.
+    # make use of the shortcut function to make our lives easier.
     # Note that the first parameter is the template we wish to use.
     return render(request, 'making/index.html', context=context_dict)
 
@@ -43,8 +43,6 @@ def search(request):
 
 
     return render(request, 'making/search.html')
-
-
 
 def register(request):
     # tells the template if registration was successful 
@@ -107,3 +105,32 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect(reverse('making:index'))
+
+#login required for now, need to change this
+@login_required
+def update_requirements(request):
+    updated = False
+    # if its a HTTP post, we want to process form data
+    if request.method == 'POST':
+        # try to get info from the raw form info         
+        profile_form = ProfileUpdateForm(request.POST, instance=request.user.userprofile) 
+        
+        if profile_form.is_valid():       
+            profile = profile_form.save()
+            profile.save()
+            updated = True
+            
+        else: 
+            print(profile_form.errors)
+    else: 
+        # not a http POST, so render form using 2 modelForm instances - blank ready for user input
+        profile_form = ProfileUpdateForm()
+
+    # render template depending on context 
+    return render(request, 'making/update.html', context = {'profile_form': profile_form, 'updated': updated})
+
+@login_required
+def view_profile(request): 
+    user = request.user
+    user_profile = request.user.userprofile
+    return render(request, 'making/profile.html', context = {'user': user, 'user_profile': user_profile})

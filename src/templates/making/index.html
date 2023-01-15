@@ -31,7 +31,7 @@
 
         
         <p> {{ project.description }} </p>
-        <a href="/making/project/{{ project.slug }}/">Link</a>
+        <a href="{% url 'making:show_project' project.slug %}">Link</a>
 
     </div>
     {% endfor %}

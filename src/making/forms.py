@@ -13,3 +13,8 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('requirements', )
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ('has_3D_printer', 'dexterity_level', 'instruction_level')

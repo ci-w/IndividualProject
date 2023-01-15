@@ -25,8 +25,4 @@ Issues
 - allow user to see what adaptions have been made, and change them 
 - constantly evolve with the user </p>
 
-## Websites
-- https://www.diyability.org/
-- https://www.instructables.com/
-- https://www.crowdsupply.com/
 

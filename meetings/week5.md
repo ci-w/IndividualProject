@@ -8,7 +8,7 @@ Website took longer to build than expected, so not ready to start meetings this 
 
 Start organising meetings, with the idea to have 2-3 meetings reiterating over the website's design. Agreed to send supervisor the emails I plan to send out, and have a meeting to discuss the script and plans with him before I have any external meetings. 
 
-Suggested I look at tapeblocks.com and study it to see what's useful and what could potentially be improved in my project. 
+Suggested I look at tapeblock.com and study it to see what's useful and what could potentially be improved in my project. 
 
 Invited to a zoom meeting with supervisor and Dr Kirsten Ellis to discuss my project and ask questions about her work etc. 8am 4th November for about 30 minutes. 
 
