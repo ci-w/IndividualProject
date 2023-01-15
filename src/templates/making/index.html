@@ -26,7 +26,7 @@
         </div>
 
         {% with 'images/'|add:project.slug|add:'.png' as project_image %}
-            <img src="{% static project_image %}" alt="picture of the project">
+            <img src="{% static project_image %}" alt="{{ project.alt_text }}">
         {% endwith %}
 
         

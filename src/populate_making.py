@@ -11,15 +11,18 @@ def populate():
         {'title': 'Light up card',
         'description': 'Use paper electronics to create a beautiful light-up greeting card.',
         'instructions': 'You will need: card, LEDs, tape, scissors. Create a design on the card. Create holes in the card with the scissors for the LEDs. Thread through the LEDs through the holes. Secure them with the tape. Sort out the wires. Present the card.',
-        'categories': ['electronic']},
+        'categories': ['electronic'],
+        'alt_text': 'image of a red card with "happy holidays" written on it and small glowing lights'},
         {'title': 'Braille dice',
         'description': '3D print a set of dice that have braille numbers.',
         'instructions': 'You will need: a 3D printer, printer filament of choice, sandpaper. Download the dice files. Load them up in the 3D printer. Load up the filament. Set it to print the dice. Sand printed dice if needed.',
-        'categories': ['3D printing']},
+        'categories': ['3D printing'],
+        'alt_text': 'image of a pink cube with the braille for the number 1 on one side'},
         {'title': 'Creature',
         'description': 'Create a 3D printed creature with light up eyes.',
         'instructions': 'You will need: a 3D printer, LEDs, sandpaper, printer filament, tape. Download the creature file. Load file into printer. Load filament into printer. Print the file. Sand edges of finished creature if needed. Put LEDs through the eye holes. Tape the wiring to the inside of the creature. ',
-        'categories': ['electronic','3D printing']}
+        'categories': ['electronic','3D printing'],
+        'alt_text': 'image of a purple cube with glowing eyes'}
     ]
 
     # List of all the different categories
@@ -36,7 +39,7 @@ def populate():
     
 
     def add_project(p):
-        c = Project.objects.get_or_create(title=p['title'], description=p['description'], instructions=p['instructions'])[0]
+        c = Project.objects.get_or_create(title=p['title'], description=p['description'], instructions=p['instructions'], alt_text=p['alt_text'])[0]
         
         c.save()
 

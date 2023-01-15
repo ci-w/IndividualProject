@@ -24,6 +24,9 @@ class Project(models.Model):
     views = models.IntegerField(default=0)
     category = models.ManyToManyField(Category)
     slug = models.SlugField(unique=True)
+    # alt text for the associated image
+    # no max length for alt text in html
+    alt_text = models.TextField(max_length=125)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
