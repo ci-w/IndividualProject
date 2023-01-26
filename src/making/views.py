@@ -30,6 +30,7 @@ def show_project(request, project_name_slug):
         project = Project.objects.get(slug=project_name_slug)
         # add it to context dictionary
         context_dict['project'] = project
+        context_dict['3D'] = Category.objects.get(slug="3d-printing")
     except Project.DoesNotExist:
         context_dict['project'] = None;
     return render(request, 'making/project.html', context=context_dict)

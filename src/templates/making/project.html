@@ -3,18 +3,30 @@
 
 {% block body_block %}
     {% if project %} 
-        <b>{{ project.title }}</b> <br>       
-        
-        {% for category in project.category.all %}
-            <button class="project-type"> {{ category }}</button>                 
-        {% endfor %}           
-        
-        <p> {{ project.instructions }} </p>
-        
-        {% with 'images/'|add:project.slug|add:'.png' as project_image %}
-            <img src="{% static project_image %}" alt="picture of the project">
-        {% endwith %}
+        {% if user.is_authenticated %}
+            
+            I am authenticated
+            {% if 3D in project.category.all %}
+                This project has 3D printing
+                {% if user.userprofile.has_3D_printer %}
+                This project u can do
+                {% endif %}
+            {% endif %}
+           
 
+        {% else %}
+            <b>{{ project.title }}</b> <br>       
+        
+            {% for category in project.category.all %}
+                <button class="project-type"> {{ category }}</button>                 
+            {% endfor %}           
+        
+            <p> {{ project.instructions }} </p>
+        
+            {% with 'images/'|add:project.slug|add:'.png' as project_image %}
+                <img src="{% static project_image %}" alt="picture of the project">
+            {% endwith %}
+        {% endif %}
 
     {% else %} 
     <b>Project not found.</b>

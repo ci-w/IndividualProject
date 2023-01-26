@@ -23,6 +23,8 @@ Issues
 - identify the abilities of the user 
 - adapt the interface to reflect these
 - allow user to see what adaptions have been made, and change them 
-- constantly evolve with the user </p>
+- constantly evolve with the user
+Expertise of coaches very important.
+Allowing students to figure out/problem solve and having the time to do so.  </p>
 
 
