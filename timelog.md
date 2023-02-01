@@ -220,3 +220,33 @@
 * *1 hour* added page to show users profile
 * *1 hour* added page/form to update users profile 
 * *0.5 hour* updated links/page views
+
+## Week 14
+### 16 Jan 2023
+* *2 hours* writing email script for organisations
+
+### 17 Jan 2023
+* *2 hours* making project views dynamic based on users profile
+
+### 18 Jan 2023
+* *2 hours* making project views dynamic based on users profile
+
+### 19 Jan 2023
+* *1 hour* finding contact details for organisations and sending emails
+
+## Week 15
+### 23 Jan 2023
+* *2 hours* designing how to get user requirements
+
+### 24 Jan 2023
+* *2 hours* modifying css
+
+### 25 Jan 2023
+* *1 hour* replying to organisations
+* *1 hour* writing meeting plan
+
+### 26 Jan 2023
+* *0.5 hour* supervisor meeting
+
+## Week 16
+### 30 Jan 2023
