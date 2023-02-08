@@ -17,6 +17,11 @@ Then activate virtual env and install: <br>
 Creating a django project: <br>
 `django-admin startproject tango_with_django_project . `
 
+Creating a django app: <br>
+` src into django project dir ` <br>
+`python manage.py startapp appname ` <br>
+Then add this app to your django projects installed apps list in its settings file <br>
+
 Running a server: (while in src folder) <br>
 `python manage.py runserver`
 
@@ -34,7 +39,8 @@ Changing models
 If you delete the database, have to make a new superuser account:
 ` python manage.py createsuperuser `
 
-
+To interact with Django models directly through shell: <br>
+`python manage.py shell`
 
 ## GIT
 Removing folder from remote repo that's now in gitingore: <br>
