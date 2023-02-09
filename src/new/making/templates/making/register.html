@@ -6,7 +6,12 @@
 
     <input type="submit" name="submit" value="Register" /> 
 </form>
-{{ password }}
+
 {% if registered %} 
     Thank you for registering
 {% endif %}
+
+<a href="{% url 'making:login' %}">log in</a>
+<a href="{% url 'making:register' %}">register</a>
+<a href="{% url 'making:logout' %}">log out</a>
+<a href="{% url 'making:index' %}">home</a>

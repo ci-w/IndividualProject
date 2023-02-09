@@ -11,7 +11,11 @@
     Thank you for logging in
 {% endif %}
 
-
+<a href="{% url 'making:login' %}">log in</a>
+<a href="{% url 'making:register' %}">register</a>
+<a href="{% url 'making:logout' %}">log out</a>
+<a href="{% url 'making:index' %}">home</a>
+<a href="{% url 'making:view_user' %}">profile</a>
 <!-- <form action="{% url 'making:login' %}" method="post">
 {% csrf_token %}
 Username: <input type="text" name="username" value="" size="50" />
