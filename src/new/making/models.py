@@ -15,7 +15,9 @@ class UserProfile(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=50)
     requirements = models.OneToOneField("Requirements", on_delete=models.DO_NOTHING)
-
+    instructions = models.TextField()
+    description = models.TextField(max_length=100)
+    
     def __str__(self):
         return self.title 
 
@@ -29,7 +31,7 @@ class Requirements(models.Model):
     dexterity = models.IntegerField(choices=VISION_CHOICES)
     language = models.IntegerField(choices=VISION_CHOICES)
     memory = models.IntegerField(choices=VISION_CHOICES)
-    
+   
 
 class Tool(models.Model):
     name = models.CharField(max_length=30)
