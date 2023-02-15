@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from making.forms import RequirementsForm, ToolForm, UserForm, ProfileForm
-from making.models import Requirements, Tool, UserProfile
+from making.models import Requirements, Tool, UserProfile, Project
 from django.forms import inlineformset_factory
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -9,7 +9,8 @@ from django.urls import reverse
 
 def index(request):
     try:
-        user_profile = UserProfile.objects.filter(user=request.user)[0]
+        # need to change this to filter when default profile is implemented
+        user_profile = UserProfile.objects.get(user=request.user)
     except UserProfile.DoesNotExist:
         user_profile = None
     return render(request, 'making/index.html', context = {'user_profile': user_profile})
@@ -17,11 +18,15 @@ def index(request):
 def about(request):
     return render(request, 'making/about.html')
 
-def project(request):
-    pass
+#todo: have the tab (i forget word) for this page display the projects title
+def projects(request, project_id):
+    try:
+        #is there a project with that id?
+        project = Project.objects.get(id=project_id)
+    except Project.DoesNotExist:
+        project = None 
+    return render(request, 'making/projects.html', context={'project': project})
 
-def projects(request):
-    pass
 
 def register(request):
 # tells the template if registration was successful 
