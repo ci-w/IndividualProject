@@ -6,11 +6,11 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     # links the User instance its associated with, Users can have multiple UserProfiles
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    user_name = models.CharField(max_length=100)
+    profile_name = models.CharField(max_length=100)
     requirements = models.OneToOneField("Requirements", on_delete=models.DO_NOTHING, null=True)
 
     def __str__(self):
-        return self.user_name
+        return self.profile_name
 
 class Project(models.Model):
     title = models.CharField(max_length=50)

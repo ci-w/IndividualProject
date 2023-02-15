@@ -1,7 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
-
+hi
 class Category(models.Model):
     category = models.CharField(max_length=128)
     slug = models.SlugField()
@@ -44,5 +44,6 @@ class UserProfile(models.Model):
     dexterity_level = models.IntegerField(null=True)
     instruction_level = models.IntegerField(null=True)
     requirements = models.TextField(max_length=200)
+    
     def __str__(self):
         return self.user.username

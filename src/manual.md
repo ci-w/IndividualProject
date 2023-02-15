@@ -41,6 +41,10 @@ If you delete the database, have to make a new superuser account:
 
 To interact with Django models directly through shell: <br>
 `python manage.py shell`
+`import making.models`
+
+View underlying SQL for specified django migration:
+`python manage.py sqlmigrate making 0001`
 
 ## GIT
 Removing folder from remote repo that's now in gitingore: <br>
@@ -58,3 +62,6 @@ open anaconda prompt <br>
 `conda activate makingenv` <br>
 cd into src directory <br>
 `python manage.py runserver`
+
+## Population
+Structure of JSON file is: [Project] [Project's requirements] [Project's tools] for all projects, then [User] [User's profiles] [User's profiles requirements] [User profiles tools] for all users should create User's in admin interface, dump to file, then copy paste them in there

@@ -1,0 +1,16 @@
+{% extends 'making/index.html' %}
+{% block body_block %}
+
+User's name is: {{ user.username }}<br>
+User Profile's name is: {{ user_profile.profile_name }}<br>
+User Profile's vision is: {{ user_profile.requirements.vision }}<br>
+
+{% if tools %}
+    {% for tool in tools %}
+        Tool name is: {{ tool.name }} <br>
+        Skill level is: {{ tool.skill_level }} <br>
+    {% endfor %}
+
+{% endif %}
+
+{% endblock %}

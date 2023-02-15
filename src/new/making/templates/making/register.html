@@ -1,9 +1,9 @@
+{% extends 'making/index.html' %}
+{% block body_block %}
+
 <form method="post" action="{% url 'making:register' %}">
-
     {% csrf_token %}
-
     {{ form }}
-
     <input type="submit" name="submit" value="Register" /> 
 </form>
 
@@ -11,7 +11,4 @@
     Thank you for registering
 {% endif %}
 
-<a href="{% url 'making:login' %}">log in</a>
-<a href="{% url 'making:register' %}">register</a>
-<a href="{% url 'making:logout' %}">log out</a>
-<a href="{% url 'making:index' %}">home</a>
+{% endblock %}

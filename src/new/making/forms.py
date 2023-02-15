@@ -17,7 +17,7 @@ class UserForm(ModelForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('user_name',)
+        fields = ('profile_name',)
 
 class RequirementsForm(ModelForm):
     '''vision = forms.IntegerField(required=False)

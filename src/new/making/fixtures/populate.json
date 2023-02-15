@@ -1,0 +1,162 @@
+[
+    {
+        "model": "making.Project",
+        "pk": 1,
+        "fields": {
+            "title": "Braille cube",
+            "requirements": 1,
+            "instructions": "You will need: a 3D printer, printer filament of choice, sandpaper. Download the dice files. Load them up in the 3D printer. Load up the filament. Set it to print the dice. Sand printed dice if needed.",
+            "description": "3D print a set of dice that have braille numbers."
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 1,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 1,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 1,
+        "fields": {
+            "name": "3D Printer",
+            "skill_level": 3,
+            "requirements": 1
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 2,
+        "fields": {
+            "name": "Computer",
+            "skill_level": 3,
+            "requirements": 1
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 2,
+        "fields": {
+            "title": "Light up card",
+            "requirements": 2,
+            "instructions": "You will need: card, LEDs, tape, scissors. Create a design on the card. Create holes in the card with the scissors for the LEDs. Thread through the LEDs through the holes. Secure them with the tape. Sort out the wires. Present the card.",
+            "description": "Use paper electronics to create a beautiful light-up greeting card."
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 2,
+        "fields": {
+            "vision": 2,
+            "language": 1,
+            "dexterity": 3,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 3,
+        "fields": {
+            "name": "Circuits",
+            "skill_level": 1,
+            "requirements": 2
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 3,
+        "fields": {
+            "title": "Creature",
+            "requirements": 3,
+            "instructions": "You will need: a 3D printer, LEDs, sandpaper, printer filament, tape. Download the creature file. Load file into printer. Load filament into printer. Print the file. Sand edges of finished creature if needed. Put LEDs through the eye holes. Tape the wiring to the inside of the creature.",
+            "description": "Create a 3D printed creature with light up eyes."
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 3,
+        "fields": {
+            "vision": 2,
+            "language": 1,
+            "dexterity": 2,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 4,
+        "fields": {
+            "name": "3D Printer",
+            "skill_level": 2,
+            "requirements": 3
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 5,
+        "fields": {
+            "name": "Circuits",
+            "skill_level": 2,
+            "requirements": 3
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$390000$Knz77cTFRK5jqxXOopVNWN$VepyuVXfl4kYwl9nyE6Wo8UlrBI1SjXWdWGNr5sxXvE=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "quail@email.com",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-02-15T21:52:56.719Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "making.UserProfile",
+        "pk": 1,
+        "fields": {
+            "user": 2,
+            "profile_name": "Isla",
+            "requirements": 4
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 4,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 1,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 6,
+        "fields": {
+            "name": "3D Printer",
+            "skill_level": 2,
+            "requirements": 4
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 7,
+        "fields": {
+            "name": "Circuits",
+            "skill_level": 2,
+            "requirements": 4
+        }
+    }
+]
