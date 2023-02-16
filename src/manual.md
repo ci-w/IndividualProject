@@ -64,4 +64,8 @@ cd into src directory <br>
 `python manage.py runserver`
 
 ## Population
-Structure of JSON file is: [Project] [Project's requirements] [Project's tools] for all projects, then [User] [User's profiles] [User's profiles requirements] [User profiles tools] for all users should create User's in admin interface, dump to file, then copy paste them in there
+Structure of JSON file is: [Project] [Project's requirements] [Project's tools] for all projects, then [User] [User's profiles] [User's profiles requirements] [User profiles tools] for all users should create User's in admin interface, dump to file, then copy paste them in there.
+
+To load in data from fixture:
+python manage.py loaddata test.json
+where test.json is in the app's fixtures folder
