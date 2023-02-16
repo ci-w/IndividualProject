@@ -17,4 +17,5 @@ urlpatterns = [
     path('view_profile/', views.view_profile, name="view_profile",),
     path('update_profile/',views.update_profile, name="update_profile"),
     path('add_tool/', views.add_tool, name="add_tool"),
+    path('create_syllabus/', views.create_syllabus, name="create_syllabus"),
 ]

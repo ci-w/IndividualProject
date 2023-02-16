@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from making.forms import RequirementsForm, ToolForm, UserForm, ProfileForm
+from making.forms import RequirementsForm, ToolForm, UserForm, ProfileForm, SyllabusForm
 from making.models import Requirements, Tool, UserProfile, Project
 from django.forms import inlineformset_factory
 from django.contrib.auth import authenticate, login, logout
@@ -171,3 +171,39 @@ def add_tool(request):
 
     # render template depending on context 
     return render(request, 'making/add_tool.html', context = {'tool_form': tool_form, 'registered': registered})
+
+# todo: fancy way of turning model instance into dict
+def create_syllabus(request):
+    if request.method == 'POST':
+        syllabus_form = SyllabusForm(request.POST)
+        if syllabus_form.is_valid():
+            user = request.user 
+            user_profile = UserProfile.objects.filter(user=user)[0]
+            end_proj_id = syllabus_form.cleaned_data['end_project']
+            end_project = Project.objects.get(id=end_proj_id)
+            test = user_profile.__dict__
+            up_copy = {'UP_id': test['id'], 'req_id': test['requirements_id']}
+            up_req = Requirements.objects.get(id=up_copy['req_id'])
+            up_req = up_req.__dict__
+            up_copy['vision'] = up_req['vision']
+            up_copy['dexterity'] = up_req['dexterity']
+            up_copy['language'] = up_req['language']
+            up_copy['memory'] = up_req['memory']   
+
+            tools = Tool.objects.filter(requirements=up_copy['req_id'])
+            tools = tools.values()
+            list =  [entry for entry in tools]
+            up_copy['tools'] = list
+        else:
+            print(syllabus_form.errors)
+    else:
+        end_proj_id = None
+        end_project = None
+        test = None
+        up_copy = None
+        syllabus_form = SyllabusForm()
+        up_req = None
+        tools = None
+        list = None
+
+    return render(request, 'making/create_syllabus.html', context = {'syllabus_form': syllabus_form, 'end_proj_id': end_proj_id, 'end_project':end_project, 'up_copy':up_copy, 'tools':tools, 'list':list})

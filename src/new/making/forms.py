@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, Form
 from making.models import Requirements, Tool, UserProfile
 from django.forms import inlineformset_factory
 from django.contrib.auth.models import User
@@ -34,3 +34,7 @@ class ToolForm(ModelForm):
     class Meta:
         model = Tool
         fields = ('name', 'skill_level',)
+
+#todo: make it so you select a project, and the form just punts through the project ID. i.e. have to do validation here
+class SyllabusForm(Form):
+    end_project = forms.IntegerField()
