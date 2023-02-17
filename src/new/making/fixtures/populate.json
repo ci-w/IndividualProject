@@ -23,7 +23,7 @@
         "model": "making.Tool",
         "pk": 1,
         "fields": {
-            "name": "3D Printer",
+            "name": "3d printer",
             "skill_level": 3,
             "requirements": 1
         }
@@ -32,7 +32,7 @@
         "model": "making.Tool",
         "pk": 2,
         "fields": {
-            "name": "Computer",
+            "name": "computer",
             "skill_level": 3,
             "requirements": 1
         }
@@ -90,7 +90,7 @@
         "model": "making.Tool",
         "pk": 4,
         "fields": {
-            "name": "3D Printer",
+            "name": "3d printer",
             "skill_level": 2,
             "requirements": 3
         }
@@ -99,7 +99,7 @@
         "model": "making.Tool",
         "pk": 5,
         "fields": {
-            "name": "Circuits",
+            "name": "circuits",
             "skill_level": 2,
             "requirements": 3
         }
@@ -145,7 +145,7 @@
         "model": "making.Tool",
         "pk": 6,
         "fields": {
-            "name": "3D Printer",
+            "name": "3d printer",
             "skill_level": 2,
             "requirements": 4
         }
@@ -154,7 +154,7 @@
         "model": "making.Tool",
         "pk": 7,
         "fields": {
-            "name": "Circuits",
+            "name": "circuits",
             "skill_level": 2,
             "requirements": 4
         }

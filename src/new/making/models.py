@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
 # when you create a new model, need to add it to admin.py to see it in admin interface
+# todo: input/case validation for tool names
 
 class UserProfile(models.Model):
     # links the User instance its associated with, Users can have multiple UserProfiles
