@@ -177,85 +177,71 @@ def create_syllabus(request):
     if request.method == 'POST':
         syllabus_form = SyllabusForm(request.POST)
         if syllabus_form.is_valid():
-            user = request.user 
-            user_profile = UserProfile.objects.filter(user=user)[0]
-            test = user_profile.__dict__
-            up_copy = {'UP_id': test['id'], 'requirements_id': test['requirements_id']}
-            up_req = Requirements.objects.get(id=up_copy['requirements_id'])
-            up_req = up_req.__dict__
-            up_copy['vision'] = up_req['vision']
-            up_copy['dexterity'] = up_req['dexterity']
-            up_copy['language'] = up_req['language']
-            up_copy['memory'] = up_req['memory']   
+            user_profile = UserProfile.objects.filter(user=request.user)[0]
+            user_profile = UserProfile.syl_dict(user_profile)
 
-            tools = Tool.objects.filter(requirements=up_copy['requirements_id'])
-            tools = tools.values()
-            list =  [entry for entry in tools]
-            up_copy['tools'] = list
+            up_tools = Tool.objects.filter(requirements=user_profile['requirements_id'])
+            user_profile['tools'] = [Tool.syl_dict(tool) for tool in up_tools]
 
             end_proj_id = syllabus_form.cleaned_data['end_project']
             end_project = Project.objects.get(id=end_proj_id)
-            end_project = end_project.__dict__
-            end_req = Requirements.objects.get(id=end_project['requirements_id'])
-            end_req = end_req.__dict__
-            end_project['vision'] = end_req['vision']
-            end_project['dexterity'] = end_req['dexterity']
-            end_project['language'] = end_req['language']
-            end_project['memory'] = end_req['memory']  
+            end_project = Project.syl_dict(end_project)
+
             proj_tools = Tool.objects.filter(requirements=end_project['requirements_id'])
-            proj_tools = proj_tools.values()
-            proj_list =  [entry for entry in proj_tools]
-            end_project['tools'] = proj_list
-            end_project.pop('_state')
-            end_project.pop('title')
-            end_project.pop('instructions')
-            end_project.pop('description')
+            end_project['tools'] = [Tool.syl_dict(tool) for tool in proj_tools]
+            next_tool = None
+            next_req = None
+            next_proj = None
 
-            # i start doing things with end_proj here
-            end_project.pop('id')
-            end_project.pop('requirements_id')
-            end_project['tools'][0].pop('requirements_id')
-            end_project['tools'][0].pop('id')            
-            end_project['tools'][1].pop('requirements_id')
-            end_project['tools'][1].pop('id')
-
-            # things with UP
-            up_copy.pop('UP_id')
-            up_copy.pop('requirements_id')
-            up_copy['tools'][0].pop('requirements_id')
-            up_copy['tools'][0].pop('id')            
-            up_copy['tools'][1].pop('requirements_id')
-            up_copy['tools'][1].pop('id')
-
-            # ??
             for tool in end_project['tools']:
                 # tool is a dictionary :)
-                help = tool
                 # does the UP have this tool
-                for up_tool in up_copy['tools']:
+                for up_tool in user_profile['tools']:
                     if up_tool['name'] == tool['name']:
                         #is the tool at the correct level?
                         if up_tool['skill_level'] < tool['skill_level']:
-                            #try find a project 
-                            present = up_tool
-                #help = up_copy['tools'][1]['name'] == tool['name']
-            
+                            next_tool = Tool.objects.filter(name=tool['name'], skill_level=up_tool['skill_level']+1)[0]
+                            next_proj = Project.objects.filter(requirements=next_tool.requirements)[0]
+                            next_proj = Project.syl_dict(next_proj)
 
-            
+                            next_tools = Tool.objects.filter(requirements=next_proj['requirements_id'])
+                            next_proj['tools'] = [Tool.syl_dict(tool) for tool in next_tools]
+
+                            # todo: make a function that compares two requirements
+                            # update user profile tool level
+                            break 
+                        break
+
+                            #try find a project 
+                            # todo: make a function that grabs a project and all its related fields
+                            
+                #help = user_profile['tools'][1]['name'] == tool['name']  
+            help = None     
+            present = None      
         else:
             print(syllabus_form.errors)
     else:
-        end_proj_id = None
-        end_project = None
-        test = None
-        up_copy = None
         syllabus_form = SyllabusForm()
-        up_req = None
-        tools = None
-        list = None
-        end_req = None
+        end_project = None
+        user_profile = None
+        next_tool = None
+        next_req = None
+        next_proj = None
         help = None
         present = None
 
+    return render(request, 'making/create_syllabus.html', context = {'syllabus_form': syllabus_form, 'end_project':end_project, 'user_profile':user_profile, 'next_proj': next_proj})
 
-    return render(request, 'making/create_syllabus.html', context = {'syllabus_form': syllabus_form, 'end_proj_id': end_proj_id, 'end_project':end_project, 'up_copy':up_copy, 'tools':tools, 'list':list, 'end_req':end_req, 'help':help, 'present':present})
+def test_page(request):
+    user = request.user 
+    user_profile = UserProfile.objects.filter(user=user)[0]
+    test = UserProfile.to_dict(user_profile)
+    test2 = UserProfile.syl_dict(user_profile)
+    if request.method == 'POST':
+        syllabus_form = SyllabusForm(request.POST)
+        if syllabus_form.is_valid():
+            pass 
+    else: 
+        syllabus_form = SyllabusForm()
+
+    return render(request, 'making/create_syllabus.html', context = {'syllabus_form':syllabus_form, 'test':test, 'test2':test2})

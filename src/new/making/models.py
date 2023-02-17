@@ -12,6 +12,19 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.profile_name
+    
+    # this will throw out ALL the concrete fields
+    def to_dict(self):
+        opts = UserProfile._meta
+        data = {}
+        for f in opts.concrete_fields:
+            data[f.name] = f.value_from_object(self)
+        return data
+    
+    def syl_dict(self):
+        data = {'requirements_id': self.requirements.id}
+        data.update(Requirements.syl_dict(self.requirements))
+        return data
 
 class Project(models.Model):
     title = models.CharField(max_length=50)
@@ -21,6 +34,11 @@ class Project(models.Model):
     
     def __str__(self):
         return self.title 
+    
+    def syl_dict(self):
+        data = {'p_id': self.id, 'requirements_id': self.requirements.id}
+        data.update(Requirements.syl_dict(self.requirements))
+        return data
 
 class Requirements(models.Model):
     VISION_CHOICES = [
@@ -32,6 +50,10 @@ class Requirements(models.Model):
     dexterity = models.IntegerField(choices=VISION_CHOICES)
     language = models.IntegerField(choices=VISION_CHOICES)
     memory = models.IntegerField(choices=VISION_CHOICES)
+
+    def syl_dict(self):
+        data = {'vision': self.vision, 'dexterity': self.dexterity, 'language': self.language, 'memory': self.memory}
+        return data
    
 class Tool(models.Model):
     name = models.CharField(max_length=30)
@@ -40,3 +62,7 @@ class Tool(models.Model):
     
     def __str__(self):
         return self.name
+    
+    def syl_dict(self):
+        data = {'name': self.name, 'skill_level': self.skill_level}
+        return data
