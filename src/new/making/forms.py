@@ -1,6 +1,5 @@
 from django.forms import ModelForm, Form
 from making.models import Requirements, Tool, UserProfile
-from django.forms import inlineformset_factory
 from django.contrib.auth.models import User
 from django import forms
 
@@ -20,10 +19,7 @@ class ProfileForm(ModelForm):
         fields = ('profile_name',)
 
 class RequirementsForm(ModelForm):
-    '''vision = forms.IntegerField(required=False)
-    dexterity = forms.IntegerField(required=False)
-    language = forms.IntegerField(required=False)
-    memory = forms.IntegerField(required=False)'''
+
     class Meta:
         model = Requirements
         fields = '__all__'

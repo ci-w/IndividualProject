@@ -61,7 +61,7 @@
         "model": "making.Tool",
         "pk": 3,
         "fields": {
-            "name": "Circuits",
+            "name": "circuits",
             "skill_level": 1,
             "requirements": 2
         }
@@ -105,6 +105,15 @@
         }
     },
     {
+        "model": "making.Tool",
+        "pk": 6,
+        "fields": {
+            "name": "computer",
+            "skill_level": 1,
+            "requirements": 3
+        }
+    },
+    {
         "model": "auth.user",
         "pk": 2,
         "fields": {
@@ -143,19 +152,19 @@
     },
     {
         "model": "making.Tool",
-        "pk": 6,
+        "pk": 7,
         "fields": {
             "name": "3d printer",
-            "skill_level": 2,
+            "skill_level": 1,
             "requirements": 4
         }
     },
     {
         "model": "making.Tool",
-        "pk": 7,
+        "pk": 8,
         "fields": {
             "name": "circuits",
-            "skill_level": 2,
+            "skill_level": 1,
             "requirements": 4
         }
     }

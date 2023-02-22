@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 # when you create a new model, need to add it to admin.py to see it in admin interface
 # todo: input/case validation for tool names
+# should probably do isinstance checks with equality functions
 
 class UserProfile(models.Model):
     # links the User instance its associated with, Users can have multiple UserProfiles
@@ -19,12 +20,16 @@ class UserProfile(models.Model):
         data = {}
         for f in opts.concrete_fields:
             data[f.name] = f.value_from_object(self)
-        return data
+        return data 
     
     def syl_dict(self):
         data = {'requirements_id': self.requirements.id}
         data.update(Requirements.syl_dict(self.requirements))
         return data
+    
+    # returns true if the REQUIREMENTS are equal
+    def equality(self, other): 
+        return Requirements.equality(self.requirements, other.requirements)
 
 class Project(models.Model):
     title = models.CharField(max_length=50)
@@ -39,6 +44,11 @@ class Project(models.Model):
         data = {'p_id': self.id, 'requirements_id': self.requirements.id}
         data.update(Requirements.syl_dict(self.requirements))
         return data
+    
+    # returns true if the REQUIREMENTS are equal
+    def equality(self, other): 
+        return Requirements.equality(self.requirements, other.requirements)
+
 
 class Requirements(models.Model):
     VISION_CHOICES = [
@@ -54,6 +64,9 @@ class Requirements(models.Model):
     def syl_dict(self):
         data = {'vision': self.vision, 'dexterity': self.dexterity, 'language': self.language, 'memory': self.memory}
         return data
+    
+    def equality(self, other):
+        return self.vision == other.vision and self.dexterity == other.dexterity and self.language == other.language and self.memory == other.memory 
    
 class Tool(models.Model):
     name = models.CharField(max_length=30)
@@ -66,3 +79,12 @@ class Tool(models.Model):
     def syl_dict(self):
         data = {'name': self.name, 'skill_level': self.skill_level}
         return data
+    
+    def equality(self, other):
+        return self.name == other.name and self.skill_level == other.skill_level
+    
+    def greater(self, other):
+        return self.name == other.name and self.skill_level > other.skill_level 
+    
+    def satf(self, other):
+        return self.name == other.name and self.skill_level <= other.skill_level
