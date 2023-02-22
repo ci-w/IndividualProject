@@ -6,10 +6,12 @@
     {{ syllabus_form }}
     <input type="submit" name="submit" value="Submit" /> 
 </form>
-
-User's profile: {{ user_profile }} <br>
+User's original profile: {{ og_profile }} <br>
+User's end profile: {{ user_profile }} <br>
 End project: {{ end_project }} <br>
-User needs to get better at: {{ present }} <br>
 Next project: {{ next_proj }} <br>
-Syllabus: {{ syllabus }} <br>
+Syllabus: <br>
+{% for i in syllabus %}
+    {{ i }} <br>
+{% endfor %}
 {% endblock %}

@@ -190,6 +190,12 @@ def create_syllabus(request):
     if request.method == 'POST':
         syllabus_form = SyllabusForm(request.POST)
         if syllabus_form.is_valid():
+            # just using this as testing to see what original profile values are
+            og_profile = UserProfile.objects.filter(user=request.user)[0]
+            og_profile = UserProfile.syl_dict(og_profile)
+            og_tools = Tool.objects.filter(requirements=og_profile['requirements_id'])
+            og_profile['tools'] = [Tool.syl_dict(tool) for tool in og_tools]
+
             user_profile = UserProfile.objects.filter(user=request.user)[0]
             user_profile = UserProfile.syl_dict(user_profile)
             up_tools = Tool.objects.filter(requirements=user_profile['requirements_id'])
@@ -206,15 +212,16 @@ def create_syllabus(request):
             syllabus = []
             while not tools_eq(end_project['tools'], user_profile['tools']):
                 for tool in end_project['tools']:
-
-                # does the UP have this tool
+                    # does the UP have this tool
                     exists = next((item for item in user_profile['tools'] if item['name'] == tool['name']), False)
                     index = next((i for i, item in enumerate(user_profile['tools']) if item['name'] == tool['name']), False)
                     if exists: 
-                        # check skill level 
+                        # does the user have needed skill level in that tool 
                         if exists['skill_level'] < tool['skill_level']:
                                 # need to include a check if a project actually exists
                                 # need to have all other things in the project be do-able too !!!!
+                                # oh god this is going to search through profile tool objects too 
+                                # i need to be filtering through PROJECT objects 
                                 next_tool = Tool.objects.filter(name=tool['name'], skill_level=exists['skill_level']+1)[0]
                                 next_proj = Project.objects.filter(requirements=next_tool.requirements)[0]
                                 next_proj = Project.syl_dict(next_proj)
@@ -238,11 +245,12 @@ def create_syllabus(request):
         syllabus_form = SyllabusForm()
         end_project = None
         user_profile = None
+        og_profile = None
         next_tool = None
         next_proj = None
         syllabus = None
 
-    return render(request, 'making/create_syllabus.html', context = {'syllabus_form': syllabus_form, 'end_project':end_project, 'user_profile':user_profile, 'next_proj': next_proj, 'syllabus': syllabus})
+    return render(request, 'making/create_syllabus.html', context = {'syllabus_form': syllabus_form, 'end_project':end_project, 'user_profile':user_profile, 'next_proj': next_proj, 'syllabus': syllabus, 'og_profile': og_profile})
 
 def test_page(request):
     user = request.user 
