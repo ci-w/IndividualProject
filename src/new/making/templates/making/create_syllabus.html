@@ -9,9 +9,19 @@
 User's original profile: {{ og_profile }} <br>
 User's end profile: {{ user_profile }} <br>
 End project: {{ end_project }} <br>
-Next project: {{ next_proj }} <br>
+
 Syllabus: <br>
 {% for i in syllabus %}
     {{ i }} <br>
 {% endfor %}
+All user profiles: <br>
+{% for i in all_prof %}
+    {{ i }} <br>
+{% endfor %}
+All arrays: <br>
+{% for i in all_arr %}
+    {{ i }} <br>
+{% endfor %}
+
+
 {% endblock %}

@@ -198,7 +198,7 @@
         "pk": 7,
         "fields": {
             "name": "circuits",
-            "skill_level": 2,
+            "skill_level": 1,
             "requirements": 7
         }
     },
@@ -226,7 +226,7 @@
         "model": "making.Tool",
         "pk": 8,
         "fields": {
-            "name": "computer",
+            "name": "circuits",
             "skill_level": 2,
             "requirements": 8
         }
@@ -255,7 +255,7 @@
         "model": "making.Tool",
         "pk": 9,
         "fields": {
-            "name": "computer",
+            "name": "circuits",
             "skill_level": 3,
             "requirements": 9
         }

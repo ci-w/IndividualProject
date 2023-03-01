@@ -11,8 +11,7 @@ Welcome! <br>
 {% endblock %}
 
 <a href="{% url 'making:index' %}">home</a>
-<a href="{% url 'making:register' %}">register</a>
-<a href="{% url 'making:login' %}">log in</a>
+{% if user.is_authenticated %}
 <a href="{% url 'making:logout' %}">log out</a>
 <a href="{% url 'making:view_user' %}">view user</a>
 <a href="{% url 'making:view_profile' %}">view profile</a>
@@ -20,3 +19,7 @@ Welcome! <br>
 <a href="{% url 'making:update_profile' %}">update profile</a>
 <a href="{% url 'making:add_tool' %}">add tool</a>
 <a href="{% url 'making:create_syllabus' %}">create syllabus</a>
+{% else %}
+<a href="{% url 'making:register' %}">register</a>
+<a href="{% url 'making:login' %}">log in</a>
+{% endif %}

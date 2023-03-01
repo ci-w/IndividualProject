@@ -19,6 +19,6 @@ from making import views
 from django.urls import include, path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('making/', include('making.urls')),
+    path('admin/', admin.site.urls),
 ]

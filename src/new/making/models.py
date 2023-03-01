@@ -67,6 +67,7 @@ class Requirements(models.Model):
     
     def equality(self, other):
         return self.vision == other.vision and self.dexterity == other.dexterity and self.language == other.language and self.memory == other.memory 
+   # maybe something here that drags in its related Tool objects? 
    
 class Tool(models.Model):
     name = models.CharField(max_length=30)

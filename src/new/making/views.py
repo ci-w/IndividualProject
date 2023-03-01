@@ -4,12 +4,14 @@ from making.models import Requirements, Tool, UserProfile, Project
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from copy import deepcopy
+from django.db.models import Q, F
 
 def index(request):
-    try:
+    if request.user.is_authenticated:
         # need to change this to filter when default profile is implemented
         user_profile = UserProfile.objects.get(user=request.user)
-    except UserProfile.DoesNotExist:
+    else:
         user_profile = None
     return render(request, 'making/index.html', context = {'user_profile': user_profile})
 
@@ -176,17 +178,6 @@ def add_tool(request):
 # todo: make a function that checks if a user has a specified tool
 # todo: make a function that grabs a project and all its related fields   
 def create_syllabus(request):
-    # horrible helper functions i should move 
-    def tools_eq(endTools, userTools): 
-        check = False
-        for i in endTools:
-            girl = next((item for item in userTools if item['name'] == i['name']), False)
-            if girl and (i['skill_level']<=girl['skill_level']):
-                check = True
-            else: 
-                check = False 
-        return check
-
     if request.method == 'POST':
         syllabus_form = SyllabusForm(request.POST)
         if syllabus_form.is_valid():
@@ -206,39 +197,35 @@ def create_syllabus(request):
             end_project = Project.syl_dict(end_project)
             proj_tools = Tool.objects.filter(requirements=end_project['requirements_id'])
             end_project['tools'] = [Tool.syl_dict(tool) for tool in proj_tools]
+            
+            og_test_req = {'vision': 1, 'dexterity': 1, 'language': 1, 'memory': 1, 'tools': [{'name': '3d printer', 'skill_level': 1}]}
+            test_req = {'vision': 1, 'dexterity': 1, 'language': 1, 'memory': 1, 'tools': [{'name': '3d printer', 'skill_level': 1}]}
+            test_2_req = {'vision': 2, 'dexterity': 2, 'language': 2, 'memory': 2, 'tools': [{'name': '3d printer', 'skill_level': 2},{'name': 'circuits', 'skill_level': 1} ]}
 
-            next_tool = None
-            next_proj = None
+
             syllabus = []
-            while not tools_eq(end_project['tools'], user_profile['tools']):
-                for tool in end_project['tools']:
-                    # does the UP have this tool
-                    exists = next((item for item in user_profile['tools'] if item['name'] == tool['name']), False)
-                    index = next((i for i, item in enumerate(user_profile['tools']) if item['name'] == tool['name']), False)
-                    if exists: 
-                        # does the user have needed skill level in that tool 
-                        if exists['skill_level'] < tool['skill_level']:
-                                # need to include a check if a project actually exists
-                                # need to have all other things in the project be do-able too !!!!
-                                # oh god this is going to search through profile tool objects too 
-                                # i need to be filtering through PROJECT objects 
-                                next_tool = Tool.objects.filter(name=tool['name'], skill_level=exists['skill_level']+1)[0]
-                                next_proj = Project.objects.filter(requirements=next_tool.requirements)[0]
-                                next_proj = Project.syl_dict(next_proj)
-                                next_tools = Tool.objects.filter(requirements=next_proj['requirements_id'])
-                                next_proj['tools'] = [Tool.syl_dict(tool) for tool in next_tools]
-                                syllabus.append(next_proj)
-                                # increment usr profile here
-                                user_profile['tools'][index]['skill_level'] += 1
-                    else: 
-                        next_tool = Tool.objects.filter(name=tool['name'], skill_level=1)[0]
-                        next_proj = Project.objects.filter(requirements=next_tool.requirements)[0]
-                        next_proj = Project.syl_dict(next_proj)
-                        next_tools = Tool.objects.filter(requirements=next_proj['requirements_id'])
-                        next_proj['tools'] = [Tool.syl_dict(tool) for tool in next_tools]
-                        syllabus.append(next_proj)
-                        user_profile['tools'].append({'name':tool['name'], 'skill_level':1})
+            all_prof = []
+            all_arr = []
 
+            all_prof.append(user_profile)
+            while not req_eq(end_project, user_profile):
+                arr = imp(end_project, user_profile)
+                all_arr.append(arr)
+                # im getting weird debugging cos im running this function twice lol 
+                if find_project(user_profile, arr):
+                    new_req, next_proj = find_project(user_profile, arr)
+                    user_profile = deepcopy(new_req)
+
+                    all_prof.append(user_profile)
+                    syllabus.append(next_proj)
+                else: 
+                    syllabus.append("i broke!")
+                    break
+                    # either have to break after getting 1 project or this runs forever :)
+                    # i think its an issue with the dictionaries not/being overwritten correctly
+                    # make a debug trace of their values at all points. good luck. 
+                   
+                #test = "it is not equal"           
         else:
             print(syllabus_form.errors)
     else:
@@ -249,19 +236,257 @@ def create_syllabus(request):
         next_tool = None
         next_proj = None
         syllabus = None
+        test = None
+        all_prof = None
+        test_req = None 
 
-    return render(request, 'making/create_syllabus.html', context = {'syllabus_form': syllabus_form, 'end_project':end_project, 'user_profile':user_profile, 'next_proj': next_proj, 'syllabus': syllabus, 'og_profile': og_profile})
+        all_arr = None 
 
-def test_page(request):
-    user = request.user 
-    user_profile = UserProfile.objects.filter(user=user)[0]
-    test = UserProfile.to_dict(user_profile)
-    test2 = UserProfile.syl_dict(user_profile)
-    if request.method == 'POST':
-        syllabus_form = SyllabusForm(request.POST)
-        if syllabus_form.is_valid():
-            pass 
+        og_test_req = None
+        test_2_req = None
+
+
+    return render(request, 'making/create_syllabus.html', context = {'syllabus_form': syllabus_form, 'end_project':end_project, 'user_profile':user_profile, 'syllabus': syllabus, 'og_profile': og_profile, 'all_prof': all_prof, 'all_arr': all_arr})
+
+# target = 1 tool, userTools = list of tools
+# i think this works
+# returns true if userTools has target tool, and its skill level is greater than or equal to the targets
+def tool_geq(target, userTools):
+    # will either return false, or a dictionary
+    has_tool = next((i for i in userTools if i['name']==target['name']), False)
+    return has_tool and (target['skill_level'] <= has_tool['skill_level'])
+
+# checks that target tool exists in userTools and has equal skill level
+def tool_eq(target, userTools):
+    # will either return false, or a dictionary
+    has_tool = next((i for i in userTools if i['name']==target['name']), False)
+    return has_tool and (target['skill_level'] == has_tool['skill_level'])
+
+def tool_leq(target, userTools):
+    # will either return false, or a dictionary
+    has_tool = next((i for i in userTools if i['name']==target['name']), False)
+    return has_tool and (target['skill_level'] >= has_tool['skill_level'])
+
+# returns true if all user skills are <= targets, AND all target tools return true from tool_eq()  
+# i think this also works
+def req_eq(endProj, usrProf):
+    skills = (endProj['vision'] <= usrProf['vision']) and (endProj['dexterity'] <= usrProf['dexterity']) and (endProj['language'] <= usrProf['language']) and (endProj['memory'] <= usrProf['memory'])
+    return skills and (all(tool_geq(j, usrProf['tools']) for j in endProj['tools'] ))
+
+# this one returns an array of skills that need to be improved
+# returns empty list if theres no skills :)
+# seems to work
+def imp(endProj, usrProf):
+    arr = []
+    skills = ['vision', 'dexterity', 'language', 'memory']
+    for i in endProj:
+        if (i in skills) and (endProj[i] > usrProf[i]):
+            arr.append(i)
+        elif i == 'tools':
+            for j in endProj[i]:
+                # should probably use tool_eq (non boolean ver) here 
+                has_tool = next((x for x in usrProf['tools'] if x['name']==j['name']), False)
+                if (not has_tool) or (j['skill_level'] > has_tool['skill_level']):
+                    arr.append(j['name'])
+    return arr
+
+# i dont trust this one
+# but it SEEMS to work
+def update_up(usrProf, name):
+    new_up = deepcopy(usrProf) 
+    skills = ['vision', 'dexterity', 'language', 'memory']
+    if name in skills: 
+        new_up[name] += 1 
     else: 
-        syllabus_form = SyllabusForm()
+        has_tool = next((idx for idx, i in enumerate(new_up['tools']) if i['name'] == name), False)
+        if type(has_tool) is int:
+            new_up['tools'][has_tool]['skill_level'] += 1
+        else:
+            new_up['tools'].append({'name':name, 'skill_level':1})
+    return new_up
 
-    return render(request, 'making/create_syllabus.html', context = {'syllabus_form':syllabus_form, 'test':test, 'test2':test2})
+# tries to find a project that matches the user profiles skill levels
+# this wont properly work until i implement constraint relaxing 
+def search(usrProf, item):
+    # find all projects matching users skills
+    next_proj = Project.objects.filter(requirements__vision = usrProf['vision'], requirements__dexterity = usrProf['dexterity'], requirements__language = usrProf['language'], requirements__memory = usrProf['memory']) 
+
+    # make list of users tool names, and a dict mapping tool names to skill values 
+    user_tools = []
+    user_dict = {}
+    for tool in usrProf['tools']:
+        user_tools.append(tool['name'])
+        user_dict[tool['name']] = tool['skill_level']
+        
+    # for each potential project    
+    # NEED TO COVER CASE THAT THE PROJECT HAS NO TOOLS 
+    for i in next_proj:
+        # turn project into dict
+        proj_dict = Project.syl_dict(i)
+        # get a queryset of the projects tools
+        tools = Tool.objects.filter(requirements = i.requirements)
+        # IF THE PROJECT HAS TOOLS
+        if tools:    
+            if item in skills:            
+                tools_check = tools.exclude(name__in=user_tools)
+                if not tools_check:
+                    tool_list = [Tool.syl_dict(tool) for tool in tools]
+                    # i dont think this does what i want it to do
+                    # the tool levels need to be EQUAL, not just suitable 
+                    tooly = all(tool_eq(j,usrProf['tools']) for j in tool_list )
+                    if tooly:
+                        proj_dict['tools'] = tool_list
+                        return proj_dict
+            else: 
+                tools_check = tools.exclude(name__in=user_tools)
+                if not tools_check:
+                    tool_list = [Tool.syl_dict(tool) for tool in tools]
+                    # i dont think this does what i want it to do
+                    # the tool levels need to be EQUAL, not just suitable 
+                    # all existing tools in project are equal to user
+                    tooly = all(tool_eq(j,usrProf['tools']) for j in tool_list )
+                    # need to check that specified tool exists and is at right level
+                    i_tool = next((t for t in tool_list if t['name']==item), False)
+                    # get users tools skill level 
+                    u_tool = next((s for s in usrProf['tools'] if s['name']==item), False)
+              
+
+                    if tooly and i_tool and (i_tool['skill_level'] == u_tool['skill_level']):
+                        proj_dict['tools'] = tool_list
+                        return proj_dict
+
+        # IF PROJECT DOESNT HAVE ANY TOOLS
+        else: 
+            # if you arent looking to improve a skill, thats fine
+            if item in skills:
+                return proj_dict
+
+def find_project(usrProf, arr):
+    for i in arr:
+        print("normal search looking for "+i)
+        new_prof = update_up(usrProf, i)
+
+        next_proj = search(new_prof, i)
+        if next_proj:
+            print("normal search FOUND "+ i)
+
+            return (new_prof, next_proj)
+    # if it gets this far without returning, that means there's no suitable projects?
+    print("HELLO CAN U HEAR ME")
+    for i in arr:
+        print("REL search looking for "+i)
+        new_prof = update_up(usrProf, i)
+        next_proj = rel_search(new_prof, i)
+        if next_proj:
+            print("REL search FOUND "+i)
+            return (new_prof, next_proj)
+    # if it gets this far without returning anything, relax those constraints babey!
+    # ie allow projects that are equal to or lesser than user profile (apart from that one skill you are trying to improve???)
+    # NEED to have it so its apart from the one skill you are improving, so that you can level up your profile correctly
+    # search takes in i (a string)
+    # checks if i is a skill (or otherwise its a tool name)
+    # try and make a fucked up query filter
+    # if its a skill:
+    # 
+
+def rel_search(usrProf, item):
+    skills = ['vision', 'dexterity', 'language', 'memory']
+    # find all projects matching users skills
+    filter_dict = {}
+    for j in skills:
+        if j == item:
+            filter = 'requirements__' + j 
+            value = usrProf[j]
+            filter_dict[filter] = value
+        else: 
+            filter = 'requirements__' + j + '__lte'
+            value = usrProf[j]
+            filter_dict[filter] = value
+
+    next_projs = Project.objects.filter(**filter_dict)
+
+    # make list of users tool names, and a dict mapping tool names to skill values 
+    user_tools = []
+    user_dict = {}
+    for tool in usrProf['tools']:
+        user_tools.append(tool['name'])
+        user_dict[tool['name']] = tool['skill_level']
+        
+    # for each potential project    
+    # NEED TO COVER CASE THAT THE PROJECT HAS NO TOOLS 
+    # could probably turn this into a fancy query like with kwargs above 
+    for i in next_projs:
+        # turn project into a dict
+        proj_dict = Project.syl_dict(i)
+        # get the projects tools
+        tools = Tool.objects.filter(requirements = i.requirements)
+
+        # if "item" is a tool name, the proj HAS to have tools, otherwise its fine
+        if item not in skills: 
+             # check that toolz[i][skill_lvl] == up[i][skill_lvl]
+                # check that the rest of the tools are gte
+            
+            # IF THE PROJECT HAS TOOLS
+            if tools:    
+                # see if the project has any tools that the user doesnt have            
+                tools_check = tools.exclude(name__in=user_tools)
+                # this doesnt mean it HAS the tool we are looking for though........
+                # if it doesnt, check they are a suitable skill level
+                
+                if not tools_check:
+                    tool_list = [Tool.syl_dict(tool) for tool in tools]
+                    i_tool = next((t for t in tool_list if t['name']==item), False)
+                    u_tool = next((s for s in usrProf['tools'] if s['name']==item), False)
+
+                    tooly = all(tool_geq(j,usrProf['tools']) for j in tool_list )
+                    if tooly and i_tool and (i_tool['skill_level'] == u_tool['skill_level']):
+                        proj_dict['tools'] = tool_list
+                        return proj_dict
+        else: 
+            if tools:    
+                # see if the project has any tools that the user doesnt have            
+                tools_check = tools.exclude(name__in=user_tools)
+                # if it doesnt, check they are a suitable skill level
+                if not tools_check:
+                    tool_list = [Tool.syl_dict(tool) for tool in tools]
+                    tooly = all(tool_geq(j,usrProf['tools']) for j in tool_list )
+                    if tooly:
+                        proj_dict['tools'] = tool_list
+                        return proj_dict
+        # IF PROJECT DOESNT HAVE ANY TOOLS
+            else: return proj_dict
+
+skills = ['vision', 'dexterity', 'language', 'memory']
+def test_page(request):
+
+    syllabus_form = SyllabusForm()
+
+    test_req = {'vision': 1, 'dexterity': 1, 'language': 1, 'memory': 1, 'tools': [{'name': '3d printer', 'skill_level': 1}]}
+    test_2_req = {'vision': 2, 'dexterity': 2, 'language': 2, 'memory': 2, 'tools': [{'name': '3d printer', 'skill_level': 2},{'name': 'circuits', 'skill_level': 1} ]}
+    test_3_req = {'vision': 1, 'dexterity': 2, 'language': 1, 'memory': 1, 'tools':[]}
+    all_arr = []
+    syllabus = []
+    all_prof = []
+
+    all_prof.append(test_req)
+    # this line doesnt overwrite test_req
+    array = imp(test_2_req, test_req)
+    all_arr.append(array)
+
+    test_prof, test_proj = find_project(test_req, array)
+    syllabus.append(test_proj)
+    all_prof.append(test_prof)
+
+    array = imp(test_2_req, test_prof)
+    all_arr.append(array)
+
+    test_prof, test_proj = find_project(test_prof, array)
+    syllabus.append(test_proj)
+    all_prof.append(test_prof)
+
+    cir_test = {'vision': 1, 'dexterity': 1, 'language': 1, 'memory': 1, 'tools': []}
+    girl = find_project(cir_test, ['circuits'])
+
+
+
+    return render(request, 'making/create_syllabus.html', context = {'syllabus_form':syllabus_form, 'og_profile':test_req, 'all_prof':all_prof, 'all_arr': girl, 'syllabus': syllabus, })
