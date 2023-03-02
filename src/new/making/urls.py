@@ -16,6 +16,7 @@ urlpatterns = [
     path('user/', views.view_user, name='view_user'),
     path('view_profile/', views.view_profile, name="view_profile",),
     path('update_profile/',views.update_profile, name="update_profile"),
+    path('switch_profile/', views.switch_profile, name="switch_profile"),
     path('add_tool/', views.add_tool, name="add_tool"),
     path('create_syllabus/', views.create_syllabus, name="create_syllabus"),
     path('test/', views.test_page, name="test_page"),

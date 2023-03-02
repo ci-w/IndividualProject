@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from making.forms import RequirementsForm, ToolForm, UserForm, ProfileForm, SyllabusForm
+from making.forms import RequirementsForm, ToolForm, UserForm, ProfileForm, SyllabusForm, SwitchProfileForm
 from making.models import Requirements, Tool, UserProfile, Project
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -172,11 +172,17 @@ def add_tool(request):
     # render template depending on context 
     return render(request, 'making/add_tool.html', context = {'tool_form': tool_form, 'registered': registered})
 
-# todo: fancy way of turning model instance into dict
-# todo: make a function that compares two requirements
-# todo: make a function that updates tool level
-# todo: make a function that checks if a user has a specified tool
-# todo: make a function that grabs a project and all its related fields   
+@login_required
+def switch_profile(request):
+    user = request.user
+    profiles = UserProfile.objects.filter(user=user)
+    profile_choices = [(i.pk, i.profile_name) for i in profiles]
+
+    switch_form = SwitchProfileForm()
+    # this actually works and im delighted 
+    switch_form.fields['profile'].choices = profile_choices
+    return render(request, 'making/switch_profile.html', context = {'profiles':profiles, 'profile_choices':profile_choices, 'switch_form': switch_form})
+
 def create_syllabus(request):
     if request.method == 'POST':
         syllabus_form = SyllabusForm(request.POST)
@@ -197,11 +203,6 @@ def create_syllabus(request):
             end_project = Project.syl_dict(end_project)
             proj_tools = Tool.objects.filter(requirements=end_project['requirements_id'])
             end_project['tools'] = [Tool.syl_dict(tool) for tool in proj_tools]
-            
-            og_test_req = {'vision': 1, 'dexterity': 1, 'language': 1, 'memory': 1, 'tools': [{'name': '3d printer', 'skill_level': 1}]}
-            test_req = {'vision': 1, 'dexterity': 1, 'language': 1, 'memory': 1, 'tools': [{'name': '3d printer', 'skill_level': 1}]}
-            test_2_req = {'vision': 2, 'dexterity': 2, 'language': 2, 'memory': 2, 'tools': [{'name': '3d printer', 'skill_level': 2},{'name': 'circuits', 'skill_level': 1} ]}
-
 
             syllabus = []
             all_prof = []
@@ -225,7 +226,7 @@ def create_syllabus(request):
                     # i think its an issue with the dictionaries not/being overwritten correctly
                     # make a debug trace of their values at all points. good luck. 
                    
-                #test = "it is not equal"           
+                        
         else:
             print(syllabus_form.errors)
     else:
@@ -490,3 +491,5 @@ def test_page(request):
 
 
     return render(request, 'making/create_syllabus.html', context = {'syllabus_form':syllabus_form, 'og_profile':test_req, 'all_prof':all_prof, 'all_arr': girl, 'syllabus': syllabus, })
+
+

@@ -1,0 +1,17 @@
+{% extends 'making/index.html' %}
+{% block body_block %}
+
+{% for i in profiles %}
+    {{ i }} <br>
+{% endfor %}
+{% for i in profile_ids %}
+    {{ i }} <br>
+{% endfor %}
+{{ profile_ids }} <br>
+<form method="post" action="{% url 'making:create_syllabus' %}">
+    {% csrf_token %}
+    {{ switch_form }}
+    <input type="submit" name="submit" value="Submit" /> 
+</form>
+
+{% endblock %}

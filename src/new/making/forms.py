@@ -34,3 +34,8 @@ class ToolForm(ModelForm):
 #todo: make it so you select a project, and the form just punts through the project ID. i.e. have to do validation here
 class SyllabusForm(Form):
     end_project = forms.IntegerField()
+
+class SwitchProfileForm(Form):
+    #the choices are decided in the View
+    profile = forms.ChoiceField()
+
