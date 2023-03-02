@@ -1,14 +1,9 @@
 {% extends 'making/index.html' %}
 {% block body_block %}
+Your current profile is: x <br>
+if current profile == none, ask them to choose a profile, otherwise offer them a switch, yknow
 
-{% for i in profiles %}
-    {{ i }} <br>
-{% endfor %}
-{% for i in profile_ids %}
-    {{ i }} <br>
-{% endfor %}
-{{ profile_ids }} <br>
-<form method="post" action="{% url 'making:create_syllabus' %}">
+<form method="post" action="{% url 'making:switch_profile' %}">
     {% csrf_token %}
     {{ switch_form }}
     <input type="submit" name="submit" value="Submit" /> 

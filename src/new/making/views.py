@@ -5,21 +5,28 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from copy import deepcopy
-from django.db.models import Q, F
+from django.forms import formset_factory
 
 def index(request):
-    if request.user.is_authenticated:
-        # need to change this to filter when default profile is implemented
-        user_profile = UserProfile.objects.get(user=request.user)
+    # i should really have this whole check as a separate function cos otherwise its gonna be copied on every view....
+    # are they logged in + has their profile been selected?
+    if request.user.is_authenticated and request.session['user_profile']:
+        user_profile = UserProfile.objects.get(id=request.session['user_profile'])   
     else:
         user_profile = None
+
     return render(request, 'making/index.html', context = {'user_profile': user_profile})
 
 def about(request):
     return render(request, 'making/about.html')
 
-#todo: have the tab (i forget word) for this page display the projects title
-def projects(request, project_id):
+# view of multiple projects, just grabs the first 10
+def projects(request):
+    projects = Project.objects.all()[:10]
+    return render(request, 'making/projects.html', context={'projects': projects})
+
+# specific project
+def project(request, project_id):
     try:
         #is there a project with that id?
         project = Project.objects.get(id=project_id)
@@ -27,53 +34,54 @@ def projects(request, project_id):
         project = None 
     return render(request, 'making/projects.html', context={'project': project})
 
-
 def register(request):
-# tells the template if registration was successful 
+    # tells the template if registration was successful 
     registered = False 
     # if its a HTTP post, we want to process form data
     if request.method == 'POST':
         # try to get info from the raw form info 
-        form = UserForm(request.POST)
-        # if the forms are valid
-        if form.is_valid(): 
+        user_form = UserForm(request.POST)
+        if user_form.is_valid(): 
             # save users form data to the db 
-            user = form.save() 
+            user = user_form.save() 
             # hash password, update user object
             user.set_password(user.password)
             user.save() 
             registered = True
         else: 
-            print(form.errors)
+            print(user_form.errors)
     else: 
-        # not a http POST, so render form using modelForm instance - blank ready for user input
-        form = UserForm()
+        # blank form
+        user_form = UserForm()
 
     # render template depending on context 
-    return render(request, 'making/register.html', context = {'form': form, 'registered': registered})
+    return render(request, 'making/register.html', context = {'user_form': user_form, 'registered': registered})
 
 def user_login(request):
-    worked = False
     if request.method == 'POST':
-        form = UserForm(request.POST)
-        username = form['username'].value()
-        password = form['password'].value()
+        user_form = UserForm(request.POST)
+        username = user_form['username'].value()
+        password = user_form['password'].value()
         # are details valid?
         user = authenticate(username=username, password=password)
         if user:
-            login(request, user)
-            worked = True
-            #return redirect(reverse('making:index'))            
+            login(request, user)            
+            profiles = UserProfile.objects.filter(user=user)
+            if len(profiles) == 1:
+                request.session['user_profile'] = profiles[0].pk
+                return redirect(reverse('making:index'))  
+            else: 
+                return redirect(reverse('making:switch_profile'))             
     else:
-        form = UserForm()
-    return render(request, 'making/login.html', context={'form': form, 'worked': worked})
+        user_form = UserForm()
+    return render(request, 'making/login.html', context={'user_form': user_form})
  
 @login_required
 def user_logout(request):
+    # the session data for the current request is completely cleaned out
     logout(request)
     return redirect(reverse('making:index'))
 
-# assuming this is creating new profile
 @login_required
 def create_profile(request):
     # tells the template if registration was successful 
@@ -96,10 +104,9 @@ def create_profile(request):
         else: 
             print(profile_form.errors)
     else: 
-        # not a http POST, so render form using blank form instances for user input
         profile_form = ProfileForm()
         requirements_form = RequirementsForm()
-    # render template depending on context 
+
     return render(request, 'making/create_profile.html', context = {'profile_form': profile_form, 'requirements_form': requirements_form,'registered': registered})
 
 @login_required
@@ -142,11 +149,25 @@ def update_profile(request):
     else:
         profile_form = ProfileForm(instance=user_profile)
         requirements_form = RequirementsForm(instance=user_profile.requirements)
-    return render(request, 'making/update_profile.html', context={'profile_form':profile_form, 'requirements_form':requirements_form})
 
+        user_tools = Tool.objects.filter(requirements=user_profile.requirements)
+        no_tools = len(user_tools)
+        forms_list = []
+        for i in range(no_tools):
+            tool_forms = ToolForm(instance=user_tools[i])
+            tool_forms.fields['name'].choices = [(user_tools[i].name,user_tools[i].name)]
+            forms_list.append(tool_forms)
+
+    return render(request, 'making/update_profile.html', context={'profile_form':profile_form, 'requirements_form':requirements_form, 'tool_forms': tool_forms, 'user_tools': user_tools, 'forms_list': forms_list})
+
+# have to stop people adding a tool they already have - i.e. update it instead
 @login_required
 def add_tool(request):
     user = request.user 
+    # get possible tool choices
+    tool_names = Tool.objects.values('name').distinct()
+    tool_choices = [(i['name'], i['name']) for i in tool_names]
+
     try:
         user_profile = UserProfile.objects.filter(user=user)[0]
     except UserProfile.DoesNotExist:
@@ -157,6 +178,7 @@ def add_tool(request):
     if request.method == 'POST':
         # try to get info from the raw form info 
         tool_form = ToolForm(request.POST)
+        tool_form.fields['name'].choices = tool_choices
         # if the forms are valid
         if tool_form.is_valid(): 
             tool = tool_form.save(commit=False)
@@ -166,11 +188,10 @@ def add_tool(request):
         else: 
             print(tool_form.errors)
     else: 
-        # not a http POST, so render form using blank form instances for user input
         tool_form = ToolForm()
+        tool_form.fields['name'].choices = tool_choices
 
-    # render template depending on context 
-    return render(request, 'making/add_tool.html', context = {'tool_form': tool_form, 'registered': registered})
+    return render(request, 'making/add_tool.html', context = {'tool_form': tool_form})
 
 @login_required
 def switch_profile(request):
@@ -179,20 +200,28 @@ def switch_profile(request):
     profile_choices = [(i.pk, i.profile_name) for i in profiles]
 
     switch_form = SwitchProfileForm()
-    # this actually works and im delighted 
     switch_form.fields['profile'].choices = profile_choices
-    return render(request, 'making/switch_profile.html', context = {'profiles':profiles, 'profile_choices':profile_choices, 'switch_form': switch_form})
 
+    if request.method == 'POST':
+        switch_form = SwitchProfileForm(request.POST)
+        # if i dont have line below, it will fail validation (because the form doesn't know the correct choices)
+        switch_form.fields['profile'].choices = profile_choices
+        if switch_form.is_valid():
+            # ID of the chosen profile
+            request.session['user_profile'] = switch_form['profile'].value()             
+        else:
+            print(switch_form.errors)
+    else:
+        switch_form = SwitchProfileForm()
+        switch_form.fields['profile'].choices = profile_choices
+
+    return render(request, 'making/switch_profile.html', context = {'switch_form': switch_form})
+
+@login_required
 def create_syllabus(request):
     if request.method == 'POST':
         syllabus_form = SyllabusForm(request.POST)
         if syllabus_form.is_valid():
-            # just using this as testing to see what original profile values are
-            og_profile = UserProfile.objects.filter(user=request.user)[0]
-            og_profile = UserProfile.syl_dict(og_profile)
-            og_tools = Tool.objects.filter(requirements=og_profile['requirements_id'])
-            og_profile['tools'] = [Tool.syl_dict(tool) for tool in og_tools]
-
             user_profile = UserProfile.objects.filter(user=request.user)[0]
             user_profile = UserProfile.syl_dict(user_profile)
             up_tools = Tool.objects.filter(requirements=user_profile['requirements_id'])
@@ -205,49 +234,27 @@ def create_syllabus(request):
             end_project['tools'] = [Tool.syl_dict(tool) for tool in proj_tools]
 
             syllabus = []
-            all_prof = []
-            all_arr = []
 
-            all_prof.append(user_profile)
             while not req_eq(end_project, user_profile):
                 arr = imp(end_project, user_profile)
-                all_arr.append(arr)
+
                 # im getting weird debugging cos im running this function twice lol 
                 if find_project(user_profile, arr):
                     new_req, next_proj = find_project(user_profile, arr)
                     user_profile = deepcopy(new_req)
-
-                    all_prof.append(user_profile)
                     syllabus.append(next_proj)
                 else: 
                     syllabus.append("i broke!")
-                    break
-                    # either have to break after getting 1 project or this runs forever :)
-                    # i think its an issue with the dictionaries not/being overwritten correctly
-                    # make a debug trace of their values at all points. good luck. 
-                   
-                        
+                    break                                       
         else:
             print(syllabus_form.errors)
     else:
         syllabus_form = SyllabusForm()
         end_project = None
         user_profile = None
-        og_profile = None
-        next_tool = None
-        next_proj = None
         syllabus = None
-        test = None
-        all_prof = None
-        test_req = None 
 
-        all_arr = None 
-
-        og_test_req = None
-        test_2_req = None
-
-
-    return render(request, 'making/create_syllabus.html', context = {'syllabus_form': syllabus_form, 'end_project':end_project, 'user_profile':user_profile, 'syllabus': syllabus, 'og_profile': og_profile, 'all_prof': all_prof, 'all_arr': all_arr})
+    return render(request, 'making/create_syllabus.html', context = {'syllabus_form': syllabus_form, 'end_project':end_project, 'user_profile':user_profile, 'syllabus': syllabus})
 
 # target = 1 tool, userTools = list of tools
 # i think this works
@@ -364,22 +371,15 @@ def search(usrProf, item):
 
 def find_project(usrProf, arr):
     for i in arr:
-        print("normal search looking for "+i)
         new_prof = update_up(usrProf, i)
-
         next_proj = search(new_prof, i)
         if next_proj:
-            print("normal search FOUND "+ i)
-
             return (new_prof, next_proj)
     # if it gets this far without returning, that means there's no suitable projects?
-    print("HELLO CAN U HEAR ME")
     for i in arr:
-        print("REL search looking for "+i)
         new_prof = update_up(usrProf, i)
         next_proj = rel_search(new_prof, i)
         if next_proj:
-            print("REL search FOUND "+i)
             return (new_prof, next_proj)
     # if it gets this far without returning anything, relax those constraints babey!
     # ie allow projects that are equal to or lesser than user profile (apart from that one skill you are trying to improve???)
@@ -388,7 +388,6 @@ def find_project(usrProf, arr):
     # checks if i is a skill (or otherwise its a tool name)
     # try and make a fucked up query filter
     # if its a skill:
-    # 
 
 def rel_search(usrProf, item):
     skills = ['vision', 'dexterity', 'language', 'memory']
@@ -425,7 +424,7 @@ def rel_search(usrProf, item):
         # if "item" is a tool name, the proj HAS to have tools, otherwise its fine
         if item not in skills: 
              # check that toolz[i][skill_lvl] == up[i][skill_lvl]
-                # check that the rest of the tools are gte
+            # check that the rest of the tools are gte
             
             # IF THE PROJECT HAS TOOLS
             if tools:    
@@ -458,38 +457,10 @@ def rel_search(usrProf, item):
             else: return proj_dict
 
 skills = ['vision', 'dexterity', 'language', 'memory']
+
 def test_page(request):
-
-    syllabus_form = SyllabusForm()
-
-    test_req = {'vision': 1, 'dexterity': 1, 'language': 1, 'memory': 1, 'tools': [{'name': '3d printer', 'skill_level': 1}]}
-    test_2_req = {'vision': 2, 'dexterity': 2, 'language': 2, 'memory': 2, 'tools': [{'name': '3d printer', 'skill_level': 2},{'name': 'circuits', 'skill_level': 1} ]}
-    test_3_req = {'vision': 1, 'dexterity': 2, 'language': 1, 'memory': 1, 'tools':[]}
-    all_arr = []
-    syllabus = []
-    all_prof = []
-
-    all_prof.append(test_req)
-    # this line doesnt overwrite test_req
-    array = imp(test_2_req, test_req)
-    all_arr.append(array)
-
-    test_prof, test_proj = find_project(test_req, array)
-    syllabus.append(test_proj)
-    all_prof.append(test_prof)
-
-    array = imp(test_2_req, test_prof)
-    all_arr.append(array)
-
-    test_prof, test_proj = find_project(test_prof, array)
-    syllabus.append(test_proj)
-    all_prof.append(test_prof)
-
-    cir_test = {'vision': 1, 'dexterity': 1, 'language': 1, 'memory': 1, 'tools': []}
-    girl = find_project(cir_test, ['circuits'])
-
-
-
-    return render(request, 'making/create_syllabus.html', context = {'syllabus_form':syllabus_form, 'og_profile':test_req, 'all_prof':all_prof, 'all_arr': girl, 'syllabus': syllabus, })
+    request.session['user_profile'] = 2
+    session = request.session['user_profile']
+    return render(request, 'making/test.html', context = {'session':session})
 
 

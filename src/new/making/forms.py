@@ -25,11 +25,10 @@ class RequirementsForm(ModelForm):
         fields = '__all__'
 
 class ToolForm(ModelForm):
-    #name = forms.CharField(max_length=64, required=False)
-    #skill_level = forms.IntegerField(required=False)
+    name = forms.ChoiceField()
     class Meta:
         model = Tool
-        fields = ('name', 'skill_level',)
+        fields = ('name','skill_level',)
 
 #todo: make it so you select a project, and the form just punts through the project ID. i.e. have to do validation here
 class SyllabusForm(Form):

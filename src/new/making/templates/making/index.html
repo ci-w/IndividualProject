@@ -1,15 +1,6 @@
-Welcome! <br>
-{% if user.is_authenticated %}
-    You are logged in as: {{ user.username }} <br>
-    {% if user_profile %} 
-        Current user profile is: {{ user_profile.profile_name }} <br>
-    {% endif %}
-{% endif %}
-
-{% block body_block %}
-
-{% endblock %}
-
+<head>
+    <title>Hiii </title>
+</head>
 <a href="{% url 'making:index' %}">home</a>
 {% if user.is_authenticated %}
 <a href="{% url 'making:logout' %}">log out</a>
@@ -24,3 +15,18 @@ Welcome! <br>
 <a href="{% url 'making:register' %}">register</a>
 <a href="{% url 'making:login' %}">log in</a>
 {% endif %}
+<br />
+<br />
+Welcome! <br>
+{% if user.is_authenticated %}
+    You are logged in as: {{ user.username }} <br>
+    {% if user_profile %} 
+        Current user profile is: {{ user_profile.profile_name }} <br>
+    {% endif %}
+{% endif %}
+
+{% block body_block %}
+
+{% endblock %}
+
+

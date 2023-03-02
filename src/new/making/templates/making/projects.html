@@ -5,8 +5,10 @@
 
 {% if project %}
         Project title is: {{ project.title }} <br>
-
-
 {% endif %}
+
+{{{% for i in projects %}
+        {{ i }} <br>
+{% endfor %}}}
 
 {% endblock %}

@@ -5,7 +5,10 @@
     {% csrf_token %}
     {{ profile_form.as_p }}
     {{ requirements_form.as_p }}
+    {% for i in forms_list %}
+        {{ i.as_p }}
+    {% endfor %}
     <input type="submit" name="submit" value="Submit" /> 
-</form>
+</form> <br>
 
 {% endblock %}
