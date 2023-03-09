@@ -30,11 +30,21 @@ class UserProfile(models.Model):
     def equality(self, other): 
         return Requirements.equality(self.requirements, other.requirements)
 
+# custom manager for Projects
+class ProjectManager(models.Manager):
+    def get_choices(self):
+        return super().values_list('pk','title')
+
 class Project(models.Model):
     title = models.CharField(max_length=50)
     requirements = models.OneToOneField("Requirements", on_delete=models.DO_NOTHING)
     instructions = models.TextField()
     description = models.TextField(max_length=100)
+
+    # default manager
+    objects = models.Manager()
+    # custom manager
+    choices_objects = ProjectManager()
     
     def __str__(self):
         return self.title 
@@ -47,6 +57,7 @@ class Project(models.Model):
     # returns true if the REQUIREMENTS are equal
     def equality(self, other): 
         return Requirements.equality(self.requirements, other.requirements)
+
 
 
 class Requirements(models.Model):

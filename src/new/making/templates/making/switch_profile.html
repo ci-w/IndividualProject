@@ -1,12 +1,14 @@
 {% extends 'making/index.html' %}
 {% block body_block %}
-Your current profile is: x <br>
-if current profile == none, ask them to choose a profile, otherwise offer them a switch, yknow
+Your current profile is:  <br>
+(if current profile is none, ask them to choose a profile, otherwise offer them a switch)
 
 <form method="post" action="{% url 'making:switch_profile' %}">
     {% csrf_token %}
     {{ switch_form }}
     <input type="submit" name="submit" value="Submit" /> 
 </form>
+<br>
+
 
 {% endblock %}

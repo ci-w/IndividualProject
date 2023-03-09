@@ -7,13 +7,15 @@ from django.urls import reverse
 from copy import deepcopy
 from django.forms import formset_factory
 
-def index(request):
-    # i should really have this whole check as a separate function cos otherwise its gonna be copied on every view....
-    # are they logged in + has their profile been selected?
+def helperFunc(request):
     if request.user.is_authenticated and request.session['user_profile']:
-        user_profile = UserProfile.objects.get(id=request.session['user_profile'])   
+        user_profile = UserProfile.objects.get(id=request.session['user_profile'])
     else:
         user_profile = None
+    return user_profile
+
+def index(request):
+    user_profile = helperFunc(request)
 
     return render(request, 'making/index.html', context = {'user_profile': user_profile})
 
@@ -48,6 +50,10 @@ def register(request):
             user.set_password(user.password)
             user.save() 
             registered = True
+            # logs the user in and takes them to create profile page
+            login(request, user)            
+            request.session['user_profile'] = None 
+            return redirect(reverse('making:create_profile'))             
         else: 
             print(user_form.errors)
     else: 
@@ -67,10 +73,14 @@ def user_login(request):
         if user:
             login(request, user)            
             profiles = UserProfile.objects.filter(user=user)
+            # if the user just has 1 profile, set the session profile to that
             if len(profiles) == 1:
                 request.session['user_profile'] = profiles[0].pk
                 return redirect(reverse('making:index'))  
             else: 
+                # temporarily set the current profile to None
+                request.session['user_profile'] = None 
+                # redirect them to choose their profile
                 return redirect(reverse('making:switch_profile'))             
     else:
         user_form = UserForm()
@@ -84,59 +94,53 @@ def user_logout(request):
 
 @login_required
 def create_profile(request):
-    # tells the template if registration was successful 
+    # tells the template if creation was successful 
     registered = False 
-    # if its a HTTP post, we want to process form data
+    user_profile = helperFunc(request)
     if request.method == 'POST':
-        # try to get info from the raw form info 
         profile_form = ProfileForm(request.POST)
         requirements_form = RequirementsForm(request.POST)
         # if the forms are valid
         if profile_form.is_valid() and requirements_form.is_valid(): 
             user = request.user
             profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.save()         
+            profile.user = user       
             requirements = requirements_form.save()
             profile.requirements = requirements
             profile.save()           
             registered = True
+            # if the user doesn't have any other profiles, you should set session profile to this one
+            profiles = UserProfile.objects.filter(user=user)
+            if len(profiles) == 1:
+                request.session['user_profile'] = profiles[0].pk
+                user_profile = helperFunc(request)
         else: 
             print(profile_form.errors)
     else: 
         profile_form = ProfileForm()
         requirements_form = RequirementsForm()
 
-    return render(request, 'making/create_profile.html', context = {'profile_form': profile_form, 'requirements_form': requirements_form,'registered': registered})
+    return render(request, 'making/create_profile.html', context = {'user_profile':user_profile,'profile_form': profile_form, 'requirements_form': requirements_form,'registered': registered})
 
 @login_required
 def view_user(request):
-    user = request.user
-    return render(request, 'making/view_user.html', context = {'user': user})
+    user_profile = helperFunc(request)
+    return render(request, 'making/view_user.html', context = {'user_profile': user_profile})
 
 @login_required
 def view_profile(request):
-    user = request.user
-    # this automatically just picks the first user profile, need to change this
-    try:
-        user_profile = UserProfile.objects.filter(user=user)[0]
-    except UserProfile.DoesNotExist:
-        user_profile = None
+    user_profile = helperFunc(request)
     try:
         tools = Tool.objects.filter(requirements=user_profile.requirements)
     except Tool.DoesNotExist:
         tools = None
-    return render(request, 'making/view_profile.html', context = {'user':user, 'user_profile': user_profile, 'tools':tools})
+    return render(request, 'making/view_profile.html', context = {'user_profile': user_profile, 'tools':tools})
 
 @login_required 
 # also UP required.. how to enforce?
-# this also just picks the first UP
+# need to process tool form submission
 def update_profile(request):
-    user = request.user
-    try:
-        user_profile = UserProfile.objects.filter(user=user)[0]
-    except UserProfile.DoesNotExist:
-        user_profile = None
+    user_profile = helperFunc(request)
     
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST, instance=user_profile)
@@ -151,29 +155,25 @@ def update_profile(request):
         requirements_form = RequirementsForm(instance=user_profile.requirements)
 
         user_tools = Tool.objects.filter(requirements=user_profile.requirements)
-        no_tools = len(user_tools)
-        forms_list = []
-        for i in range(no_tools):
-            tool_forms = ToolForm(instance=user_tools[i])
-            tool_forms.fields['name'].choices = [(user_tools[i].name,user_tools[i].name)]
-            forms_list.append(tool_forms)
+        tool_forms = []
+        for i in range(len(user_tools)):
+            tool_form = ToolForm(instance=user_tools[i])
+            tool_form.fields['name'].choices = [(user_tools[i].name,user_tools[i].name)]
+            tool_forms.append(tool_form)
 
-    return render(request, 'making/update_profile.html', context={'profile_form':profile_form, 'requirements_form':requirements_form, 'tool_forms': tool_forms, 'user_tools': user_tools, 'forms_list': forms_list})
+    return render(request, 'making/update_profile.html', context={'user_profile': user_profile, 'profile_form':profile_form, 'requirements_form':requirements_form, 'tool_forms': tool_forms})
 
 # have to stop people adding a tool they already have - i.e. update it instead
 @login_required
 def add_tool(request):
-    user = request.user 
+    user_profile = helperFunc(request)
     # get possible tool choices
     tool_names = Tool.objects.values('name').distinct()
     tool_choices = [(i['name'], i['name']) for i in tool_names]
 
-    try:
-        user_profile = UserProfile.objects.filter(user=user)[0]
-    except UserProfile.DoesNotExist:
-        user_profile = None
     # tells the template if registration was successful 
     registered = False 
+
     # if its a HTTP post, we want to process form data
     if request.method == 'POST':
         # try to get info from the raw form info 
@@ -191,17 +191,17 @@ def add_tool(request):
         tool_form = ToolForm()
         tool_form.fields['name'].choices = tool_choices
 
-    return render(request, 'making/add_tool.html', context = {'tool_form': tool_form})
+    return render(request, 'making/add_tool.html', context = {'user_profile': user_profile, 'tool_form': tool_form})
 
 @login_required
 def switch_profile(request):
     user = request.user
+    user_profile = helperFunc(request)
     profiles = UserProfile.objects.filter(user=user)
     profile_choices = [(i.pk, i.profile_name) for i in profiles]
 
     switch_form = SwitchProfileForm()
     switch_form.fields['profile'].choices = profile_choices
-
     if request.method == 'POST':
         switch_form = SwitchProfileForm(request.POST)
         # if i dont have line below, it will fail validation (because the form doesn't know the correct choices)
@@ -215,30 +215,33 @@ def switch_profile(request):
         switch_form = SwitchProfileForm()
         switch_form.fields['profile'].choices = profile_choices
 
-    return render(request, 'making/switch_profile.html', context = {'switch_form': switch_form})
+    return render(request, 'making/switch_profile.html', context = {'user_profile':user_profile,'switch_form': switch_form})
 
 @login_required
 def create_syllabus(request):
+    user_profile_obj = helperFunc(request)
+    end_project = None
+    user_profile = None
+    syllabus = None
+
     if request.method == 'POST':
         syllabus_form = SyllabusForm(request.POST)
         if syllabus_form.is_valid():
-            user_profile = UserProfile.objects.filter(user=request.user)[0]
-            user_profile = UserProfile.syl_dict(user_profile)
+            user_profile = UserProfile.syl_dict(user_profile_obj)
             up_tools = Tool.objects.filter(requirements=user_profile['requirements_id'])
             user_profile['tools'] = [Tool.syl_dict(tool) for tool in up_tools]
 
             end_proj_id = syllabus_form.cleaned_data['end_project']
             end_project = Project.objects.get(id=end_proj_id)
             end_project = Project.syl_dict(end_project)
-            proj_tools = Tool.objects.filter(requirements=end_project['requirements_id'])
-            end_project['tools'] = [Tool.syl_dict(tool) for tool in proj_tools]
+            end_tools = Tool.objects.filter(requirements=end_project['requirements_id'])
+            end_project['tools'] = [Tool.syl_dict(tool) for tool in end_tools]
 
             syllabus = []
 
             while not req_eq(end_project, user_profile):
                 arr = imp(end_project, user_profile)
 
-                # im getting weird debugging cos im running this function twice lol 
                 if find_project(user_profile, arr):
                     new_req, next_proj = find_project(user_profile, arr)
                     user_profile = deepcopy(new_req)
@@ -250,14 +253,11 @@ def create_syllabus(request):
             print(syllabus_form.errors)
     else:
         syllabus_form = SyllabusForm()
-        end_project = None
-        user_profile = None
-        syllabus = None
 
-    return render(request, 'making/create_syllabus.html', context = {'syllabus_form': syllabus_form, 'end_project':end_project, 'user_profile':user_profile, 'syllabus': syllabus})
+
+    return render(request, 'making/create_syllabus.html', context = {'user_profile':user_profile_obj, 'syllabus_form': syllabus_form, 'end_project':end_project, 'user_profile_dict':user_profile, 'syllabus': syllabus})
 
 # target = 1 tool, userTools = list of tools
-# i think this works
 # returns true if userTools has target tool, and its skill level is greater than or equal to the targets
 def tool_geq(target, userTools):
     # will either return false, or a dictionary
@@ -276,14 +276,12 @@ def tool_leq(target, userTools):
     return has_tool and (target['skill_level'] >= has_tool['skill_level'])
 
 # returns true if all user skills are <= targets, AND all target tools return true from tool_eq()  
-# i think this also works
 def req_eq(endProj, usrProf):
     skills = (endProj['vision'] <= usrProf['vision']) and (endProj['dexterity'] <= usrProf['dexterity']) and (endProj['language'] <= usrProf['language']) and (endProj['memory'] <= usrProf['memory'])
     return skills and (all(tool_geq(j, usrProf['tools']) for j in endProj['tools'] ))
 
 # this one returns an array of skills that need to be improved
 # returns empty list if theres no skills :)
-# seems to work
 def imp(endProj, usrProf):
     arr = []
     skills = ['vision', 'dexterity', 'language', 'memory']
@@ -386,7 +384,7 @@ def find_project(usrProf, arr):
     # NEED to have it so its apart from the one skill you are improving, so that you can level up your profile correctly
     # search takes in i (a string)
     # checks if i is a skill (or otherwise its a tool name)
-    # try and make a fucked up query filter
+    # try and make a query filter
     # if its a skill:
 
 def rel_search(usrProf, item):
@@ -459,8 +457,9 @@ def rel_search(usrProf, item):
 skills = ['vision', 'dexterity', 'language', 'memory']
 
 def test_page(request):
-    request.session['user_profile'] = 2
-    session = request.session['user_profile']
-    return render(request, 'making/test.html', context = {'session':session})
+
+    form = SyllabusForm()
+   # form.fields['end_project'].choices = projects
+    return render(request, 'making/test.html', context = {'projects':projects, 'form': form})
 
 

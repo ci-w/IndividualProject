@@ -268,11 +268,146 @@ Another redesign:
 * if i was being real fancy, the "while" function check would return true if UP is one-out from end project (i.e. making it easy to add end_project to syllabus)
 
 second bit of paper from this:
-* while end project > user profile:
-    - check = False
-    - if tools not equal: findTool, if findTool != None: add projet, update user_profile, go to while loop 
-    - if skills not equal: same drill ^ 
-    i just have 2 last pages to write up.
+```python
+while end project > user profile:
+    check = False
+    if tools not equal: findTool
+        if findTool != None: 
+            add project, update user_profile, go to while loop 
+    if skills not equal: same drill ^ 
+```
+I rewrote this while function about 20 times.
+```python
+while Eq(EndProj,UsP):
+    EqFunc(EndProj, UsrP) #will return list of names(skills, tools) to be improved*
+    arr = []
+    #at one point i had 2 separate functions for getting the names of things to be improved, one for tools and one for skills
+    append list of names to arr, pass arr into another function?
+    for i in arr:
+        FindProject(UsP, i)
+    #i moved this ^ out into its own function
+```
+```python
+Funny(UP, arr):
+    for i in arr:
+        if i in [skills]:
+            look for proj
+            if proj, return proj
+        else:
+            look for proj
+            if proj, return proj 
+```
+```python
+FindProject(UP, i):
+    if i in [skills]:
+        look for project equal to UP + 1 in skill
+        if project exists, return it and the updated UP
+```
+```python
+next_project = Funny(UP,arr)    #Funny will return project if possible
+if next_project == None:
+    relax constraints, search again
+else:
+    append next_project to syllabus (UP is already updated?)
+```
+
+```python
+FindTool(UserProfile, ??):
+    #needs a list of unequal tools
+    For each unequal tool:
+        try to find a project
+        If one is found, return it
+    If no tools are found at all, return None at the end of the entire function
+```
+```python
+FindSkill( ):
+    #either needs list of unequal skills, or UserProfile+EndProject
+    For each unequal skill:
+        try to find a project
+        if one is found, return it
+    return None
+```
+```python
+def function:
+    ToolsEqual( )
+    if ToolsEqual != None/False:
+        FindTool
+        if FindTool != None:
+            process FindTool
+            return 
+    if SkillsEqual != None/False:
+        same as above
+    #If you get this far, try it with less than equals
+``` 
+Refined functions from this ^ 
+```python
+while not unEq(EndProj, UP):
+    arr = imp(EP, UP)
+    UP, next_proj = FindProject(UP, arr)
+    if next_proj != None:
+        append next_proj to syllabus
+    else:
+        relax search constraints 
+return syllabus 
+```
+```python
+FindProject(UP, arr):
+#UP is a dictionary, arr is a list of strings from Imp()
+    for i in arr:
+        new_up = UpdateUp(UP, i)
+        next_proj = Search(new_up)
+        if next_proj != None:
+                UP = new_UP #need to check dict copy behaviour 
+                return(UP, next_proj)
+```
+```python
+ReqEq(EndProj, UP):
+# both inputs as dictionaries?
+    EndProj['dex'] <= UP['dex'] 
+    AND ...
+    AND ... (for all skills)    #instead of hardcoding this, do it a different way
+    AND...
+     for all { tool } in EndProj:
+        ToolEq( tool, UP) == True
+    all(ToolEq(j, UP['tools'] is True for j in EndProj['tools']))
+``` 
+```python
+ToolEq(target: tool dict, tools: UP['tools'] list of dicts) -> Boolean
+    has_tool = next(i for i in tools if i['name']==target['name'], False)
+    return (has_tool AND target['skill_level']<= has_tool['skill_level'])
+```
+```python
+Imp(EndProj, UP): #will look like UnEq
+    arr = []
+    for skill in EndProj:
+        if EndProj[skill]>UP[skill]:
+            append skill to arr
+    for tool in EndProj:
+        if tool not in UP or UP[tool][skill_level] < tool[skill_level]:
+            append tool to arr
+    return arr #list of strings 
+```
+```python
+Search(UP):
+    database search that fits UP parameters
+    return project or None
+```
+```python
+UpdateUp(UP, item: String):
+    deepcopy UP
+    if item in [skills]:
+        UP_copy[item] += 1
+    else:
+        has_tool = ..... #get index
+        if has_tool:
+            UP_copy[i][skill_level] += 1
+        else:
+            append new tool with skill level 1
+    return UP_copy
+```
+
+
+
 ___
 ### User Profile 
 * Selection of UP at login: if User has more than 1 UP, ask them to select which one (and include option to create a new one?). This would remove need for default UP. But what if they have no UP?

@@ -1,5 +1,5 @@
 from django.forms import ModelForm, Form
-from making.models import Requirements, Tool, UserProfile
+from making.models import Requirements, Tool, UserProfile, Project
 from django.contrib.auth.models import User
 from django import forms
 
@@ -32,9 +32,11 @@ class ToolForm(ModelForm):
 
 #todo: make it so you select a project, and the form just punts through the project ID. i.e. have to do validation here
 class SyllabusForm(Form):
-    end_project = forms.IntegerField()
+    # get all project ID's and titles
+    CHOICES = Project.choices_objects.get_choices()
+    end_project = forms.ChoiceField(choices=CHOICES)
 
 class SwitchProfileForm(Form):
-    #the choices are decided in the View
+    #the choices are decided in the View because it depends on the User
     profile = forms.ChoiceField()
 

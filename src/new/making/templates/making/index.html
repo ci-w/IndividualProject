@@ -1,36 +1,67 @@
-
+{% load static %}
 <!doctype html>
 <head>
     <title>{% block title %}{% endblock %}</title>   
+    <link
+    href="{% static "making/css/bootstrap.min.css" %}"
+    rel="stylesheet">
 </head>
+<body>
+    <header class="text-bg-primary fixed-top">
+        <div class="container-md">
+          <nav id="navbar-nav" class="col-md-9 mx-auto navbar navbar-expand-md navbar-dark bd-navbar">
+            <a class="navbar-brand" href="{% url 'making:index' %}">Making Projects</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+                <li class="nav-item" id="view-user-link"><a class="nav-link" href="{% url 'making:view_user' %}">View User</a></li>
+                <li class="nav-item" id="view-profile-link"><a class="nav-link" href="{% url 'making:view_profile' %}">View Profile</a></li>
+                <li class="nav-item" id="create-profile-link"><a class="nav-link" href="{% url 'making:create_profile' %}">Create Profile</a></li>
+                <li class="nav-item" id="update-profile-link"><a class="nav-link" href="{% url 'making:update_profile' %}">Update Profile</a></li>
+                <li class="nav-item" id="switch-profile-link"><a class="nav-link" href="{% url 'making:switch_profile' %}">Switch Profile</a></li>
+                <li class="nav-item" id="add-tool-link"><a class="nav-link" href="{% url 'making:add_tool' %}">Add Tool</a></li>
+                <li class="nav-item" id="create-syllabus-link"><a class="nav-link" href="{% url 'making:create_syllabus' %}">Create Syllabus</a></li>
+                <li class="nav-item" id="logout-link"><a class="nav-link" href="{% url 'making:logout' %}">Logout</a></li>
+            {% else %}
+            <li class="nav-item" id="register-link"><a class="nav-link" href="{% url 'making:register' %}">Register</a></li>         
+            <li class="nav-item" id="login-link"><a class="nav-link" href="{% url 'making:login' %}">Login</a></li>    
+            {% endif %}
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </header>
 
-<a href="{% url 'making:index' %}">home</a>
-{% if user.is_authenticated %}
-<a href="{% url 'making:logout' %}">log out</a>
-<a href="{% url 'making:view_user' %}">view user</a>
-<a href="{% url 'making:view_profile' %}">view profile</a>
-<a href="{% url 'making:create_profile' %}">create profile</a>
-<a href="{% url 'making:update_profile' %}">update profile</a>
-<a href="{% url 'making:switch_profile' %}">switch profile</a>
-<a href="{% url 'making:add_tool' %}">add tool</a>
-<a href="{% url 'making:create_syllabus' %}">create syllabus</a>
-{% else %}
-<a href="{% url 'making:register' %}">register</a>
-<a href="{% url 'making:login' %}">log in</a>
-{% endif %}
-<br />
-<br />
-Welcome! <br>
-{% if user.is_authenticated %}
-    You are logged in as: {{ user.username }} <br>
-    {% if user_profile %} 
-        Current user profile is: {{ user_profile.profile_name }} <br>
-    {% endif %}
-{% endif %}
+<br> <br> <br> <br>
 
-{% block body_block %}
+  <div id="content" class="container-md">
 
-{% endblock %}
+    <div class="col-md-8 mx-auto">
+        <p class="lead">
+            {% if user.is_authenticated %}
+                You are logged in as: {{ user.username }} <br>
+                {% if user_profile %} 
+                    Current user profile is: {{ user_profile.profile_name }} <br>
+                {% endif %}
+            {% endif %}</p>
+    {% block body_block %}
+
+    {% endblock %}
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+<script src="{% static "making/js/bootstrap.min.js" %}"></script>
+</body>
 </html>
 
 
