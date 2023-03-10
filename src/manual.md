@@ -69,3 +69,7 @@ Structure of JSON file is: [Project] [Project's requirements] [Project's tools] 
 To load in data from fixture:
 python manage.py loaddata test.json
 where test.json is in the app's fixtures folder
+
+## PythonAnywhere
+If you change any static files need to run:
+python manage.py collectstatic

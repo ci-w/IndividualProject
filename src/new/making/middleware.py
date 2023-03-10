@@ -12,7 +12,7 @@ class ProfileMiddleware:
             user_profile = UserProfile.objects.get(id=request.session['user_profile'])
         else:
             user_profile = None
-
+        request.session
         response = self.get_response(request)
 
         # Code to be executed for each request/response after

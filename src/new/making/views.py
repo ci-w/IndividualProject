@@ -5,7 +5,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from copy import deepcopy
-from django.forms import formset_factory
 
 def helperFunc(request):
     if request.user.is_authenticated and request.session['user_profile']:
@@ -39,9 +38,7 @@ def project(request, project_id):
 def register(request):
     # tells the template if registration was successful 
     registered = False 
-    # if its a HTTP post, we want to process form data
     if request.method == 'POST':
-        # try to get info from the raw form info 
         user_form = UserForm(request.POST)
         if user_form.is_valid(): 
             # save users form data to the db 
@@ -60,7 +57,6 @@ def register(request):
         # blank form
         user_form = UserForm()
 
-    # render template depending on context 
     return render(request, 'making/register.html', context = {'user_form': user_form, 'registered': registered})
 
 def user_login(request):
@@ -88,7 +84,7 @@ def user_login(request):
  
 @login_required
 def user_logout(request):
-    # the session data for the current request is completely cleaned out
+    # also deletes session data also 
     logout(request)
     return redirect(reverse('making:index'))
 

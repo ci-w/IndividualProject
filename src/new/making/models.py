@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 # when you create a new model, need to add it to admin.py to see it in admin interface
-# todo: input/case validation for tool names
 # should probably do isinstance checks with equality functions
 
 class UserProfile(models.Model):
@@ -57,8 +56,6 @@ class Project(models.Model):
     # returns true if the REQUIREMENTS are equal
     def equality(self, other): 
         return Requirements.equality(self.requirements, other.requirements)
-
-
 
 class Requirements(models.Model):
     VISION_CHOICES = [

@@ -19,7 +19,6 @@ class ProfileForm(ModelForm):
         fields = ('profile_name',)
 
 class RequirementsForm(ModelForm):
-
     class Meta:
         model = Requirements
         fields = '__all__'
@@ -30,7 +29,6 @@ class ToolForm(ModelForm):
         model = Tool
         fields = ('name','skill_level',)
 
-#todo: make it so you select a project, and the form just punts through the project ID. i.e. have to do validation here
 class SyllabusForm(Form):
     # get all project ID's and titles
     CHOICES = Project.choices_objects.get_choices()
@@ -39,4 +37,3 @@ class SyllabusForm(Form):
 class SwitchProfileForm(Form):
     #the choices are decided in the View because it depends on the User
     profile = forms.ChoiceField()
-

@@ -16,8 +16,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav">
+                <li class="nav-item" id="projects-link"><a class="nav-link" href="{% url 'making:projects' %}">Projects</a></li>    
             {% if user.is_authenticated %}
-                <li class="nav-item" id="view-user-link"><a class="nav-link" href="{% url 'making:view_user' %}">View User</a></li>
                 <li class="nav-item" id="view-profile-link"><a class="nav-link" href="{% url 'making:view_profile' %}">View Profile</a></li>
                 <li class="nav-item" id="create-profile-link"><a class="nav-link" href="{% url 'making:create_profile' %}">Create Profile</a></li>
                 <li class="nav-item" id="update-profile-link"><a class="nav-link" href="{% url 'making:update_profile' %}">Update Profile</a></li>
