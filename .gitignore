@@ -18,6 +18,9 @@ notes.md
 __pycache__
 db.sqlite3
 media
+# Secret key #
+.env 
+
 
 # Python # 
 *.py[cod] 

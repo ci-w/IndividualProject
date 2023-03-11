@@ -35,14 +35,16 @@
       </header>
 
 
-<br> <br> <br> <br> 
+<br> <br> <br>
 
 
   <div id="content" class="container-md">
     <div class="col-md-8 mx-auto">
+      <h3>
       {% block page_title %}
-      <h3> Homepage </h3>
+      Homepage
       {% endblock %}
+      </h3>
         <p class="lead">
 
             {% if user.is_authenticated %}

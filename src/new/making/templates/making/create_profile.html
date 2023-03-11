@@ -1,4 +1,7 @@
 {% extends 'making/index.html' %}
+{% block page_title %}
+Create Profile
+{% endblock %}
 {% block body_block %}
 <form method="post" action="{% url 'making:create_profile' %}">
     {% csrf_token %}

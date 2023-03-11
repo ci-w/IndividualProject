@@ -11,7 +11,6 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.user_login, name='login'),
     path('logout/', views.user_logout, name='logout'),
-    # need to rename this to "new-profile" or something
     path('create_profile/', views.create_profile, name='create_profile'),
     path('user/', views.view_user, name='view_user'),
     path('view_profile/', views.view_profile, name="view_profile",),

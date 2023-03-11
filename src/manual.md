@@ -73,3 +73,20 @@ where test.json is in the app's fixtures folder
 ## PythonAnywhere
 If you change any static files need to run:
 python manage.py collectstatic
+
+## Secret key / dotenv
+Using this to keep the secret key a secret when hosting site. 
+Do so by using environment variables. 
+State them in a file `.env` in the main dir. 
+`export SECRET_KEY="keyvalue" `
+Then have to install python-dotenv to run this file. If using a virtual environment, install through that process:
+`conda install python-dotenv` 
+Otherwise:
+`pipX.Y install --user python-dotenv `
+where X.Y is the python version you're using. 
+
+Then need to load in this value to your wgsi file. Need to put this before the code that runs the website (i.e. `get_wsgi_application`):
+`from dotenv import load_dotenv` 
+`load_dotenv(os.path.join(PROJECT_PATH, '.env'))` 
+Then modify settings.py to use this environment variable:
+`SECRET_KEY = os.getenv("SECRET_KEY")`
