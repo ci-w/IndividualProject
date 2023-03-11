@@ -90,3 +90,7 @@ Then need to load in this value to your wgsi file. Need to put this before the c
 `load_dotenv(os.path.join(PROJECT_PATH, '.env'))` 
 Then modify settings.py to use this environment variable:
 `SECRET_KEY = os.getenv("SECRET_KEY")`
+
+To generate a new secret key using Djangos functions:
+` from django.core.management.utils import get_random_secret_key`
+` print(get_random_secret_key()) `

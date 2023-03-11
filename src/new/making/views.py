@@ -132,9 +132,12 @@ def view_user(request):
     user_profile = helperFunc(request)
     return render(request, 'making/view_user.html', context = {'user_profile': user_profile})
 
+#if user doesn't have a profile selected redirect to homepage
 @login_required
 def view_profile(request):
     user_profile = helperFunc(request)
+    if not user_profile: 
+        return redirect(reverse('making:index'))
     try:
         tools = Tool.objects.filter(requirements=user_profile.requirements)
     except Tool.DoesNotExist:
@@ -168,38 +171,9 @@ def update_profile(request):
 
     return render(request, 'making/update_profile.html', context={'user_profile': user_profile, 'profile_form':profile_form, 'requirements_form':requirements_form, 'tool_forms': tool_forms})
 
-# have to stop people adding a tool they already have - i.e. update it instead
-@login_required
-def add_tool(request):
-    user_profile = helperFunc(request)
-    # get possible tool choices
-    tool_names = Tool.objects.values('name').distinct()
-    tool_choices = [(i['name'], i['name']) for i in tool_names]
-
-    # tells the template if registration was successful 
-    registered = False 
-
-    # if its a HTTP post, we want to process form data
-    if request.method == 'POST':
-        # try to get info from the raw form info 
-        tool_form = ToolForm(request.POST)
-        tool_form.fields['name'].choices = tool_choices
-        # if the forms are valid
-        if tool_form.is_valid(): 
-            tool = tool_form.save(commit=False)
-            tool.requirements = user_profile.requirements
-            tool.save()                 
-            registered = True
-        else: 
-            print(tool_form.errors)
-    else: 
-        tool_form = ToolForm()
-        tool_form.fields['name'].choices = tool_choices
-
-    return render(request, 'making/add_tool.html', context = {'user_profile': user_profile, 'tool_form': tool_form})
-
 # passes list of profiles to template
 # cant run functions in template, pass through NUMBER of profiles
+# could restructure this so its not running everything when the user has no profiles
 @login_required
 def switch_profile(request):
     user = request.user
@@ -224,6 +198,35 @@ def switch_profile(request):
         switch_form.fields['profile'].choices = profile_choices
 
     return render(request, 'making/switch_profile.html', context = {'user_profile':user_profile,'switch_form': switch_form, 'no_profiles':no_profiles})
+
+# have to stop people adding a tool they already have - i.e. update it instead
+@login_required
+def add_tool(request):
+    user_profile = helperFunc(request)
+    # get possible tool choices
+    tool_names = Tool.objects.values('name').distinct()
+    tool_choices = [(i['name'], i['name']) for i in tool_names]
+
+    # tells the template if registration was successful 
+    registered = False 
+
+    # if its a HTTP post, we want to process form data
+    if request.method == 'POST':
+        # try to get info from the raw form info 
+        tool_form = ToolForm(request.POST)
+        tool_form.fields['name'].choices = tool_choices
+        if tool_form.is_valid(): 
+            tool = tool_form.save(commit=False)
+            tool.requirements = user_profile.requirements
+            tool.save()                 
+            registered = True
+        else: 
+            print(tool_form.errors)
+    else: 
+        tool_form = ToolForm()
+        tool_form.fields['name'].choices = tool_choices
+
+    return render(request, 'making/add_tool.html', context = {'user_profile': user_profile, 'tool_form': tool_form})
 
 @login_required
 def create_syllabus(request):
