@@ -13,5 +13,5 @@ User Profile's vision is: {{ user_profile.requirements.vision }}<br>
         Skill level is: {{ tool.skill_level }} <br>
     {% endfor %}
 {% endif %}
-
+<a href="{% url 'making:update_profile' %}">Update profile.</a>
 {% endblock %}

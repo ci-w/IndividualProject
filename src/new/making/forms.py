@@ -7,8 +7,7 @@ from django import forms
 # change behaviour cos its saying stuff abt registering
 class UserForm(ModelForm):  
     password = forms.CharField(widget=forms.PasswordInput())
-    username = forms.EmailField(max_length=64,
-                                help_text="The person's email address.")
+    username = forms.EmailField(max_length=64, label="Email")
     class Meta:
         model = User
         fields = ('username', 'password',)

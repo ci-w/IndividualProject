@@ -20,7 +20,6 @@
             {% if user.is_authenticated %}
                 <li class="nav-item" id="view-profile-link"><a class="nav-link" href="{% url 'making:view_profile' %}">View Profile</a></li>
                 <li class="nav-item" id="create-profile-link"><a class="nav-link" href="{% url 'making:create_profile' %}">Create Profile</a></li>
-                <li class="nav-item" id="update-profile-link"><a class="nav-link" href="{% url 'making:update_profile' %}">Update Profile</a></li>
                 <li class="nav-item" id="switch-profile-link"><a class="nav-link" href="{% url 'making:switch_profile' %}">Switch Profile</a></li>
                 <li class="nav-item" id="add-tool-link"><a class="nav-link" href="{% url 'making:add_tool' %}">Add Tool</a></li>
                 <li class="nav-item" id="create-syllabus-link"><a class="nav-link" href="{% url 'making:create_syllabus' %}">Create Syllabus</a></li>
@@ -35,12 +34,17 @@
         </div>
       </header>
 
-<br> <br> <br> <br>
+
+<br> <br> <br> <br> 
+
 
   <div id="content" class="container-md">
-
     <div class="col-md-8 mx-auto">
+      {% block page_title %}
+      <h3> Homepage </h3>
+      {% endblock %}
         <p class="lead">
+
             {% if user.is_authenticated %}
                 You are logged in as: {{ user.username }} <br>
                 {% if user_profile %} 
@@ -48,7 +52,7 @@
                 {% endif %}
             {% endif %}</p>
     {% block body_block %}
-
+          Welcome to Making Projects!
     {% endblock %}
     </div>
   </div>

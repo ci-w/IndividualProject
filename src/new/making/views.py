@@ -60,6 +60,7 @@ def register(request):
     return render(request, 'making/register.html', context = {'user_form': user_form, 'registered': registered})
 
 def user_login(request):
+    error = False
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         username = user_form['username'].value()
@@ -67,24 +68,29 @@ def user_login(request):
         # are details valid?
         user = authenticate(username=username, password=password)
         if user:
-            login(request, user)            
+            login(request, user) 
+            # initialise session variable  
+            request.session['user_profile'] = None          
             profiles = UserProfile.objects.filter(user=user)
             # if the user just has 1 profile, set the session profile to that
             if len(profiles) == 1:
                 request.session['user_profile'] = profiles[0].pk
                 return redirect(reverse('making:index'))  
+            # if the user doesn't have any profiles, redirect them to create profile
+            elif len(profiles) == 0:
+                return redirect(reverse('making:create_profile'))
+            # otherwise redirect them to select profile
             else: 
-                # temporarily set the current profile to None
-                request.session['user_profile'] = None 
-                # redirect them to choose their profile
-                return redirect(reverse('making:switch_profile'))             
+                return redirect(reverse('making:switch_profile'))   
+        else:
+            error = True         
     else:
         user_form = UserForm()
-    return render(request, 'making/login.html', context={'user_form': user_form})
+    return render(request, 'making/login.html', context={'user_form': user_form, 'error': error})
  
 @login_required
 def user_logout(request):
-    # also deletes session data also 
+    # also deletes session data 
     logout(request)
     return redirect(reverse('making:index'))
 
@@ -106,10 +112,13 @@ def create_profile(request):
             profile.save()           
             registered = True
             # if the user doesn't have any other profiles, you should set session profile to this one
-            profiles = UserProfile.objects.filter(user=user)
-            if len(profiles) == 1:
-                request.session['user_profile'] = profiles[0].pk
-                user_profile = helperFunc(request)
+            # or should you just automatically change the current profile to this new one? I think so
+            request.session['user_profile'] = profile.pk 
+            user_profile = helperFunc(request)
+            # profiles = UserProfile.objects.filter(user=user)
+            # if len(profiles) == 1:
+            #     request.session['user_profile'] = profiles[0].pk
+            #     user_profile = helperFunc(request)
         else: 
             print(profile_form.errors)
     else: 
@@ -189,12 +198,15 @@ def add_tool(request):
 
     return render(request, 'making/add_tool.html', context = {'user_profile': user_profile, 'tool_form': tool_form})
 
+# passes list of profiles to template
+# cant run functions in template, pass through NUMBER of profiles
 @login_required
 def switch_profile(request):
     user = request.user
     user_profile = helperFunc(request)
     profiles = UserProfile.objects.filter(user=user)
     profile_choices = [(i.pk, i.profile_name) for i in profiles]
+    no_profiles = len(profile_choices)
 
     switch_form = SwitchProfileForm()
     switch_form.fields['profile'].choices = profile_choices
@@ -211,7 +223,7 @@ def switch_profile(request):
         switch_form = SwitchProfileForm()
         switch_form.fields['profile'].choices = profile_choices
 
-    return render(request, 'making/switch_profile.html', context = {'user_profile':user_profile,'switch_form': switch_form})
+    return render(request, 'making/switch_profile.html', context = {'user_profile':user_profile,'switch_form': switch_form, 'no_profiles':no_profiles})
 
 @login_required
 def create_syllabus(request):
