@@ -7,15 +7,14 @@ from django.urls import reverse
 from copy import deepcopy
 
 def helperFunc(request):
-    if request.user.is_authenticated and request.session['user_profile']:
+    try:
         user_profile = UserProfile.objects.get(id=request.session['user_profile'])
-    else:
+    except:
         user_profile = None
     return user_profile
 
 def index(request):
     user_profile = helperFunc(request)
-
     return render(request, 'making/index.html', context = {'user_profile': user_profile})
 
 def about(request):
@@ -33,7 +32,7 @@ def project(request, project_id):
         project = Project.objects.get(id=project_id)
     except Project.DoesNotExist:
         project = None 
-    return render(request, 'making/projects.html', context={'project': project})
+    return render(request, 'making/project.html', context={'project': project})
 
 def register(request):
     # tells the template if registration was successful 
@@ -111,14 +110,9 @@ def create_profile(request):
             profile.requirements = requirements
             profile.save()           
             registered = True
-            # if the user doesn't have any other profiles, you should set session profile to this one
-            # or should you just automatically change the current profile to this new one? I think so
+            # change the session profile to this new one
             request.session['user_profile'] = profile.pk 
             user_profile = helperFunc(request)
-            # profiles = UserProfile.objects.filter(user=user)
-            # if len(profiles) == 1:
-            #     request.session['user_profile'] = profiles[0].pk
-            #     user_profile = helperFunc(request)
         else: 
             print(profile_form.errors)
     else: 
@@ -132,7 +126,7 @@ def view_user(request):
     user_profile = helperFunc(request)
     return render(request, 'making/view_user.html', context = {'user_profile': user_profile})
 
-#if user doesn't have a profile selected redirect to homepage
+#if user doesn't have a profile selected, redirect to homepage
 @login_required
 def view_profile(request):
     user_profile = helperFunc(request)
@@ -190,7 +184,9 @@ def switch_profile(request):
         switch_form.fields['profile'].choices = profile_choices
         if switch_form.is_valid():
             # ID of the chosen profile
-            request.session['user_profile'] = switch_form['profile'].value()             
+            request.session['user_profile'] = switch_form['profile'].value()      
+            # re-run this function to get the new user profile
+            user_profile = helperFunc(request)     
         else:
             print(switch_form.errors)
     else:

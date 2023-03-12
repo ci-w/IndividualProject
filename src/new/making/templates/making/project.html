@@ -1,0 +1,18 @@
+{% extends 'making/index.html' %}
+{% load static %}
+{% block title %} Project {% endblock %}
+{% block page_title %}
+Project
+{% endblock %}
+{% block body_block %}
+
+{% if project %}
+        Project title is: {{ project.title }} <br>
+        Project title is: {{ project.pk }} <br>
+        <img src="{% static 'making/images/projects/18/creature.png' %}" alt="My image"> <br>
+
+{% endif %}
+
+
+
+{% endblock %}
