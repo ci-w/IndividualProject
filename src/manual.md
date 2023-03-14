@@ -94,3 +94,7 @@ Then modify settings.py to use this environment variable:
 To generate a new secret key using Djangos functions:
 ` from django.core.management.utils import get_random_secret_key`
 ` print(get_random_secret_key()) `
+
+
+## Django notes
+If you're accessing a dictionary in a template, don't use dict_name['key'] to get that keys value, it doesn't work. You can instead use dot notation: dict_name.key will work. 

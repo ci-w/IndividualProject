@@ -5,8 +5,8 @@ Projects
 {% endblock %}
 {% block body_block %}
 
-{{{% for i in projects %}
-        {{ i }} <br>
-{% endfor %}}}
+{% for i in projects %}
+        <a href="{% url 'making:project' i.pk %}">{{i}}</a> <br>
+{% endfor %}
 
 {% endblock %}

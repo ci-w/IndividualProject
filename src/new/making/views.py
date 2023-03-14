@@ -5,6 +5,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from copy import deepcopy
+from pathlib import Path
+import os
+from making_project.settings import BASE_DIR, STATIC_URL
 
 def helperFunc(request):
     try:
@@ -27,12 +30,33 @@ def projects(request):
 
 # specific project
 def project(request, project_id):
+    paths = None
     try:
         #is there a project with that id?
-        project = Project.objects.get(id=project_id)
+        project_obj = Project.objects.get(id=project_id)
+        # turn into dictionary, get the related requirements and tool objects (if any tools)
+        project = Project.view_dict(project_obj)
+        tools = Tool.objects.filter(requirements=project_obj.requirements)
+        project['tools'] = [Tool.syl_dict(tool) for tool in tools]
+
+        #try and get the projects image(s). SAY how many images there are ? or just punt the filenames of them all to the view
+        # I WILL HAVE TO CHANGE THIS PATH WHEN I HOST IT, MAYBE USE DJANGO STATIC URL NAMESPACES
+        # get the names and relative paths (i.e. the path after STATIC_URL) of all projects images, punt them through        
+        # path from BASE_DIR to the projects images folder
+        dir_path = os.fspath('making\\static\\making\\images\\projects\\' + str(project_obj.pk) )
+        full_path = os.path.join(BASE_DIR, dir_path)
+        full_path = full_path.replace("\\", "/")
+        # if the project actually has a dir/any images
+        if os.path.isdir(full_path):
+            dir_contents = os.listdir(full_path)
+            # need to pass through the personalised URL that you add to {static } in template
+            project_path = "making/images/projects/" + str(project_obj.pk)+ "/"
+            paths = [(project_path + i) for i in dir_contents]
+
     except Project.DoesNotExist:
         project = None 
-    return render(request, 'making/project.html', context={'project': project})
+
+    return render(request, 'making/project.html', context={'project': project,'paths':paths})
 
 def register(request):
     # tells the template if registration was successful 
@@ -47,13 +71,13 @@ def register(request):
             user.save() 
             registered = True
             # logs the user in and takes them to create profile page
-            login(request, user)            
+            login(request, user)  
+            # they dont have any profiles yet          
             request.session['user_profile'] = None 
             return redirect(reverse('making:create_profile'))             
         else: 
             print(user_form.errors)
     else: 
-        # blank form
         user_form = UserForm()
 
     return render(request, 'making/register.html', context = {'user_form': user_form, 'registered': registered})

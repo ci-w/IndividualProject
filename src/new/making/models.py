@@ -9,6 +9,10 @@ class UserProfile(models.Model):
     profile_name = models.CharField(max_length=100)
     requirements = models.OneToOneField("Requirements", on_delete=models.DO_NOTHING, null=True)
 
+    class Meta:
+        verbose_name ="User Profile"
+        verbose_name_plural = "User Profiles"
+
     def __str__(self):
         return self.profile_name
     
@@ -44,15 +48,26 @@ class Project(models.Model):
     objects = models.Manager()
     # custom manager
     choices_objects = ProjectManager()
+
+    class Meta:
+        verbose_name ="Project"
+        verbose_name_plural = "Projects"
     
     def __str__(self):
         return self.title 
     
+    # this is used in the create_syllabus view
     def syl_dict(self):
         data = {'p_id': self.id, 'requirements_id': self.requirements.id}
         data.update(Requirements.syl_dict(self.requirements))
         return data
     
+    # this is used in the project view + project template
+    def view_dict(self): 
+        data = {'title': self.title, 'instructions':self.instructions, 'description': self.description}
+        data.update(Requirements.syl_dict(self.requirements))
+        return data
+
     # returns true if the REQUIREMENTS are equal
     def equality(self, other): 
         return Requirements.equality(self.requirements, other.requirements)
@@ -68,6 +83,13 @@ class Requirements(models.Model):
     language = models.IntegerField(choices=VISION_CHOICES)
     memory = models.IntegerField(choices=VISION_CHOICES)
 
+    class Meta:
+        verbose_name = "Requirements"
+        verbose_name_plural = "Requirements"
+
+    def __str__(self):
+        return(str(self.id))
+
     def syl_dict(self):
         data = {'vision': self.vision, 'dexterity': self.dexterity, 'language': self.language, 'memory': self.memory}
         return data
@@ -80,6 +102,10 @@ class Tool(models.Model):
     name = models.CharField(max_length=30)
     skill_level = models.IntegerField()
     requirements = models.ForeignKey(Requirements, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "Tool"
+        verbose_name_plural = "Tools"
     
     def __str__(self):
         return self.name

@@ -6,11 +6,28 @@ Project
 {% endblock %}
 {% block body_block %}
 
+<!-- A project has: title, requirements (vision, dexterity, language, memory), instructions, description, potentially tool(s)-->
+<!-- This view is passed: a Project object. Should probably grab the req's/tools in the view and put them all in a dict. 
+For the dynamic images, should probably create the path in the view too - perhaps as an array of paths for multiple images. -->
 {% if project %}
         Project title is: {{ project.title }} <br>
-        Project title is: {{ project.pk }} <br>
-        <img src="{% static 'making/images/projects/18/creature.png' %}" alt="My image"> <br>
+        Project instructions: {{ project.instructions }} <br>
+        Project description: {{ project.description }} <br>
+        Vision: {{ project.vision }} <br>
+        Dexterity: {{ project.dexterity }} <br>
+        Language: {{ project.language }} <br>
+        Memory: {{ project.memory }} <br>
+        {% for i in project.tools %}
+                Tool name: {{ i.name }}.
+                Skill level: {{i.skill_level }} <br>
+        {% endfor %}
 
+        <!-- this is image stuff -->
+        {% for i in paths %}
+                <img src="{% static i %}" />
+        {% endfor %} 
+
+        {{ paths }}
 {% endif %}
 
 
