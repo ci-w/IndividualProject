@@ -33,3 +33,12 @@ As part of this project I'm looking to connect with local makerspaces and simila
 
 Many thanks, Claire Williamson
 
+__
+Dear Lindsey,
+Thank you so much for responding to me and expressing your interest in my project. I am deeply sorry that it took me so long to reply and I hope that you are still willing to discuss my project. 
+I am looking to evaluate it and wish to ask you if this is something you are interested in. I am flexible in what format this will take. Ideally it would consist of myself coming to your organisation and conducting an interview with anyone who would be willing. I can also do an online interview if that is easier for you. If you are still wanting to have a phone or video call discussing the project beforehand, I am available at any time this week.
+I have attached my Evaluation Introduction which explains what this evaluation will consist of and other relevant information.
+I would need these evaluations to happen in the next week and a half which I am aware is a tight deadline. Hence, I am flexible in their structure.
+Please do ask me any questions you have about this, or my project as a whole. No worries if you cannot commit to an evaluation for any reason, thank you for your time regardless. 
+Many thanks,
+Claire Williamson
