@@ -244,9 +244,123 @@
 ### 25 Jan 2023
 * *1 hour* replying to organisations
 * *1 hour* writing meeting plan
+* *2 hours* site implementation
 
 ### 26 Jan 2023
 * *0.5 hour* supervisor meeting
 
 ## Week 16
 ### 30 Jan 2023
+* *4 hours* redesigning system structure 
+
+### 31 Jan 2023
+* *2 hours* database redesign
+
+### 1 Feb 2023
+* *2 hours* separating user's and user profile's
+* *2 hours* redesigning interactions between entities 
+* *2 hours* writing up system redesign for meeting
+
+### 2 Feb 2023 
+* *0.5 hours* supervisor meeting 
+* *2 hours* adding changes to design discussed in meeting 
+
+## Week 17
+### 6 Feb 2023
+* *2 hours* implementation of redesign (models)
+
+### 7 Feb 2023
+* *3 hours* implementation of site urls and views 
+
+### 8 Feb 2023
+* *3 hours* implementation of user functionality 
+* *3 hours* making views/urls work with users 
+
+### 9 Feb 2023
+* *2 hours* solidifying model (database) behaviour 
+
+## Week 18
+### 13 Feb 2023
+* *4 hours* implementing user profiles + user/user profile interactions
+
+### 15 Feb 2023
+* *3 hours* writing population JSON script
+
+### 16 Feb 2023
+* *2 hours* creating project views 
+* *1 hour* syllabus creation
+
+### 17 Feb 2023
+* *0.5 hours* supervisor meeting
+* *3 hours* planning out utils functions needed for syllabus
+
+### 18 Feb 2023
+* *3 hours* writing model functions to use in syllabus creation 
+
+## Week 19
+### 20 Feb 2023
+* *4 hours* syllabus creation implementation
+
+### 22 Feb 2023
+* *4 hours* syllabus creation (works for tools)
+
+### 23 Feb 2023
+* *2 hours* modifying population script
+* *2 hours* util functions for syllabus
+
+### 24 Feb 2023
+* *0.5 hours* supervisor meeting
+* *1 hour* writing up previous meetings minutes
+
+## Week 20
+### 27 Feb 2023
+* *3 hours* syllabus working
+* *3 hours* implementing switching between user profiles
+
+### 28 Feb 2023
+* *4 hours* digitising notes on refactor, dissertation structure 
+* *2 hours* updating profile now updates tools
+
+### 1 Mar 2023
+* *4 hours* adding Bootstrap css/js files, designing site appearance 
+* *3 hours* hosting new site on pythonanywhere 
+
+### 2 Mar 2023
+* *3 hours* hosting new site on pythonanywhere 
+
+### 3 Mar 2023
+* *0.5 hours* supervisor meeting
+* *2 hours* fixing bugs in site 
+
+## Week 21
+### 6 Mar 2023
+* *2 hours* made function for getting user profile
+* *2 hours* planning out evaluation structure 
+
+### 8 Mar 2023
+* *5 hours* planning out diss structure 
+* *2 hours* getting latex to work 
+
+### 9 Mar 2023
+* *0.5 hours* supervisor meeting
+* *2 hours* adding suggested changes to diss/eval plan
+
+### 10 Mar 2023
+* *2 hours* writing eval introduction/consent script
+* *2 hours* writing and sending emails to organisations for evaluation
+
+## Week 22
+### 13 Mar 2023
+* *3 hours* quality of life fixes for site 
+* *2 hours* setting up secret key correctly 
+
+### 14 Mar 2023
+* *2 hours* customising admin interface and behaviour 
+* *3 hours* individual project view - multiple images per project
+* *2 hours* profile error handling done correctly 
+
+### 15 Mar 2023
+* *3 hours* expanding diss structure plan 
+
+
+
