@@ -24,16 +24,7 @@
         "pk": 1,
         "fields": {
             "name": "3d printer",
-            "skill_level": 3,
-            "requirements": 1
-        }
-    },
-    {
-        "model": "making.Tool",
-        "pk": 2,
-        "fields": {
-            "name": "computer",
-            "skill_level": 3,
+            "skill_level": 1,
             "requirements": 1
         }
     },
@@ -51,18 +42,18 @@
         "model": "making.Requirements",
         "pk": 2,
         "fields": {
-            "vision": 2,
+            "vision": 1,
             "language": 1,
-            "dexterity": 3,
+            "dexterity": 1,
             "memory": 1
         }
     },
     {
         "model": "making.Tool",
-        "pk": 3,
+        "pk": 2,
         "fields": {
-            "name": "circuits",
-            "skill_level": 1,
+            "name": "3d printer",
+            "skill_level": 2,
             "requirements": 2
         }
     },
@@ -80,9 +71,38 @@
         "model": "making.Requirements",
         "pk": 3,
         "fields": {
-            "vision": 2,
+            "vision": 1,
             "language": 1,
-            "dexterity": 2,
+            "dexterity": 1,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 3,
+        "fields": {
+            "name": "3d printer",
+            "skill_level": 3,
+            "requirements": 3
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 4,
+        "fields": {
+            "title": "EasyComp",
+            "requirements": 4,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 4,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 1,
             "memory": 1
         }
     },
@@ -90,18 +110,58 @@
         "model": "making.Tool",
         "pk": 4,
         "fields": {
-            "name": "3d printer",
-            "skill_level": 2,
-            "requirements": 3
+            "name": "computer",
+            "skill_level": 1,
+            "requirements": 4
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 5,
+        "fields": {
+            "title": "MidComp",
+            "requirements": 5,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 5,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 1,
+            "memory": 1
         }
     },
     {
         "model": "making.Tool",
         "pk": 5,
         "fields": {
-            "name": "circuits",
+            "name": "computer",
             "skill_level": 2,
-            "requirements": 3
+            "requirements": 5
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 6,
+        "fields": {
+            "title": "HardComp",
+            "requirements": 6,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 6,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 1,
+            "memory": 1
         }
     },
     {
@@ -109,8 +169,302 @@
         "pk": 6,
         "fields": {
             "name": "computer",
+            "skill_level": 3,
+            "requirements": 6
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 7,
+        "fields": {
+            "title": "EasyCirc",
+            "requirements": 7,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 7,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 1,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 7,
+        "fields": {
+            "name": "circuits",
             "skill_level": 1,
-            "requirements": 3
+            "requirements": 7
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 8,
+        "fields": {
+            "title": "MidCirc",
+            "requirements": 8,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 8,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 1,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 8,
+        "fields": {
+            "name": "circuits",
+            "skill_level": 2,
+            "requirements": 8
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 9,
+        "fields": {
+            "title": "HardCirc",
+            "requirements": 9,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 9,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 1,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 9,
+        "fields": {
+            "name": "circuits",
+            "skill_level": 3,
+            "requirements": 9
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 10,
+        "fields": {
+            "title": "MidVis",
+            "requirements": 10,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 10,
+        "fields": {
+            "vision": 2,
+            "language": 1,
+            "dexterity": 1,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 11,
+        "fields": {
+            "title": "HardVis",
+            "requirements": 11,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 11,
+        "fields": {
+            "vision": 3,
+            "language": 1,
+            "dexterity": 1,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 12,
+        "fields": {
+            "title": "MidLang",
+            "requirements": 12,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 12,
+        "fields": {
+            "vision": 1,
+            "language": 2,
+            "dexterity": 1,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 13,
+        "fields": {
+            "title": "HardLang",
+            "requirements": 13,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 13,
+        "fields": {
+            "vision": 1,
+            "language": 3,
+            "dexterity": 1,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 14,
+        "fields": {
+            "title": "MidDex",
+            "requirements": 14,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 14,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 2,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 15,
+        "fields": {
+            "title": "HardDex",
+            "requirements": 15,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 15,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 3,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 16,
+        "fields": {
+            "title": "MidMem",
+            "requirements": 16,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 16,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 1,
+            "memory": 2
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 17,
+        "fields": {
+            "title": "HardMem",
+            "requirements": 17,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 17,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 1,
+            "memory": 3
+        }
+    },
+    {
+        "model": "making.Project",
+        "pk": 18,
+        "fields": {
+            "title": "SpecialEnd",
+            "requirements": 18,
+            "instructions": "Instructions here",
+            "description": "Description here"
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 18,
+        "fields": {
+            "vision": 3,
+            "language": 3,
+            "dexterity": 3,
+            "memory": 3
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 10,
+        "fields": {
+            "name": "computer",
+            "skill_level": 3,
+            "requirements": 18
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 11,
+        "fields": {
+            "name": "3d printer",
+            "skill_level": 3,
+            "requirements": 18
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 12,
+        "fields": {
+            "name": "circuits",
+            "skill_level": 3,
+            "requirements": 18
         }
     },
     {
@@ -137,12 +491,12 @@
         "fields": {
             "user": 2,
             "profile_name": "Isla",
-            "requirements": 4
+            "requirements": 19
         }
     },
     {
         "model": "making.Requirements",
-        "pk": 4,
+        "pk": 19,
         "fields": {
             "vision": 1,
             "language": 1,
@@ -152,20 +506,20 @@
     },
     {
         "model": "making.Tool",
-        "pk": 7,
+        "pk": 13,
         "fields": {
             "name": "3d printer",
             "skill_level": 1,
-            "requirements": 4
+            "requirements": 19
         }
     },
     {
         "model": "making.Tool",
-        "pk": 8,
+        "pk": 14,
         "fields": {
             "name": "circuits",
             "skill_level": 1,
-            "requirements": 4
+            "requirements": 19
         }
     }
 ]

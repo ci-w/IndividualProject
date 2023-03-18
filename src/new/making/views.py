@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from making.forms import RequirementsForm, ToolForm, UserForm, ProfileForm, SyllabusForm, SwitchProfileForm
+from making.forms import RequirementsForm, ToolForm, UserForm, LoginForm, ProfileForm, SyllabusForm, SwitchProfileForm
 from making.models import Requirements, Tool, UserProfile, Project
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -9,7 +9,8 @@ from pathlib import Path
 import os
 from making_project.settings import BASE_DIR, STATIC_URL
 
-def helperFunc(request):
+# helper function that gets current user profile OBJECT
+def getProfile(request):
     try:
         user_profile = UserProfile.objects.get(id=request.session['user_profile'])
     except:
@@ -17,7 +18,7 @@ def helperFunc(request):
     return user_profile
 
 def index(request):
-    user_profile = helperFunc(request)
+    user_profile = getProfile(request)
     return render(request, 'making/index.html', context = {'user_profile': user_profile})
 
 def about(request):
@@ -25,42 +26,33 @@ def about(request):
 
 # view of multiple projects, just grabs the first 10
 def projects(request):
-    projects = Project.objects.all()[:10]
+    project_objs = Project.objects.all()[:10]
+    # get all the preview dicts of the objects
+    projects = [Project.preview_dict(i) for i in project_objs]
     return render(request, 'making/projects.html', context={'projects': projects})
 
 # specific project
 def project(request, project_id):
     paths = None
+    test = None
     try:
         #is there a project with that id?
         project_obj = Project.objects.get(id=project_id)
         # turn into dictionary, get the related requirements and tool objects (if any tools)
         project = Project.view_dict(project_obj)
-        tools = Tool.objects.filter(requirements=project_obj.requirements)
-        project['tools'] = [Tool.syl_dict(tool) for tool in tools]
+       # tools = Tool.objects.filter(requirements=project_obj.requirements)
+       # project['tools'] = [Tool.syl_dict(tool) for tool in tools]
+        paths = Project.get_img_path(project_obj)
 
-        #try and get the projects image(s). SAY how many images there are ? or just punt the filenames of them all to the view
-        # I WILL HAVE TO CHANGE THIS PATH WHEN I HOST IT, MAYBE USE DJANGO STATIC URL NAMESPACES
-        # get the names and relative paths (i.e. the path after STATIC_URL) of all projects images, punt them through        
-        # path from BASE_DIR to the projects images folder
-        dir_path = os.fspath('making\\static\\making\\images\\projects\\' + str(project_obj.pk) )
-        full_path = os.path.join(BASE_DIR, dir_path)
-        full_path = full_path.replace("\\", "/")
-        # if the project actually has a dir/any images
-        if os.path.isdir(full_path):
-            dir_contents = os.listdir(full_path)
-            # need to pass through the personalised URL that you add to {static } in template
-            project_path = "making/images/projects/" + str(project_obj.pk)+ "/"
-            paths = [(project_path + i) for i in dir_contents]
-
+        test = Requirements.view_dict(project_obj.requirements)
     except Project.DoesNotExist:
         project = None 
 
-    return render(request, 'making/project.html', context={'project': project,'paths':paths})
+    return render(request, 'making/project.html', context={'project': project,'paths':paths, 'test':test})
 
 def register(request):
     # tells the template if registration was successful 
-    registered = False 
+    error = None 
     if request.method == 'POST':
         user_form = UserForm(request.POST)
         if user_form.is_valid(): 
@@ -69,23 +61,23 @@ def register(request):
             # hash password, update user object
             user.set_password(user.password)
             user.save() 
-            registered = True
             # logs the user in and takes them to create profile page
             login(request, user)  
             # they dont have any profiles yet          
             request.session['user_profile'] = None 
             return redirect(reverse('making:create_profile'))             
         else: 
-            print(user_form.errors)
+            error = user_form.errors
+            #print(user_form.errors)
     else: 
         user_form = UserForm()
 
-    return render(request, 'making/register.html', context = {'user_form': user_form, 'registered': registered})
+    return render(request, 'making/register.html', context = {'user_form': user_form, 'error': error})
 
 def user_login(request):
     error = False
     if request.method == 'POST':
-        user_form = UserForm(request.POST)
+        user_form = LoginForm(request.POST)
         username = user_form['username'].value()
         password = user_form['password'].value()
         # are details valid?
@@ -108,7 +100,7 @@ def user_login(request):
         else:
             error = True         
     else:
-        user_form = UserForm()
+        user_form = LoginForm()
     return render(request, 'making/login.html', context={'user_form': user_form, 'error': error})
  
 @login_required
@@ -121,7 +113,7 @@ def user_logout(request):
 def create_profile(request):
     # tells the template if creation was successful 
     registered = False 
-    user_profile = helperFunc(request)
+    user_profile = getProfile(request)
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST)
         requirements_form = RequirementsForm(request.POST)
@@ -136,7 +128,7 @@ def create_profile(request):
             registered = True
             # change the session profile to this new one
             request.session['user_profile'] = profile.pk 
-            user_profile = helperFunc(request)
+            user_profile = getProfile(request)
         else: 
             print(profile_form.errors)
     else: 
@@ -147,26 +139,28 @@ def create_profile(request):
 
 @login_required
 def view_user(request):
-    user_profile = helperFunc(request)
+    user_profile = getProfile(request)
     return render(request, 'making/view_user.html', context = {'user_profile': user_profile})
 
-#if user doesn't have a profile selected, redirect to homepage
+
 @login_required
 def view_profile(request):
-    user_profile = helperFunc(request)
+    # getProfile returns profile object
+    user_profile = getProfile(request)
+    #if user doesn't have a profile selected, redirect to homepage
     if not user_profile: 
         return redirect(reverse('making:index'))
-    try:
-        tools = Tool.objects.filter(requirements=user_profile.requirements)
-    except Tool.DoesNotExist:
-        tools = None
-    return render(request, 'making/view_profile.html', context = {'user_profile': user_profile, 'tools':tools})
+
+    # turn profile obj into dictionary, get the related requirements and tools (if any)
+    profile = UserProfile.view_dict(user_profile)
+
+    return render(request, 'making/view_profile.html', context = {'user_profile': user_profile,'profile':profile})
 
 @login_required 
 # also UP required.. how to enforce?
 # need to process tool form submission
 def update_profile(request):
-    user_profile = helperFunc(request)
+    user_profile = getProfile(request)
     
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST, instance=user_profile)
@@ -182,6 +176,7 @@ def update_profile(request):
 
         user_tools = Tool.objects.filter(requirements=user_profile.requirements)
         tool_forms = []
+        # make an update form for each tool the profile has
         for i in range(len(user_tools)):
             tool_form = ToolForm(instance=user_tools[i])
             tool_form.fields['name'].choices = [(user_tools[i].name,user_tools[i].name)]
@@ -195,7 +190,7 @@ def update_profile(request):
 @login_required
 def switch_profile(request):
     user = request.user
-    user_profile = helperFunc(request)
+    user_profile = getProfile(request)
     profiles = UserProfile.objects.filter(user=user)
     profile_choices = [(i.pk, i.profile_name) for i in profiles]
     no_profiles = len(profile_choices)
@@ -210,7 +205,7 @@ def switch_profile(request):
             # ID of the chosen profile
             request.session['user_profile'] = switch_form['profile'].value()      
             # re-run this function to get the new user profile
-            user_profile = helperFunc(request)     
+            user_profile = getProfile(request)     
         else:
             print(switch_form.errors)
     else:
@@ -222,7 +217,7 @@ def switch_profile(request):
 # have to stop people adding a tool they already have - i.e. update it instead
 @login_required
 def add_tool(request):
-    user_profile = helperFunc(request)
+    user_profile = getProfile(request)
     # get possible tool choices
     tool_names = Tool.objects.values('name').distinct()
     tool_choices = [(i['name'], i['name']) for i in tool_names]
@@ -250,7 +245,7 @@ def add_tool(request):
 
 @login_required
 def create_syllabus(request):
-    user_profile_obj = helperFunc(request)
+    user_profile_obj = getProfile(request)
     end_project = None
     user_profile = None
     syllabus = None
@@ -259,15 +254,9 @@ def create_syllabus(request):
         syllabus_form = SyllabusForm(request.POST)
         if syllabus_form.is_valid():
             user_profile = UserProfile.syl_dict(user_profile_obj)
-            up_tools = Tool.objects.filter(requirements=user_profile['requirements_id'])
-            user_profile['tools'] = [Tool.syl_dict(tool) for tool in up_tools]
-
             end_proj_id = syllabus_form.cleaned_data['end_project']
             end_project = Project.objects.get(id=end_proj_id)
             end_project = Project.syl_dict(end_project)
-            end_tools = Tool.objects.filter(requirements=end_project['requirements_id'])
-            end_project['tools'] = [Tool.syl_dict(tool) for tool in end_tools]
-
             syllabus = []
 
             while not req_eq(end_project, user_profile):
@@ -284,7 +273,6 @@ def create_syllabus(request):
             print(syllabus_form.errors)
     else:
         syllabus_form = SyllabusForm()
-
 
     return render(request, 'making/create_syllabus.html', context = {'user_profile':user_profile_obj, 'syllabus_form': syllabus_form, 'end_project':end_project, 'user_profile_dict':user_profile, 'syllabus': syllabus})
 
@@ -327,8 +315,6 @@ def imp(endProj, usrProf):
                     arr.append(j['name'])
     return arr
 
-# i dont trust this one
-# but it SEEMS to work
 def update_up(usrProf, name):
     new_up = deepcopy(usrProf) 
     skills = ['vision', 'dexterity', 'language', 'memory']
@@ -372,7 +358,7 @@ def search(usrProf, item):
                     # the tool levels need to be EQUAL, not just suitable 
                     tooly = all(tool_eq(j,usrProf['tools']) for j in tool_list )
                     if tooly:
-                        proj_dict['tools'] = tool_list
+                        #proj_dict['tools'] = tool_list
                         return proj_dict
             else: 
                 tools_check = tools.exclude(name__in=user_tools)
@@ -389,7 +375,7 @@ def search(usrProf, item):
               
 
                     if tooly and i_tool and (i_tool['skill_level'] == u_tool['skill_level']):
-                        proj_dict['tools'] = tool_list
+                       # proj_dict['tools'] = tool_list
                         return proj_dict
 
         # IF PROJECT DOESNT HAVE ANY TOOLS
@@ -469,7 +455,7 @@ def rel_search(usrProf, item):
 
                     tooly = all(tool_geq(j,usrProf['tools']) for j in tool_list )
                     if tooly and i_tool and (i_tool['skill_level'] == u_tool['skill_level']):
-                        proj_dict['tools'] = tool_list
+                       # proj_dict['tools'] = tool_list
                         return proj_dict
         else: 
             if tools:    
@@ -480,7 +466,7 @@ def rel_search(usrProf, item):
                     tool_list = [Tool.syl_dict(tool) for tool in tools]
                     tooly = all(tool_geq(j,usrProf['tools']) for j in tool_list )
                     if tooly:
-                        proj_dict['tools'] = tool_list
+                       # proj_dict['tools'] = tool_list
                         return proj_dict
         # IF PROJECT DOESNT HAVE ANY TOOLS
             else: return proj_dict

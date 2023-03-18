@@ -38,7 +38,7 @@ Intangible barriers:
 "Making Community (26)" found that makerspaces, as well as playing a role in innovation and peer learning, function as spaces to support wellbeing, exist as a social space, serve the needs of their communities, and reach out to excluded groups. 
 "Give access to tools including digital fabrication and open electronics"
 "lowers barriers to entry, enabling more people to create their own solutions to problems or even bring products to market" (innovation)
-Notes that access to the benefits of makerspaces is unevenly spread. Many makerspace users are affulent males, with backgrounds in tech/creative. 
+Notes that access to the benefits of makerspaces is unevenly spread. Many makerspace users are affluent males, with backgrounds in tech/creative. 
 
 ____________________________________
 ## Designing with disabled people 
@@ -46,3 +46,12 @@ How to design something for disabled people so that they can use it without issu
 There is a lot of different opinions on how to approach and carry this out. 
 Discuss these different approaches, compare them, and say why what I'M doing.
 Most of these methods touch on disability theory i.e. how should we think and talk about disability. 
+
+- universal design
+- design for all
+- ability based design
+
+hehe . girl help 
+
+___________
+## Related work

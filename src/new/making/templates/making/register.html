@@ -10,8 +10,8 @@ Register
     <input type="submit" name="submit" value="Register" /> 
 </form>
 
-{% if registered %} 
-    Thank you for registering
+{% if error %} 
+    There has been an error in registering. 
 {% endif %}
 
 {% endblock %}

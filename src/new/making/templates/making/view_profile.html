@@ -5,16 +5,19 @@ View Profile
 
 {% block body_block %}
 
-User's name is: {{ user.username }}<br>
-User Profile's name is: {{ user_profile.profile_name }}<br>
-User Profile's vision is: {{ user_profile.requirements.vision }}<br>
+User's name: {{ user.username }}<br>
+Profile's name: {{ profile.profile_name }}<br>
+Vision: {{ profile.vision }} <br>
+Dexterity: {{ prpfile.dexterity }} <br>
+Language: {{ profile.language }} <br>
+Memory: {{ profile.memory }} <br>
 
-
-{% if tools %}
-    {% for tool in tools %}
-        Tool name is: {{ tool.name }} <br>
-        Skill level is: {{ tool.skill_level }} <br>
+{% if profile.tools %}
+Tools: <br>
+    {% for tool in profile.tools %}
+        {{ tool.name }}: level {{ tool.skill_level }} <br>
     {% endfor %}
 {% endif %}
 <a href="{% url 'making:update_profile' %}">Update profile.</a>
+
 {% endblock %}

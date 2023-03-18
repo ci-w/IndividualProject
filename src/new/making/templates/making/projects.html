@@ -1,12 +1,18 @@
 {% extends 'making/index.html' %}
+{% load static %}
 {% block title %} Projects {% endblock %}
 {% block page_title %}
 Projects
 {% endblock %}
 {% block body_block %}
 
-{% for i in projects %}
-        <a href="{% url 'making:project' i.pk %}">{{i}}</a> <br>
+{% for i in projects %}  
+      <a href="{% url 'making:project' i.pk %}">{{ i.title }}:</a>
+      {{ i.description }} <br>
+      {% if i.thumbnail %}
+        <img src="{% static i.thumbnail %}" /> <br>
+      {% endif %}
 {% endfor %}
+
 
 {% endblock %}

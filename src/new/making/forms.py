@@ -12,6 +12,11 @@ class UserForm(ModelForm):
         model = User
         fields = ('username', 'password',)
 
+# cant use the model form for logging in because Django assumes you are registering a new user every time
+class LoginForm(Form):
+    username = forms.EmailField(max_length=64, label="Email")
+    password = forms.CharField(widget=forms.PasswordInput())
+
 class ProfileForm(ModelForm):
     class Meta:
         model = UserProfile

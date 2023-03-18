@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from making_project.settings import BASE_DIR
+import os
 # when you create a new model, need to add it to admin.py to see it in admin interface
 # should probably do isinstance checks with equality functions
 
@@ -29,6 +31,11 @@ class UserProfile(models.Model):
         data.update(Requirements.syl_dict(self.requirements))
         return data
     
+    def view_dict(self):
+        data = {'profile_name': self.profile_name}
+        data.update(Requirements.view_dict(self.requirements))
+        return data
+    
     # returns true if the REQUIREMENTS are equal
     def equality(self, other): 
         return Requirements.equality(self.requirements, other.requirements)
@@ -40,10 +47,12 @@ class ProjectManager(models.Manager):
 
 class Project(models.Model):
     title = models.CharField(max_length=50)
-    requirements = models.OneToOneField("Requirements", on_delete=models.DO_NOTHING)
-    instructions = models.TextField()
     description = models.TextField(max_length=100)
+    materials = models.TextField(max_length=300, null=True)
+    instructions = models.TextField()
 
+    requirements = models.OneToOneField("Requirements", on_delete=models.DO_NOTHING)
+    
     # default manager
     objects = models.Manager()
     # custom manager
@@ -64,13 +73,51 @@ class Project(models.Model):
     
     # this is used in the project view + project template
     def view_dict(self): 
-        data = {'title': self.title, 'instructions':self.instructions, 'description': self.description}
+        # materials are split by comma, convert them into a list 
+        materials = self.materials.split(",")
+        # instructions are split by [], convert them to list, strip whitespace and remove any empty strings
+        instructions = (self.instructions).split("[]")
+        instructions = [i.strip() for i in instructions if i]
+
+        data = {'title': self.title, 'description': self.description, 'materials':materials, 'instructions':instructions }
         data.update(Requirements.syl_dict(self.requirements))
+        return data
+    
+    #try and get the projects image(s). SAY how many images there are ? or just punt the filenames of them all to the view
+    # I WILL HAVE TO CHANGE THIS PATH WHEN I HOST IT, MAYBE USE DJANGO STATIC URL NAMESPACES
+    # get the names and relative paths (i.e. the path after STATIC_URL) of all projects images, punt them through  
+    # NEED to handle it having no images     
+    def get_img_path(self):
+        # get the full path to wherever the images are stored
+        # first get the bit after BASE_DIR (on local, base_dir = "new" dir, using backslashes)
+        dir_path = 'making\\static\\making\\images\\projects\\' + str(self.pk)
+        full_path = os.path.join(BASE_DIR, dir_path)
+        full_path = full_path.replace("\\", "/")
+        # if the project actually has a dir/any images
+        if os.path.isdir(full_path):
+            dir_contents = os.listdir(full_path)
+            # need to pass through the personalised URL that you add to {static } in template
+            project_path = "making/images/projects/" + str(self.pk)+ "/"
+            paths = [(project_path + i) for i in dir_contents]
+            return paths
+   
+    # function to return data needed for previews of projects
+    def preview_dict(self):
+        # should probably have a folder for thumbnails
+        # for now, just picking the first image in a projects image folder as its thumbnail
+       # thumbnail = self.get_img_path()[0]
+        check = self.get_img_path() 
+        if check:
+            thumbnail = check[0]
+        else:
+            thumbnail = None
+        data = {'pk':self.pk,'title':self.title,'description':self.description, 'thumbnail': thumbnail}
         return data
 
     # returns true if the REQUIREMENTS are equal
     def equality(self, other): 
         return Requirements.equality(self.requirements, other.requirements)
+
 
 class Requirements(models.Model):
     VISION_CHOICES = [
@@ -91,7 +138,15 @@ class Requirements(models.Model):
         return(str(self.id))
 
     def syl_dict(self):
-        data = {'vision': self.vision, 'dexterity': self.dexterity, 'language': self.language, 'memory': self.memory}
+        tools_qs = self.tool_set.all() 
+        tools = [Tool.syl_dict(i) for i in tools_qs]
+        data = {'vision': self.vision, 'dexterity': self.dexterity, 'language': self.language, 'memory': self.memory, 'tools':tools}
+        return data
+    
+    def view_dict(self):
+        tools_qs = self.tool_set.all() 
+        tools = [Tool.syl_dict(i) for i in tools_qs]
+        data = {'vision': self.vision, 'dexterity': self.dexterity, 'language': self.language, 'memory': self.memory, 'tools': tools}
         return data
     
     def equality(self, other):
