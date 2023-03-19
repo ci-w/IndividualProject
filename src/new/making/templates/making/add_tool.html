@@ -3,6 +3,9 @@
 Add Tool
 {% endblock %}
 {% block body_block %}
+{% if successful %}
+Tool added. <br>
+{% endif %}
 
 <form method="post" action="{% url 'making:add_tool' %}">
     {% csrf_token %}

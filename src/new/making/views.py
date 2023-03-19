@@ -8,6 +8,7 @@ from copy import deepcopy
 from pathlib import Path
 import os
 from making_project.settings import BASE_DIR, STATIC_URL
+from django.forms import formset_factory
 
 # helper function that gets current user profile OBJECT
 def getProfile(request):
@@ -40,8 +41,6 @@ def project(request, project_id):
         project_obj = Project.objects.get(id=project_id)
         # turn into dictionary, get the related requirements and tool objects (if any tools)
         project = Project.view_dict(project_obj)
-       # tools = Tool.objects.filter(requirements=project_obj.requirements)
-       # project['tools'] = [Tool.syl_dict(tool) for tool in tools]
         paths = Project.get_img_path(project_obj)
 
         test = Requirements.view_dict(project_obj.requirements)
@@ -173,7 +172,7 @@ def update_profile(request):
     else:
         profile_form = ProfileForm(instance=user_profile)
         requirements_form = RequirementsForm(instance=user_profile.requirements)
-
+        # rework this bit
         user_tools = Tool.objects.filter(requirements=user_profile.requirements)
         tool_forms = []
         # make an update form for each tool the profile has
@@ -191,8 +190,7 @@ def update_profile(request):
 def switch_profile(request):
     user = request.user
     user_profile = getProfile(request)
-    profiles = UserProfile.objects.filter(user=user)
-    profile_choices = [(i.pk, i.profile_name) for i in profiles]
+    profile_choices = UserProfile.choices_objects.get_choices(user.pk)
     no_profiles = len(profile_choices)
 
     switch_form = SwitchProfileForm()
@@ -218,30 +216,24 @@ def switch_profile(request):
 @login_required
 def add_tool(request):
     user_profile = getProfile(request)
-    # get possible tool choices
-    tool_names = Tool.objects.values('name').distinct()
-    tool_choices = [(i['name'], i['name']) for i in tool_names]
-
-    # tells the template if registration was successful 
-    registered = False 
+    # tells the template if tool was added successfully
+    successful = False 
 
     # if its a HTTP post, we want to process form data
     if request.method == 'POST':
         # try to get info from the raw form info 
         tool_form = ToolForm(request.POST)
-        tool_form.fields['name'].choices = tool_choices
         if tool_form.is_valid(): 
             tool = tool_form.save(commit=False)
             tool.requirements = user_profile.requirements
             tool.save()                 
-            registered = True
+            successful = True
         else: 
             print(tool_form.errors)
     else: 
         tool_form = ToolForm()
-        tool_form.fields['name'].choices = tool_choices
 
-    return render(request, 'making/add_tool.html', context = {'user_profile': user_profile, 'tool_form': tool_form})
+    return render(request, 'making/add_tool.html', context = {'user_profile': user_profile, 'tool_form': tool_form, 'successful':successful})
 
 @login_required
 def create_syllabus(request):
@@ -474,9 +466,21 @@ def rel_search(usrProf, item):
 skills = ['vision', 'dexterity', 'language', 'memory']
 
 def test_page(request):
+ 
+    ToolFormSet = formset_factory(ToolForm, extra=1,max_num=3)
+    # then i can just iterate through i in toolFormSet to validate and process each form 
+    # can overwrite form choices in view :)
+   # for i in toolFormSet:
+        # i.fields['name'].choices = [('hi','hello'), ('b','b')]
+    if request.method == 'POST': 
+        toolFormSet = ToolFormSet(request.POST) 
+        if toolFormSet.is_valid():
+            print("ITS VALID!!!")
 
-    form = SyllabusForm()
-   # form.fields['end_project'].choices = projects
-    return render(request, 'making/test.html', context = {'projects':projects, 'form': form})
+    else: 
+        toolFormSet = ToolFormSet()
+
+
+    return render(request, 'making/test.html', context = {'projects':projects,'toolFormSet':toolFormSet, })
 
 

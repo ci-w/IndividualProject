@@ -5,11 +5,25 @@ import os
 # when you create a new model, need to add it to admin.py to see it in admin interface
 # should probably do isinstance checks with equality functions
 
+# custom manager for Profiles
+class ProfileManager(models.Manager):
+    def get_profiles(self, id): 
+        return super().get_queryset().filter(user=id)
+
+    def get_choices(self, id):
+        profiles = UserProfile.choices_objects.get_profiles(id)
+        return [(i.pk, i.profile_name) for i in profiles]
+
 class UserProfile(models.Model):
     # links the User instance its associated with, Users can have multiple UserProfiles
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile_name = models.CharField(max_length=100)
     requirements = models.OneToOneField("Requirements", on_delete=models.DO_NOTHING, null=True)
+
+    # default manager
+    objects = models.Manager()
+    # custom manager
+    choices_objects = ProfileManager()
 
     class Meta:
         verbose_name ="User Profile"
@@ -152,11 +166,28 @@ class Requirements(models.Model):
     def equality(self, other):
         return self.vision == other.vision and self.dexterity == other.dexterity and self.language == other.language and self.memory == other.memory 
    # maybe something here that drags in its related Tool objects? 
-   
+
+# custom manager for Tools
+class ToolManager(models.Manager):
+    # returns all unique tool names as [str]
+    def get_names(self):
+        return super().values_list('name', flat=True).distinct()
+    # returns CHOICES version of tool names [(str,str)]
+    def get_choices(self):
+        tool_names = Tool.choices_objects.get_names() 
+        return [(i, i) for i in tool_names] 
+    def get_computer(self, name):
+        return super().get_queryset().filter(name=name)
+
 class Tool(models.Model):
     name = models.CharField(max_length=30)
     skill_level = models.IntegerField()
     requirements = models.ForeignKey(Requirements, on_delete=models.CASCADE)
+
+    # default manager
+    objects = models.Manager()
+    # custom manager
+    choices_objects = ToolManager()
 
     class Meta:
         verbose_name = "Tool"

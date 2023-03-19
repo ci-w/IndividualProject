@@ -2,6 +2,7 @@ from django.forms import ModelForm, Form
 from making.models import Requirements, Tool, UserProfile, Project
 from django.contrib.auth.models import User
 from django import forms
+from django.forms import formset_factory
 
 # can i use this for both registering and logging in?
 # change behaviour cos its saying stuff abt registering
@@ -27,8 +28,10 @@ class RequirementsForm(ModelForm):
         model = Requirements
         fields = '__all__'
 
+# name choices are just every tool thats been used in a project
 class ToolForm(ModelForm):
-    name = forms.ChoiceField()
+    CHOICES = Tool.choices_objects.get_choices
+    name = forms.ChoiceField(choices=CHOICES)
     class Meta:
         model = Tool
         fields = ('name','skill_level',)
