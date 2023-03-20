@@ -28,7 +28,7 @@ class RequirementsForm(ModelForm):
         model = Requirements
         fields = '__all__'
 
-# name choices are just every tool thats been used in a project
+# name choices are just every tool that's been used in a project
 class ToolForm(ModelForm):
     CHOICES = Tool.choices_objects.get_choices
     name = forms.ChoiceField(choices=CHOICES)

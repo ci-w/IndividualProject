@@ -76,3 +76,54 @@ _____
 <b>Tools:</b>
 <b>Steps:</b>
 data.update(Requirements.syl_dict(self.requirements))
+
+
+## notes
+Should probably 
+
+
+$('#add_more').click(function() {
+	var form_idx = $('#id_form-TOTAL_FORMS').val();
+	$('#form_set').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+	$('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+});
+
+<script> document.querySelector('#add_more').click(function() {
+	var form_idx = document.querySelector('#id_form-TOTAL_FORMS').value;
+	document.querySelector('#form_set').insertAdjacentHTML("beforeend",document.querySelector('#empty_form').html().replace(/__prefix__/g, form_idx));
+	document.querySelector('#id_form-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+}); </script>
+<button onclick="myFunction()">Click me!</button> <br>
+
+{{ projects }} <br>
+{{ toolFormSet.management_form }}
+<div id="form_set">
+    {% for form in toolFormSet.forms %}
+	    {{form.non_field_errors}}
+		{{form.errors}}
+        <table class='no_error'>
+            {{ form }}
+        </table>
+    {% endfor %}
+</div>
+<input type="button" value="Add More" id="add_more">
+<div id="empty_form" style="display:none">
+    <table class='no_error'>
+        {{ toolFormSet.empty_form }}
+    </table>
+</div>
+
+
+
+<form method="post" action="{% url 'making:test_page' %}">
+    {% csrf_token %}
+    {{ toolFormSet }}
+
+    <input type="submit" name="submit" value="Submit" /> 
+</form> <br>
+{{ test }}
+
+
+<script>
+    document.querySelector('#delete').addEventListener("click",deleteForm)   
+</script>

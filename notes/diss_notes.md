@@ -55,14 +55,10 @@ Main questions:
     - Do you think doing these projects would improve their skills 
 
 ___
-Email 
-Dear xxx,
-Apologies for not getting back to you sooner. (Should I put an excuse here). I'm very grateful that you have expressed interest in my project.
-Would you be willing to participate in my evaluation of my project at some point in the next 2 weeks?
-
-___
 ## Motivation
 - get disabled people to improve their skills (specific) through tangible learning
 - lower the barriers to entry for this ^ by designing a system that would allow them to find/complete tangible learning projects that are accessible to their needs
 - improving their skills over a course of projects
 - in a way that is designed to overcome issues they may have with "traditional" learning i.e. having the site/tutorials adapt to them rather than the other way around
+
+

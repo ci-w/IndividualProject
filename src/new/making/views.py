@@ -466,9 +466,9 @@ def rel_search(usrProf, item):
 skills = ['vision', 'dexterity', 'language', 'memory']
 
 def test_page(request):
- 
+    # will probably have to make custom formset validation i.e. tool name cannot be repeated, or already exist in a users profile.
     ToolFormSet = formset_factory(ToolForm, extra=1,max_num=3)
-    # then i can just iterate through i in toolFormSet to validate and process each form 
+
     # can overwrite form choices in view :)
    # for i in toolFormSet:
         # i.fields['name'].choices = [('hi','hello'), ('b','b')]

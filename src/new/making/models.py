@@ -192,6 +192,10 @@ class Tool(models.Model):
     class Meta:
         verbose_name = "Tool"
         verbose_name_plural = "Tools"
+        # each requirements object can only have 1 tool object per tool name
+        constraints = [ 
+            models.UniqueConstraint(fields=['name', 'requirements'], name='unique_tool')
+        ]
     
     def __str__(self):
         return self.name
