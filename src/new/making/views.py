@@ -9,6 +9,7 @@ from pathlib import Path
 import os
 from making_project.settings import BASE_DIR, STATIC_URL
 from django.forms import formset_factory
+from django.core.exceptions import ValidationError
 
 # helper function that gets current user profile OBJECT
 def getProfile(request):
@@ -217,23 +218,23 @@ def switch_profile(request):
 def add_tool(request):
     user_profile = getProfile(request)
     # tells the template if tool was added successfully
-    successful = False 
-
+    error = None
     # if its a HTTP post, we want to process form data
     if request.method == 'POST':
         # try to get info from the raw form info 
         tool_form = ToolForm(request.POST)
-        if tool_form.is_valid(): 
-            tool = tool_form.save(commit=False)
-            tool.requirements = user_profile.requirements
-            tool.save()                 
-            successful = True
-        else: 
-            print(tool_form.errors)
+        # have to do validation this way due to model form not containing all model fields 
+        tool = tool_form.save(commit=False)
+        tool.requirements = user_profile.requirements
+        try:
+            tool.full_clean()
+            tool.save()
+        except ValidationError as e:
+            error = e
     else: 
         tool_form = ToolForm()
 
-    return render(request, 'making/add_tool.html', context = {'user_profile': user_profile, 'tool_form': tool_form, 'successful':successful})
+    return render(request, 'making/add_tool.html', context = {'user_profile': user_profile, 'tool_form': tool_form, 'error':error})
 
 @login_required
 def create_syllabus(request):

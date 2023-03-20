@@ -3,8 +3,8 @@
 Add Tool
 {% endblock %}
 {% block body_block %}
-{% if successful %}
-Tool added. <br>
+{% if error %}
+You cannot add a tool you already have. Update it instead. <br>
 {% endif %}
 
 <form method="post" action="{% url 'making:add_tool' %}">

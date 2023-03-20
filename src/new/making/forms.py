@@ -34,7 +34,8 @@ class ToolForm(ModelForm):
     name = forms.ChoiceField(choices=CHOICES)
     class Meta:
         model = Tool
-        fields = ('name','skill_level',)
+        fields = ('name','skill_level')
+       # widgets = {'requirements': forms.HiddenInput()}
 
 class SyllabusForm(Form):
     # get all project ID's and titles
