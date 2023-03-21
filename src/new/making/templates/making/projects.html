@@ -4,7 +4,7 @@
 {% block page_title %}
 Projects
 {% endblock %}
-{% block body_block %}
+{% block body %}
 
 {% for i in projects %}  
       <a href="{% url 'making:project' i.pk %}">{{ i.title }}:</a>

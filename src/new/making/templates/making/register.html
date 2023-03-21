@@ -2,7 +2,7 @@
 {% block page_title %}
 Register
 {% endblock %}
-{% block body_block %}
+{% block body %}
 
 <form method="post" action="{% url 'making:register' %}">
     {% csrf_token %}

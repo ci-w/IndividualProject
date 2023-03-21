@@ -1,8 +1,8 @@
-from django.forms import ModelForm, Form
+from django.forms import ModelForm, Form, formset_factory, BaseFormSet
 from making.models import Requirements, Tool, UserProfile, Project
 from django.contrib.auth.models import User
-from django import forms
-from django.forms import formset_factory
+from django.core.exceptions import ValidationError
+from django import forms 
 
 # can i use this for both registering and logging in?
 # change behaviour cos its saying stuff abt registering
@@ -35,7 +35,6 @@ class ToolForm(ModelForm):
     class Meta:
         model = Tool
         fields = ('name','skill_level')
-       # widgets = {'requirements': forms.HiddenInput()}
 
 class SyllabusForm(Form):
     # get all project ID's and titles
@@ -45,3 +44,19 @@ class SyllabusForm(Form):
 class SwitchProfileForm(Form):
     #the choices are decided in the View because it depends on the User
     profile = forms.ChoiceField()
+
+# fancy tool formset validation 
+class BaseToolFormSet(BaseFormSet):
+    # checks no tools have the same name
+    def clean(self):
+        # dont bother unless each form is valid on its own
+        if any(self.errors):
+            return 
+        names = []
+        for form in self.forms:
+            if self.can_delete and self._should_delete_form(form):
+                continue
+            name = form.cleaned_data.get('name')
+            if name in names:
+                raise ValidationError("Cannot add same tool twice.")
+            names.append(name)

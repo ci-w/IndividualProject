@@ -2,7 +2,7 @@
 {% block page_title %}
 Create Syllabus
 {% endblock %}
-{% block body_block %}
+{% block body %}
 <br>
 <form method="post" action="{% url 'making:create_syllabus' %}">
     {% csrf_token %}

@@ -1,70 +1,67 @@
 {% load static %}
 <!doctype html>
+<html lang="en" class="h-100">
 <head>
-    <title>{% block title %}{% endblock %}</title>   
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Making Projects{% endblock %}</title>  
     <link
     href="{% static "making/css/bootstrap.min.css" %}"
     rel="stylesheet">
+    <link
+    href="{% static "making/css/additional.css" %}"
+    rel="stylesheet">
 </head>
-<body>
-    <header class="text-bg-primary fixed-top">
-        <div class="container-md">
-          <nav id="navbar-nav" class="col-md-9 mx-auto navbar navbar-expand-md navbar-dark bd-navbar">
-            <a class="navbar-brand" href="{% url 'making:index' %}">Making Projects</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav">
-                <li class="nav-item" id="projects-link"><a class="nav-link" href="{% url 'making:projects' %}">Projects</a></li>    
+
+<body class="d-flex flex-column min-vh-100">
+  <!-- link for screen readers, to let them skip navbar and go straight to content -->
+  <div class="skippy visually-hidden-focusable overflow-hidden">
+    <a href="#content">Skip to content</a>
+  </div>
+
+  <header class="text-bg-primary static-top">
+    <div class="container-md">
+      <nav id="navbar-nav" class="col-md-8 mx-auto navbar navbar-expand-md navbar-dark bd-navbar">
+        <a class="navbar-brand" href="{% url 'making:index' %}">Making Projects</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item" id="projects-link"><a class="nav-link" href="{% url 'making:projects' %}">Projects</a></li>    
             {% if user.is_authenticated %}
+              {% if user_profile %}
                 <li class="nav-item" id="view-profile-link"><a class="nav-link" href="{% url 'making:view_profile' %}">View Profile</a></li>
-                <li class="nav-item" id="create-profile-link"><a class="nav-link" href="{% url 'making:create_profile' %}">Create Profile</a></li>
                 <li class="nav-item" id="switch-profile-link"><a class="nav-link" href="{% url 'making:switch_profile' %}">Switch Profile</a></li>
                 <li class="nav-item" id="add-tool-link"><a class="nav-link" href="{% url 'making:add_tool' %}">Add Tool</a></li>
                 <li class="nav-item" id="create-syllabus-link"><a class="nav-link" href="{% url 'making:create_syllabus' %}">Create Syllabus</a></li>
-                <li class="nav-item" id="logout-link"><a class="nav-link" href="{% url 'making:logout' %}">Logout</a></li>
+              {% else %}
+                <li class="nav-item" id="create-profile-link"><a class="nav-link" href="{% url 'making:create_profile' %}">Create Profile</a></li>
+              {% endif %}
+              <li class="nav-item" id="logout-link"><a class="nav-link" href="{% url 'making:logout' %}">Logout</a></li>
             {% else %}
-            <li class="nav-item" id="register-link"><a class="nav-link" href="{% url 'making:register' %}">Register</a></li>         
-            <li class="nav-item" id="login-link"><a class="nav-link" href="{% url 'making:login' %}">Login</a></li>    
+              <li class="nav-item" id="register-link"><a class="nav-link" href="{% url 'making:register' %}">Register</a></li>         
+              <li class="nav-item" id="login-link"><a class="nav-link" href="{% url 'making:login' %}">Login</a></li>    
             {% endif %}
-              </ul>
-            </div>
-          </nav>
+          </ul>
         </div>
-      </header>
+      </nav>
+    </div>
+  </header>
 
-
-<br> <br> <br>
-
-
-  <div id="content" class="container-md">
+  <div id="content" class="container-md pt-2">
     <div class="col-md-8 mx-auto">
-      <h3>
+      <h1>
       {% block page_title %}
-      Homepage
+      Home
       {% endblock %}
-      </h3>
-        <p class="lead">
+      </h1>
+      {% block body %}
 
-            {% if user.is_authenticated %}
-                You are logged in as: {{ user.username }} <br>
-                {% if user_profile %} 
-                    Current user profile is: {{ user_profile.profile_name }} <br>
-                {% endif %}
-            {% endif %}</p>
-    {% block body_block %}
-          Welcome to Making Projects!
-          <img src="{% static 'making/images/projects/18/creature.png' %}" alt="My image">
-    {% endblock %}
+      hello please listen to me 
+      {% endblock %}
     </div>
   </div>
-
-
-
-
-
-
 
 
 <script src="{% static "making/js/bootstrap.min.js" %}"></script>

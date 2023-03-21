@@ -5,8 +5,8 @@
 {% block page_title %}
 {{ project.title }}
 {% endblock %}
-{% block body_block %}
 
+{% block body %}
 {% if project %}
         {{ test }} <br>
         Title: {{ project.title }} <br>
@@ -33,10 +33,5 @@
         {% for i in paths %}
                 <img src="{% static i %}" />
         {% endfor %} 
-
-
 {% endif %}
-
-
-
 {% endblock %}

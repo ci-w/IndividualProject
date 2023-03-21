@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from making.forms import RequirementsForm, ToolForm, UserForm, LoginForm, ProfileForm, SyllabusForm, SwitchProfileForm
+from making.forms import RequirementsForm, ToolForm, UserForm, LoginForm, ProfileForm, SyllabusForm, SwitchProfileForm, BaseToolFormSet
 from making.models import Requirements, Tool, UserProfile, Project
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -36,19 +36,15 @@ def projects(request):
 # specific project
 def project(request, project_id):
     paths = None
-    test = None
     try:
         #is there a project with that id?
         project_obj = Project.objects.get(id=project_id)
         # turn into dictionary, get the related requirements and tool objects (if any tools)
         project = Project.view_dict(project_obj)
         paths = Project.get_img_path(project_obj)
-
-        test = Requirements.view_dict(project_obj.requirements)
     except Project.DoesNotExist:
         project = None 
-
-    return render(request, 'making/project.html', context={'project': project,'paths':paths, 'test':test})
+    return render(request, 'making/project.html', context={'project': project,'paths':paths})
 
 def register(request):
     # tells the template if registration was successful 
@@ -114,14 +110,16 @@ def create_profile(request):
     # tells the template if creation was successful 
     registered = False 
     user_profile = getProfile(request)
+    ToolFormSet = formset_factory(ToolForm, extra=0, max_num=6, formset=BaseToolFormSet)
+
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST)
         requirements_form = RequirementsForm(request.POST)
+        toolFormSet = ToolFormSet(request.POST) 
         # if the forms are valid
-        if profile_form.is_valid() and requirements_form.is_valid(): 
-            user = request.user
+        if profile_form.is_valid() and requirements_form.is_valid() and toolFormSet.is_valid(): 
             profile = profile_form.save(commit=False)
-            profile.user = user       
+            profile.user = request.user       
             requirements = requirements_form.save()
             profile.requirements = requirements
             profile.save()           
@@ -129,73 +127,94 @@ def create_profile(request):
             # change the session profile to this new one
             request.session['user_profile'] = profile.pk 
             user_profile = getProfile(request)
+            # then try to add the tools 
+            for form in toolFormSet: 
+                tool = form.save(commit=False)
+                tool.requirements = user_profile.requirements
+                try:
+                    tool.full_clean()
+                    tool.save()
+                except ValidationError as e: 
+                    print(e)
         else: 
             print(profile_form.errors)
     else: 
         profile_form = ProfileForm()
         requirements_form = RequirementsForm()
-
-    return render(request, 'making/create_profile.html', context = {'user_profile':user_profile,'profile_form': profile_form, 'requirements_form': requirements_form,'registered': registered})
+        toolFormSet = ToolFormSet()
+    return render(request, 'making/create_profile.html', context = {'user_profile':user_profile,'profile_form': profile_form, 'requirements_form': requirements_form,'toolFormSet':toolFormSet,'registered': registered})
 
 @login_required
 def view_user(request):
     user_profile = getProfile(request)
     return render(request, 'making/view_user.html', context = {'user_profile': user_profile})
 
-
 @login_required
 def view_profile(request):
-    # getProfile returns profile object
+    # get current profile object
     user_profile = getProfile(request)
     #if user doesn't have a profile selected, redirect to homepage
     if not user_profile: 
         return redirect(reverse('making:index'))
-
     # turn profile obj into dictionary, get the related requirements and tools (if any)
     profile = UserProfile.view_dict(user_profile)
-
     return render(request, 'making/view_profile.html', context = {'user_profile': user_profile,'profile':profile})
 
 @login_required 
-# also UP required.. how to enforce?
 # need to process tool form submission
 def update_profile(request):
     user_profile = getProfile(request)
-    
+    # if they dont have a profile selected, redirect to switch_profile
+    if not user_profile:
+        return redirect(reverse('making:switch_profile'))
+
+    ToolFormSet = formset_factory(ToolForm,extra=0)
+    # get all the profiles related tool objects
+    tool_qs = user_profile.requirements.tool_set.all()    
+    # dictionary version of the tool objects
+    tools = tool_qs.values() 
+
     if request.method == 'POST':
         profile_form = ProfileForm(request.POST, instance=user_profile)
         requirements_form = RequirementsForm(request.POST, instance=user_profile.requirements)
-        if profile_form.is_valid() and requirements_form.is_valid():
+        toolFormSet = ToolFormSet(request.POST,initial=tools)
+        for form in toolFormSet.forms:
+            form.fields['name'].choices = [(form.initial['name'],form.initial['name'])]
+
+        if profile_form.is_valid() and requirements_form.is_valid() and toolFormSet.is_valid():
             profile_form.save()
             requirements_form.save()
+            for i in range(len(toolFormSet)):
+                # update the skill level because thats the only thing that could be changed
+                tool_qs[i].skill_level = toolFormSet[i].fields['skill_level']       
         else:
             print(profile_form.errors, requirements_form.errors)
     else:
         profile_form = ProfileForm(instance=user_profile)
         requirements_form = RequirementsForm(instance=user_profile.requirements)
-        # rework this bit
-        user_tools = Tool.objects.filter(requirements=user_profile.requirements)
-        tool_forms = []
-        # make an update form for each tool the profile has
-        for i in range(len(user_tools)):
-            tool_form = ToolForm(instance=user_tools[i])
-            tool_form.fields['name'].choices = [(user_tools[i].name,user_tools[i].name)]
-            tool_forms.append(tool_form)
 
-    return render(request, 'making/update_profile.html', context={'user_profile': user_profile, 'profile_form':profile_form, 'requirements_form':requirements_form, 'tool_forms': tool_forms})
+        toolFormSet = ToolFormSet(initial=tools)
+        for form in toolFormSet.forms:
+            form.fields['name'].choices = [(form.initial['name'],form.initial['name'])]
+
+
+    return render(request, 'making/update_profile.html', context={'user_profile': user_profile, 'profile_form':profile_form, 'requirements_form':requirements_form, 'toolFormSet':toolFormSet})
 
 # passes list of profiles to template
 # cant run functions in template, pass through NUMBER of profiles
-# could restructure this so its not running everything when the user has no profiles
 @login_required
 def switch_profile(request):
     user = request.user
     user_profile = getProfile(request)
     profile_choices = UserProfile.choices_objects.get_choices(user.pk)
+    # if they dont have any profiles, redirect to create_profile
+    if not profile_choices:
+        return redirect(reverse('making:create_profile'))
     no_profiles = len(profile_choices)
-
+    
     switch_form = SwitchProfileForm()
     switch_form.fields['profile'].choices = profile_choices
+
     if request.method == 'POST':
         switch_form = SwitchProfileForm(request.POST)
         # if i dont have line below, it will fail validation (because the form doesn't know the correct choices)
@@ -203,7 +222,7 @@ def switch_profile(request):
         if switch_form.is_valid():
             # ID of the chosen profile
             request.session['user_profile'] = switch_form['profile'].value()      
-            # re-run this function to get the new user profile
+            # re-run this function to get the new user profile object
             user_profile = getProfile(request)     
         else:
             print(switch_form.errors)
@@ -219,6 +238,7 @@ def add_tool(request):
     user_profile = getProfile(request)
     # tells the template if tool was added successfully
     error = None
+    success = False
     # if its a HTTP post, we want to process form data
     if request.method == 'POST':
         # try to get info from the raw form info 
@@ -229,12 +249,13 @@ def add_tool(request):
         try:
             tool.full_clean()
             tool.save()
+            success = True
         except ValidationError as e:
             error = e
     else: 
         tool_form = ToolForm()
 
-    return render(request, 'making/add_tool.html', context = {'user_profile': user_profile, 'tool_form': tool_form, 'error':error})
+    return render(request, 'making/add_tool.html', context = {'user_profile': user_profile, 'tool_form': tool_form, 'error':error, 'success':success})
 
 @login_required
 def create_syllabus(request):
@@ -467,21 +488,25 @@ def rel_search(usrProf, item):
 skills = ['vision', 'dexterity', 'language', 'memory']
 
 def test_page(request):
-    # will probably have to make custom formset validation i.e. tool name cannot be repeated, or already exist in a users profile.
-    ToolFormSet = formset_factory(ToolForm, extra=1,max_num=3)
-
-    # can overwrite form choices in view :)
-   # for i in toolFormSet:
-        # i.fields['name'].choices = [('hi','hello'), ('b','b')]
+    user_profile = getProfile(request)
+    ToolFormSet = formset_factory(ToolForm, extra=0, max_num=6, formset=BaseToolFormSet)
+    errors = []
     if request.method == 'POST': 
         toolFormSet = ToolFormSet(request.POST) 
         if toolFormSet.is_valid():
-            print("ITS VALID!!!")
-
+            for form in toolFormSet: 
+                tool = form.save(commit=False)
+                tool.requirements = user_profile.requirements
+                try:
+                    tool.full_clean()
+                    tool.save()
+                except ValidationError as e: 
+                    errors.append(e)
+        else:
+            errors.append(toolFormSet.errors)
     else: 
         toolFormSet = ToolFormSet()
 
-
-    return render(request, 'making/test.html', context = {'projects':projects,'toolFormSet':toolFormSet, })
+    return render(request, 'making/test.html', context = {'projects':projects,'toolFormSet':toolFormSet,'errors':errors })
 
 

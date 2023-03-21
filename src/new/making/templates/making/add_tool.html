@@ -2,9 +2,12 @@
 {% block page_title %}
 Add Tool
 {% endblock %}
-{% block body_block %}
+{% block body %}
 {% if error %}
 You cannot add a tool you already have. Update it instead. <br>
+{% endif %}
+{% if success %}
+Tool added successfully. <br>
 {% endif %}
 
 <form method="post" action="{% url 'making:add_tool' %}">

@@ -62,7 +62,7 @@ class ProjectManager(models.Manager):
 class Project(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=100)
-    materials = models.TextField(max_length=300, null=True)
+    materials = models.TextField(max_length=300)
     instructions = models.TextField()
 
     requirements = models.OneToOneField("Requirements", on_delete=models.DO_NOTHING)
@@ -176,8 +176,12 @@ class ToolManager(models.Manager):
     def get_choices(self):
         tool_names = Tool.choices_objects.get_names() 
         return [(i, i) for i in tool_names] 
-    def get_computer(self, name):
-        return super().get_queryset().filter(name=name)
+   # def get_computer(self, name):
+        #return super().get_queryset().filter(name=name)
+    def get_req_tools(self, requirements):
+        tools = super().get_queryset().filter(requirements=requirements)
+        tool_choices = tools.values_list('name','skill_level')
+        return tool_choices
 
 class Tool(models.Model):
     name = models.CharField(max_length=30)

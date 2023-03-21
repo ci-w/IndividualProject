@@ -62,3 +62,25 @@ ___
 - in a way that is designed to overcome issues they may have with "traditional" learning i.e. having the site/tutorials adapt to them rather than the other way around
 
 
+_______
+I have it structured in such a way that in the future it'll be easy to add multiple requirement objects per project/person (i.e. checking tool duplicacy per requirements object rather than profile/project)
+
+
+
+<h3>
+      {% block page_title %}
+      Homepage
+      {% endblock %}
+      </h3>    
+      {% if user.is_authenticated %}
+        You are logged in as: {{ user.username }} <br>
+        {% if user_profile %} 
+          Current user profile is: {{ user_profile.profile_name }} <br>
+        {% endif %}
+      {% endif %}
+
+    {% block body_block %}
+          Welcome to Making Projects!
+          <img src="{% static 'making/images/projects/18/creature.png' %}" alt="My image">
+    {% endblock %}
+    

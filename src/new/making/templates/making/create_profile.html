@@ -1,17 +1,43 @@
 {% extends 'making/index.html' %}
+{% load static %}
+{% block title %}
+Create Profile 
+{% endblock %}
 {% block page_title %}
 Create Profile
 {% endblock %}
-{% block body_block %}
+
+
+{% block body %}
 <form method="post" action="{% url 'making:create_profile' %}">
     {% csrf_token %}
     {{ profile_form.as_p }}
     {{ requirements_form.as_p }}
-    <input type="submit" name="submit" value="Submit" /> 
+
+    {{ toolFormSet.management_form }}
+    <div id="form_set">
+    {% for i in toolFormSet %}   
+        <div class="no_error">
+            {{ i }}
+        </div>
+    {% endfor %}   
+    </div>
+    <input type="button" value="Add Tool" id="add_more"/>
+    <input type="button" value="Delete Tool" id="delete"/>
+    <input type="submit" value="Create Profile" id="submit"/> 
+    <div id="empty_form" style="display:none">
+        <div class="no_error">
+            {{ toolFormSet.empty_form }}
+        </div>
+    </div>
 </form>
 
-{% if worked %} 
-    Thank you for creating profile.
-{% endif %}
+<script src="{% static 'making/js/addToolForm.js' %}"></script>
+<script>
+    document.querySelector('#add_more').addEventListener("click",addForm)   
+</script>
+<script>
+    document.querySelector('#delete').addEventListener("click",deleteForm)   
+</script>
 
 {% endblock %}
