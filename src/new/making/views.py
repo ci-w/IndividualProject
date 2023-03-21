@@ -196,8 +196,6 @@ def update_profile(request):
         toolFormSet = ToolFormSet(initial=tools)
         for form in toolFormSet.forms:
             form.fields['name'].choices = [(form.initial['name'],form.initial['name'])]
-
-
     return render(request, 'making/update_profile.html', context={'user_profile': user_profile, 'profile_form':profile_form, 'requirements_form':requirements_form, 'toolFormSet':toolFormSet})
 
 # passes list of profiles to template

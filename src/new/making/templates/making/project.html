@@ -8,30 +8,30 @@
 
 {% block body %}
 {% if project %}
-        {{ test }} <br>
-        Title: {{ project.title }} <br>
-        Description: {{ project.description }} <br>
-        Materials:
-        {% for i in project.materials %}
-                - {{ i }} <br>
-        {% endfor %}
-        Instructions: 
-        {% for i in project.instructions %}
-        [{{ forloop.counter }}] {{ i }} <br>
-        {% endfor %}
+    <p>{{ project.description }} </p>
+    <b>Materials:</b> <br>
+    {% for i in project.materials %}
+        - {{ i }} <br>
+    {% endfor %}
+    {% if project.tools %}
+    <b>Tools:</b> <br>
+    {% for i in project.tools %}
+        {{ i.name }}: level {{i.skill_level }} <br>
+    {% endfor %}
+    {% endif %}
+    <b>Project information:</b> <br>
+    Vision: {{ project.vision }} <br>
+    Dexterity: {{ project.dexterity }} <br>
+    Language: {{ project.language }} <br>
+    Memory: {{ project.memory }} <br>
+    <b>Instructions: </b> <br>
+    {% for i in project.instructions %}
+        {{ forloop.counter }}. {{ i }} <br>
+    {% endfor %}
 
-        Vision: {{ project.vision }} <br>
-        Dexterity: {{ project.dexterity }} <br>
-        Language: {{ project.language }} <br>
-        Memory: {{ project.memory }} <br>
-        {% for i in project.tools %}
-                Tool name: {{ i.name }}.
-                Skill level: {{i.skill_level }} <br>
-        {% endfor %}
-
-        <!-- this is image stuff -->
-        {% for i in paths %}
-                <img src="{% static i %}" />
-        {% endfor %} 
+    <!-- this is image stuff -->
+    {% for i in paths %}
+        <img src="{% static i %}" class="img-fluid"/>
+    {% endfor %} 
 {% endif %}
 {% endblock %}
