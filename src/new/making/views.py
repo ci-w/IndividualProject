@@ -35,6 +35,11 @@ def projects(request):
 
 # specific project
 def project(request, project_id):
+    user_profile = getProfile(request)
+    # turn it into a dict 
+    if user_profile:
+        user_profile = UserProfile.view_dict(user_profile)
+    # need to order the tools in the same order as project (zip them together)
     paths = None
     try:
         #is there a project with that id?
@@ -44,7 +49,7 @@ def project(request, project_id):
         paths = Project.get_img_path(project_obj)
     except Project.DoesNotExist:
         project = None 
-    return render(request, 'making/project.html', context={'project': project,'paths':paths})
+    return render(request, 'making/project.html', context={'project': project,'paths':paths,'user_profile':user_profile})
 
 def register(request):
     # tells the template if registration was successful 
@@ -261,7 +266,7 @@ def create_syllabus(request):
     end_project = None
     user_profile = None
     syllabus = None
-
+    projects = None
     if request.method == 'POST':
         syllabus_form = SyllabusForm(request.POST)
         if syllabus_form.is_valid():
@@ -280,13 +285,19 @@ def create_syllabus(request):
                     syllabus.append(next_proj)
                 else: 
                     syllabus.append("i broke!")
-                    break                                       
+                    break  
+            # get the view_dicts for every project in the syllabus 
+            if end_project not in syllabus:
+                syllabus.append(end_project)
+            project_objs = [Project.objects.get(id=i['p_id']) for i in syllabus]  
+            projects = [Project.preview_dict(i) for i in project_objs]    
+                                       
         else:
             print(syllabus_form.errors)
     else:
         syllabus_form = SyllabusForm()
 
-    return render(request, 'making/create_syllabus.html', context = {'user_profile':user_profile_obj, 'syllabus_form': syllabus_form, 'end_project':end_project, 'user_profile_dict':user_profile, 'syllabus': syllabus})
+    return render(request, 'making/create_syllabus.html', context = {'user_profile':user_profile_obj, 'syllabus_form': syllabus_form, 'end_project':end_project, 'user_profile_dict':user_profile, 'syllabus': syllabus,'projects':projects})
 
 # target = 1 tool, userTools = list of tools
 # returns true if userTools has target tool, and its skill level is greater than or equal to the targets

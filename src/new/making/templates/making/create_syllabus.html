@@ -1,4 +1,5 @@
 {% extends 'making/index.html' %}
+{% load static %}
 {% block page_title %}
 Create Syllabus
 {% endblock %}
@@ -12,13 +13,16 @@ Create Syllabus
 User's original profile: {{ user_profile }} <br>
 
 User's end profile: {{ user_profile_dict }} <br>
-End project: {{ end_project }} <br>
-
+{% if syllabus %}
 Syllabus: <br>
-{% for i in syllabus %}
-    {{ i }} <br>
+{% for i in projects %}  
+      {{ forloop.counter }}. <a href="{% url 'making:project' i.pk %}">{{ i.title }}:</a>
+      {{ i.description }} <br>
+      {% if i.thumbnail %}
+        <img src="{% static i.thumbnail %}" /> <br>
+      {% endif %}
 {% endfor %}
-
+{% endif %}
 
 
 {% endblock %}

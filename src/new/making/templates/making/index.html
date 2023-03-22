@@ -52,13 +52,14 @@
   <div id="content" class="container-md pt-2">
     <div class="col-md-8 mx-auto">
       <h1>
-      {% block page_title %}
-      Home
+      {% block page_title %}      
       {% endblock %}
       </h1>
       {% block body %}
+      <p> Welcome to Making Projects! </p>
+      <p> Here you can view project tutorials in a way that is accessible to <b>you</b>.</p>
+      <a href="{% url 'making:projects' %}">Explore the projects</a>  
 
-      hello please listen to me 
       {% endblock %}
     </div>
   </div>

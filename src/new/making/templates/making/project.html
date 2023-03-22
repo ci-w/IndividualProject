@@ -9,25 +9,57 @@
 {% block body %}
 {% if project %}
     <p>{{ project.description }} </p>
-    <b>Materials:</b> <br>
+    <p><b>Materials:</b> <br>
     {% for i in project.materials %}
         - {{ i }} <br>
-    {% endfor %}
+    {% endfor %}</p>
     {% if project.tools %}
     <b>Tools:</b> <br>
     {% for i in project.tools %}
-        {{ i.name }}: level {{i.skill_level }} <br>
+        {{ i.name }}: {{i.skill_level }} <br>
     {% endfor %}
     {% endif %}
+
+    {% if user_profile %}    
+    <table class="table">
+        <tr>
+          <th></th>
+          <th>Project</th>
+          <th>Your Profile</th>
+        </tr>
+        <tr>
+          <th>Vision</td>
+          <td>{{ project.vision }}</td>
+          <td>{{ user_profile.vision }}</td>
+        </tr>
+        <tr>
+            <th>Dexterity</th>
+            <td>{{ project.dexterity }}</td>
+            <td>{{ user_profile.dexterity }}</td>
+        </tr>
+        <tr>
+            <th>Language</th>
+            <td>{{ project.language }}</td>
+            <td>{{ user_profile.language }}</td>
+        </tr>
+        <tr>
+            <th>Memory</th>
+            <td>{{ project.memory }}</td>
+            <td>{{ user_profile.memory }}</td>
+        </tr>
+      </table>
+    {% else %}
     <b>Project information:</b> <br>
     Vision: {{ project.vision }} <br>
     Dexterity: {{ project.dexterity }} <br>
     Language: {{ project.language }} <br>
     Memory: {{ project.memory }} <br>
-    <b>Instructions: </b> <br>
+    {% endif %}
+
+    <p><b>Instructions: </b> <br>
     {% for i in project.instructions %}
         {{ forloop.counter }}. {{ i }} <br>
-    {% endfor %}
+    {% endfor %} </p>
 
     <!-- this is image stuff -->
     {% for i in paths %}
