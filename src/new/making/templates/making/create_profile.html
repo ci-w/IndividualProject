@@ -9,6 +9,9 @@ Create Profile
 
 
 {% block body %}
+{% if registered %}
+<p class="lead">Profile created. Welcome {{ user_profile.profile_name }}! </p>
+{% endif %}
 <form method="post" action="{% url 'making:create_profile' %}">
     {% csrf_token %}
     {{ profile_form.as_p }}
@@ -43,7 +46,7 @@ Create Profile
     </div>
     <input type="button" value="Add Tool" id="add_more" />
     <input type="button" value="Delete Tool" id="delete" class="mx-4"/> <br>
-    <input type="submit" value="Create Profile" id="submit" class="mt-2"/> 
+    <input type="submit" value="Create Profile" id="submit" class="mt-4"/> 
     <div id="empty_form" style="display:none">
         <div class="no_error">
             {{ toolFormSet.empty_form }} <br><br>

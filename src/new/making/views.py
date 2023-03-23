@@ -28,10 +28,11 @@ def about(request):
 
 # view of multiple projects, just grabs the first 10
 def projects(request):
+    user_profile = getProfile(request)
     project_objs = Project.objects.all()[:10]
     # get all the preview dicts of the objects
     projects = [Project.preview_dict(i) for i in project_objs]
-    return render(request, 'making/projects.html', context={'projects': projects})
+    return render(request, 'making/projects.html', context={'user_profile':user_profile,'projects': projects})
 
 # specific project
 def project(request, project_id):

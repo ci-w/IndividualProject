@@ -157,11 +157,12 @@ class Requirements(models.Model):
         tools = [Tool.syl_dict(i) for i in tools_qs]
         data = {'vision': self.vision, 'dexterity': self.dexterity, 'language': self.language, 'memory': self.memory, 'tools':tools}
         return data
-    
+
+    # returns the skill levels as the related choices word rather than a number
     def view_dict(self):
         tools_qs = self.tool_set.all() 
-        tools = [Tool.syl_dict(i) for i in tools_qs]
-        data = {'vision': self.vision, 'dexterity': self.dexterity, 'language': self.language, 'memory': self.memory, 'tools': tools}
+        tools = [Tool.view_dict(i) for i in tools_qs]
+        data = {'vision': self.get_vision_display(), 'dexterity': self.get_dexterity_display(), 'language': self.get_language_display(), 'memory': self.get_memory_display(), 'tools': tools}
         return data
     
     def equality(self, other):
@@ -215,6 +216,9 @@ class Tool(models.Model):
         data = {'name': self.name, 'skill_level': self.skill_level}
         return data
     
+    def view_dict(self):
+        data = {'name': self.name, 'skill_level': self.get_skill_level_display()}
+        return data
     def equality(self, other):
         return self.name == other.name and self.skill_level == other.skill_level
     

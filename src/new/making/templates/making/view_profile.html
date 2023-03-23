@@ -4,20 +4,23 @@ View Profile
 {% endblock %}
 
 {% block body %}
-
-User's name: {{ user.username }}<br>
+<p>
+User's email: {{ user.username }}<br>
 Profile's name: {{ profile.profile_name }}<br>
 Vision: {{ profile.vision }} <br>
 Dexterity: {{ profile.dexterity }} <br>
 Language: {{ profile.language }} <br>
-Memory: {{ profile.memory }} <br>
+Memory: {{ profile.memory }} <br> </p>
 
 {% if profile.tools %}
-Tools: <br>
+<p>
+<b>Tools:</b> <br>
     {% for tool in profile.tools %}
-        {{ tool.name }}: level {{ tool.skill_level }} <br>
+        {{ tool.name }}: {{ tool.skill_level }} <br>
     {% endfor %}
+</p>
 {% endif %}
-<a href="{% url 'making:update_profile' %}">Update profile.</a>
+<a href="{% url 'making:update_profile' %}">Update profile.</a> <a href="{% url 'making:create_profile' %}">Create new profile.</a>
+
 
 {% endblock %}

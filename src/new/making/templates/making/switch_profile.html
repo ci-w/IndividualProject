@@ -1,33 +1,48 @@
 {% extends 'making/index.html' %}
-{% block page_title %}
-Select Profile
+{% block title %}
+    {% if user_profile %}
+        Switch Profile -
+    {% else %}
+        Select Profile -
+    {% endif %}
 {% endblock %}
+
+{% block page_title %}
+    {% if user_profile %}
+        Switch Profile
+    {% else %}
+        Select Profile
+    {% endif %}
+{% endblock %}
+
 {% block body %}
 <!-- pass in a variable that tells template if: the user doesn't have any UPs (need to create one), if the user has already selected one-->
 <!-- NO, if the user doesnt have any up redirect them immieditely to create up pagey-->
 
 <!-- The user does not have any profiles -->
 {% if not no_profiles  %}
-    You don't currently have any profiles. <br>
-    <a href="{% url 'making:create_profile' %}">Create one here.</a>
+    <p>You don't currently have any profiles. <br>
+    <a href="{% url 'making:create_profile' %}">Create one here.</a></p>
 <!-- The user only has 1 profile -->
 {% elif no_profiles == 1 %}
-    U only have 1
+    <p>You currently only have one profile. <br>
+    <a href="{% url 'making:create_profile' %}">Create another one here.</a></p>
 {% else %} 
     <!-- The user has already selected a profile this session -->
+   <p>
     {% if user_profile %}
         Switch your current user profile! <br>
         Your current profile is: {{ user_profile.profile_name }}
+    <!-- the user has not selected a profile for this session -->
     {% else %}
         Please select a user profile <br>
     {% endif %}
-
+   </p> 
     <form method="post" action="{% url 'making:switch_profile' %}">
         {% csrf_token %}
         {{ switch_form }}
         <input type="submit" name="submit" value="Submit" /> 
     </form>
-    <br>
 {% endif %}
 
 {% endblock %}
