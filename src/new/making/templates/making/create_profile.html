@@ -12,7 +12,14 @@ Create Profile
 <form method="post" action="{% url 'making:create_profile' %}">
     {% csrf_token %}
     {{ profile_form.as_p }}
-    {{ requirements_form.as_p }}
+    {% for field in requirements_form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        <div>{{ field.label_tag }} </div> 
+        <div>{{ field }}</div>
+        <div>{{ field.help_text }}</div>
+    </div>
+    {% endfor %}
 
     {{ toolFormSet.management_form }}
     <div id="form_set">

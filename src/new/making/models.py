@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from making_project.settings import BASE_DIR
 import os
+from django.utils.safestring import mark_safe   # for putting html in help text
 # when you create a new model, need to add it to admin.py to see it in admin interface
 # should probably do isinstance checks with equality functions
 
@@ -139,10 +140,10 @@ class Requirements(models.Model):
         (2, 'Medium'),
         (3, 'High')
     ]
-    vision = models.IntegerField(choices=VISION_CHOICES)
-    dexterity = models.IntegerField(choices=VISION_CHOICES)
-    language = models.IntegerField(choices=VISION_CHOICES)
-    memory = models.IntegerField(choices=VISION_CHOICES)
+    vision = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is how much you can see. For 'low': <br> like this"),default=1)
+    dexterity = models.IntegerField(choices=VISION_CHOICES, help_text="This is how much you can use your hands.",default=1)
+    language = models.IntegerField(choices=VISION_CHOICES, help_text="This is what sort of words you can understand.",default=1)
+    memory = models.IntegerField(choices=VISION_CHOICES, help_text="This is what your memory is like.",default=1)
 
     class Meta:
         verbose_name = "Requirements"
@@ -184,8 +185,14 @@ class ToolManager(models.Manager):
         return tool_choices
 
 class Tool(models.Model):
+    LEVEL_CHOICES = [
+        (0, 'None'),
+        (1, 'Low'),
+        (2, 'Medium'),
+        (3, 'High')
+    ]
     name = models.CharField(max_length=30)
-    skill_level = models.IntegerField()
+    skill_level = models.IntegerField(choices=LEVEL_CHOICES,default=0)
     requirements = models.ForeignKey(Requirements, on_delete=models.CASCADE)
 
     # default manager

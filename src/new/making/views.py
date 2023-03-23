@@ -517,5 +517,3 @@ def test_page(request):
         toolFormSet = ToolFormSet()
 
     return render(request, 'making/test.html', context = {'projects':projects,'toolFormSet':toolFormSet,'errors':errors })
-
-
