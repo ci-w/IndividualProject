@@ -14,16 +14,18 @@ function addForm() {
     } 
 }   
 
-function deleteForm() {
+// min_val is the minimum number of forms you want displayed. Default is allowing 0 forms displayed.
+function deleteForm(min_val=0) {
     // get current amount of forms
-    var form_idx = document.querySelector('#id_form-TOTAL_FORMS').value; 
-    // only delete if there's 1 or more form 
-    if (form_idx >= 1) {
+    var form_idx = parseInt(document.querySelector('#id_form-TOTAL_FORMS').value); 
+
+    // only delete if there's 1 or more forms than the min_val 
+    if (form_idx > min_val) {
         // go find the 2nd last form (not the empty form)
         var all_forms = document.querySelectorAll(".no_error")
         var form = all_forms[all_forms.length - 2]
         form.remove()
-        document.querySelector('#id_form-TOTAL_FORMS').value = parseInt(form_idx)-1;
+        document.querySelector('#id_form-TOTAL_FORMS').value = form_idx-1;
     }
 }
 

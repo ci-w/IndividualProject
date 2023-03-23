@@ -95,7 +95,7 @@ class Project(models.Model):
         instructions = [i.strip() for i in instructions if i]
 
         data = {'title': self.title, 'description': self.description, 'materials':materials, 'instructions':instructions }
-        data.update(Requirements.syl_dict(self.requirements))
+        data.update(Requirements.view_dict(self.requirements))
         return data
     
     #try and get the projects image(s). SAY how many images there are ? or just punt the filenames of them all to the view
@@ -140,9 +140,9 @@ class Requirements(models.Model):
         (2, 'Medium'),
         (3, 'High')
     ]
-    vision = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is how much you can see. <ul class='list-unstyled'><li> Low: you can see (??)</li><li>Medium: you can see</li><li>High: you can see</li> </ul>"),default=1)
-    dexterity = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is how much you can use your hands.<ul class='list-unstyled'><li> Low: you can </li><li>Medium: you can </li><li>High: you can </li> </ul>"),default=1)
-    language = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is what sort of words you can understand.<ul class='list-unstyled'><li> Low: you can </li><li>Medium: you can </li><li>High: you can </li> </ul>"),default=1)
+    vision = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is how much you can see. <ul class='list-unstyled'><li> Low: you can read off a road sign.</li><li>Medium: you can read large text.</li><li>High: you can read small text.</li> </ul>"),default=1)
+    dexterity = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is how much you can use your hands to do things.<ul class='list-unstyled'><li> Low: you can put Duplo blocks together. </li><li>Medium: you can </li><li>High: you can put Lego blocks together. </li> </ul>"),default=1)
+    language = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is what sort of instructions you can understand.<ul class='list-unstyled'><li> Low: you can </li><li>Medium: you can </li><li>High: you can </li> </ul>"),default=1)
     memory = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is what your memory is like.<ul class='list-unstyled'><li> Low: you can </li><li>Medium: you can </li><li>High: you can </li> </ul>"),default=1)
 
     class Meta:
@@ -188,9 +188,9 @@ class ToolManager(models.Manager):
 class Tool(models.Model):
     LEVEL_CHOICES = [
         (0, 'None'),
-        (1, 'Low'),
-        (2, 'Medium'),
-        (3, 'High')
+        (1, 'Beginner'),
+        (2, 'Competent'),
+        (3, 'Expert')
     ]
     name = models.CharField(max_length=30)
     skill_level = models.IntegerField(choices=LEVEL_CHOICES,default=0)

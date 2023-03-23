@@ -7,15 +7,13 @@ Create Syllabus -
 Create Syllabus
 {% endblock %}
 {% block body %}
-<br>
+<p>
 <form method="post" action="{% url 'making:create_syllabus' %}">
     {% csrf_token %}
     {{ syllabus_form }}
     <input type="submit" name="submit" value="Submit" /> 
 </form>
-User's original profile: {{ user_profile }} <br>
-
-User's end profile: {{ user_profile_dict }} <br>
+</p>
 {% if syllabus %}
 Syllabus: <br>
 {% for i in projects %}  

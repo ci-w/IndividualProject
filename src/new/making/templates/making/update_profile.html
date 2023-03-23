@@ -8,19 +8,37 @@ Update Profile
 {% endblock %}
 
 {% block body %}
-{% if test %}
-{{ test }}
-{% endif %}
+
 <form method="post" action="{% url 'making:update_profile' %}">
     {% csrf_token %}
     {{ profile_form.as_p }}
-    {{ requirements_form.as_p }}
-    Tools:
-    {% for form in toolFormSet %}
-        {{ form.as_p }}
+    {% for field in requirements_form %}
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        <div><b>{{ field.label_tag }} </b></div> 
+        <div>{{ field.help_text }}</div>
+        <div>{{ field }}</div>
+        <br>
+    </div>
     {% endfor %}
-    <input type="submit" name="submit" value="Update" /> 
-</form> <br>
 
+    <h6><b>Tools</b></h6>
+
+    <ul class="list-unstyled">
+        <li>These are what tools you have access to. </li>
+        <li>Skill level is how much experience you have with that tool. </li>
+        <li>None: means you have the tool but have not used it before. </li>
+        <li>Low: means you have used the tool a few times.</li>
+        <li>Medium: means you have used the tool ??? </li>
+        <li>High: means you have used the tool a lot.</li>
+    </ul>
+    
+    {% for tool_form in toolFormSet %}
+    {{ tool_form }}   <br>
+    {% endfor %}
+
+<input type="submit" value="Update Profile" id="submit" class="mt-4"/> 
+
+</form>
 
 {% endblock %}

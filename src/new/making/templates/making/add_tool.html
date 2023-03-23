@@ -1,10 +1,13 @@
 {% extends 'making/index.html' %}
+{% load static %}
+
 {% block title %}
-Add Tool -
+Add Tools -
 {% endblock %}
 {% block page_title %}
-Add Tool
+Add Tools
 {% endblock %}
+
 {% block body %}
 {% if error %}
 You cannot add a tool you already have. Update it instead. <br>
@@ -12,13 +15,37 @@ You cannot add a tool you already have. Update it instead. <br>
 {% if success %}
 Tool added successfully. <br>
 {% endif %}
-
+<p>
 <form method="post" action="{% url 'making:add_tool' %}">
     {% csrf_token %}
-    {{ tool_form }}
-    <input type="submit" name="submit" value="Submit" /> 
-</form>
-<br>
-{{ tool_names }}
+    {{ toolFormSet.management_form }}
+    <div id="form_set">
+        {% for i in toolFormSet %}   
+            <div class="no_error">
+                {{ i }} 
+            </div>
+        {% endfor %}   
+    </div>
+    <input type="button" value="+" id="add_more" class="mt-4 px-2 pt-0" />
+    <input type="button" value="-" id="delete" class="mx-3 px-2 pt-0"/> <br>
+    <input type="submit" value="Submit" id="submit" class="mt-2"/> 
+    <div id="empty_form" style="display:none">
+        <div class="no_error">
+            <br> {{ toolFormSet.empty_form }}
+        </div>
+    </div>
+</form> 
+</p>
+
+<script src="{% static 'making/js/addToolForm.js' %}"></script>
+<script>
+    document.querySelector('#add_more').addEventListener("click",addForm)   
+</script>
+<!-- messy way of passing in parameter value -->
+<script>
+    document.querySelector('#delete').addEventListener("click",function() {
+        deleteForm(1);
+    })   
+</script>
 
 {% endblock %}

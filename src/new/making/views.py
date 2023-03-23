@@ -240,26 +240,29 @@ def switch_profile(request):
 @login_required
 def add_tool(request):
     user_profile = getProfile(request)
+    ToolFormSet = formset_factory(ToolForm, extra=1, max_num=6, formset=BaseToolFormSet)
     # tells the template if tool was added successfully
     error = None
-    success = False
+    success = []
     # if its a HTTP post, we want to process form data
     if request.method == 'POST':
         # try to get info from the raw form info 
         tool_form = ToolForm(request.POST)
+        toolFormSet = ToolFormSet(request.POST) 
+        for form in toolFormSet:
         # have to do validation this way due to model form not containing all model fields 
-        tool = tool_form.save(commit=False)
-        tool.requirements = user_profile.requirements
-        try:
-            tool.full_clean()
-            tool.save()
-            success = True
-        except ValidationError as e:
-            error = e
+            tool = form.save(commit=False)
+            tool.requirements = user_profile.requirements
+            try:
+                tool.full_clean()
+                tool.save()
+                success.append(tool.name)
+            except ValidationError as e:
+                error = e
     else: 
         tool_form = ToolForm()
-
-    return render(request, 'making/add_tool.html', context = {'user_profile': user_profile, 'tool_form': tool_form, 'error':error, 'success':success})
+        toolFormSet = ToolFormSet() 
+    return render(request, 'making/add_tool.html', context = {'user_profile': user_profile, 'tool_form': tool_form, 'error':error, 'success':success,'toolFormSet':toolFormSet})
 
 @login_required
 def create_syllabus(request):
