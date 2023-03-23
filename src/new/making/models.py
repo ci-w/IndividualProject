@@ -140,10 +140,10 @@ class Requirements(models.Model):
         (2, 'Medium'),
         (3, 'High')
     ]
-    vision = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is how much you can see. For 'low': <br> like this"),default=1)
-    dexterity = models.IntegerField(choices=VISION_CHOICES, help_text="This is how much you can use your hands.",default=1)
-    language = models.IntegerField(choices=VISION_CHOICES, help_text="This is what sort of words you can understand.",default=1)
-    memory = models.IntegerField(choices=VISION_CHOICES, help_text="This is what your memory is like.",default=1)
+    vision = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is how much you can see. <ul class='list-unstyled'><li> Low: you can see (??)</li><li>Medium: you can see</li><li>High: you can see</li> </ul>"),default=1)
+    dexterity = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is how much you can use your hands.<ul class='list-unstyled'><li> Low: you can </li><li>Medium: you can </li><li>High: you can </li> </ul>"),default=1)
+    language = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is what sort of words you can understand.<ul class='list-unstyled'><li> Low: you can </li><li>Medium: you can </li><li>High: you can </li> </ul>"),default=1)
+    memory = models.IntegerField(choices=VISION_CHOICES, help_text=mark_safe("This is what your memory is like.<ul class='list-unstyled'><li> Low: you can </li><li>Medium: you can </li><li>High: you can </li> </ul>"),default=1)
 
     class Meta:
         verbose_name = "Requirements"

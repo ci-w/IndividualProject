@@ -15,26 +15,38 @@ Create Profile
     {% for field in requirements_form %}
     <div class="fieldWrapper">
         {{ field.errors }}
-        <div>{{ field.label_tag }} </div> 
-        <div>{{ field }}</div>
+        <div><b>{{ field.label_tag }} </b></div> 
         <div>{{ field.help_text }}</div>
+        <div>{{ field }}</div>
+        <br>
     </div>
     {% endfor %}
+
+    <h6><b>Tools</b></h6>
+
+    <ul class="list-unstyled">
+        <li>These are what tools you have access to. </li>
+        <li>Skill level is how much experience you have with that tool. </li>
+        <li>None: means you have the tool but have not used it before. </li>
+        <li>Low: means you have used the tool a few times.</li>
+        <li>Medium: means you have used the tool ??? </li>
+        <li>High: means you have used the tool a lot.</li>
+    </ul>
 
     {{ toolFormSet.management_form }}
     <div id="form_set">
     {% for i in toolFormSet %}   
         <div class="no_error">
-            {{ i }}
+            {{ i }} 
         </div>
     {% endfor %}   
     </div>
-    <input type="button" value="Add Tool" id="add_more"/>
-    <input type="button" value="Delete Tool" id="delete"/>
-    <input type="submit" value="Create Profile" id="submit"/> 
+    <input type="button" value="Add Tool" id="add_more" />
+    <input type="button" value="Delete Tool" id="delete" class="mx-4"/> <br>
+    <input type="submit" value="Create Profile" id="submit" class="mt-2"/> 
     <div id="empty_form" style="display:none">
         <div class="no_error">
-            {{ toolFormSet.empty_form }}
+            {{ toolFormSet.empty_form }} <br><br>
         </div>
     </div>
 </form>
