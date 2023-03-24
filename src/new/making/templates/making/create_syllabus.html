@@ -7,6 +7,8 @@ Create Syllabus -
 Create Syllabus
 {% endblock %}
 {% block body %}
+<p> A syllabus is a path of projects to follow to help you gain the skills needed to carry out a more complex project that you'd like to do. This more complex project is your "end project". </p>
+<p>
 <p>
 <form method="post" action="{% url 'making:create_syllabus' %}">
     {% csrf_token %}

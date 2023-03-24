@@ -57,9 +57,12 @@
       </h1>
       {% block body %}
       <p> Welcome to Making Projects! </p>
-      <p> Here you can view project tutorials in a way that is accessible to <b>you</b>.</p>
-      <a href="{% url 'making:projects' %}">Explore the projects</a>  
-
+      <p> Here you can view project tutorials in a way that is accessible to <b>you</b>. <br>
+        There is a library of projects here that are adapted to fit your needs. <br>
+        You can view all the projects without creating an account, but you need one to have a project customised for you. <br>
+        As well as individual projects, you can make a "syllabus" which will give you a path of projects to follow to help you gain the skills needed to carry out a more complex project that you'd like to do. </p>
+        <a href="{% url 'making:projects' %}">Explore the projects</a> <br>
+      <a href="{% url 'making:register' %}">Create an account</a>
       {% endblock %}
     </div>
   </div>
