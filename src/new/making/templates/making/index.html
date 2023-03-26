@@ -32,7 +32,7 @@
             {% if user.is_authenticated %}
               {% if user_profile %}
                 <li class="nav-item" id="view-profile-link"><a class="nav-link" href="{% url 'making:view_profile' %}">View Profile</a></li>
-                <li class="nav-item" id="switch-profile-link"><a class="nav-link" href="{% url 'making:switch_profile' %}">Switch Profile</a></li>
+                <li class="nav-item" id="select-profile-link"><a class="nav-link" href="{% url 'making:select_profile' %}">Select Profile</a></li>
                 <li class="nav-item" id="add-tool-link"><a class="nav-link" href="{% url 'making:add_tool' %}">Add Tool</a></li>
                 <li class="nav-item" id="create-syllabus-link"><a class="nav-link" href="{% url 'making:create_syllabus' %}">Create Syllabus</a></li>
               {% else %}

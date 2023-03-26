@@ -38,7 +38,7 @@
         Please select a user profile <br>
     {% endif %}
    </p> 
-    <form method="post" action="{% url 'making:switch_profile' %}">
+    <form method="post" action="{% url 'making:select_profile' %}">
         {% csrf_token %}
         {{ switch_form }}
         <input type="submit" name="submit" value="Submit" /> 

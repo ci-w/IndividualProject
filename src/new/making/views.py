@@ -98,7 +98,7 @@ def user_login(request):
                 return redirect(reverse('making:create_profile'))
             # otherwise redirect them to select profile
             else: 
-                return redirect(reverse('making:switch_profile'))   
+                return redirect(reverse('making:select_profile'))   
         else:
             error = True         
     else:
@@ -170,9 +170,9 @@ def view_profile(request):
 # need to process tool form submission
 def update_profile(request):
     user_profile = getProfile(request)
-    # if they dont have a profile selected, redirect to switch_profile
+    # if they dont have a profile selected, redirect to select_profile
     if not user_profile:
-        return redirect(reverse('making:switch_profile'))
+        return redirect(reverse('making:select_profile'))
 
     ToolFormSet = formset_factory(ToolForm,extra=0)
     # get all the profiles related tool objects
@@ -207,7 +207,7 @@ def update_profile(request):
 # passes list of profiles to template
 # cant run functions in template, pass through NUMBER of profiles
 @login_required
-def switch_profile(request):
+def select_profile(request):
     user = request.user
     user_profile = getProfile(request)
     profile_choices = UserProfile.choices_objects.get_choices(user.pk)
@@ -234,7 +234,7 @@ def switch_profile(request):
         switch_form = SwitchProfileForm()
         switch_form.fields['profile'].choices = profile_choices
 
-    return render(request, 'making/switch_profile.html', context = {'user_profile':user_profile,'switch_form': switch_form, 'no_profiles':no_profiles})
+    return render(request, 'making/select_profile.html', context = {'user_profile':user_profile,'switch_form': switch_form, 'no_profiles':no_profiles})
 
 # have to stop people adding a tool they already have - i.e. update it instead
 @login_required

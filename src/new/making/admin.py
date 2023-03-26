@@ -4,6 +4,7 @@ from django.utils.html import format_html
 from django.urls import reverse
 
 # Register your models here
+
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('profile_name', 'user', 'requirements')
 admin.site.register(UserProfile, UserProfileAdmin)
@@ -12,14 +13,9 @@ class RequirementsAdmin(admin.ModelAdmin):
     list_display = ('id', 'vision', 'dexterity', 'language', 'memory')
 admin.site.register(Requirements, RequirementsAdmin)
 
-@admin.action(description='set default for project materials')
-def update_materials(modeladmin, request, queryset):
-    queryset.update(materials='Materials here')
-
 class ProjectAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'description','materials', 'instructions', 'requirements')
     list_display_links = ('id','title')
-    actions = [update_materials]
 admin.site.register(Project, ProjectAdmin)
 
 class ToolAdmin(admin.ModelAdmin):
@@ -29,5 +25,4 @@ class ToolAdmin(admin.ModelAdmin):
     req_link.admin_order_field = 'requirements'
     req_link.short_description = 'requirements'
     list_display = ['id', 'name', 'skill_level', 'req_link',]
-
 admin.site.register(Tool, ToolAdmin)

@@ -65,7 +65,6 @@ class Project(models.Model):
     description = models.TextField(max_length=100)
     materials = models.TextField(max_length=300)
     instructions = models.TextField()
-
     requirements = models.OneToOneField("Requirements", on_delete=models.DO_NOTHING)
     
     # default manager
@@ -93,13 +92,12 @@ class Project(models.Model):
         # instructions are split by [], convert them to list, strip whitespace and remove any empty strings
         instructions = (self.instructions).split("[]")
         instructions = [i.strip() for i in instructions if i]
-
         data = {'title': self.title, 'description': self.description, 'materials':materials, 'instructions':instructions }
         data.update(Requirements.view_dict(self.requirements))
         return data
     
-    #try and get the projects image(s). SAY how many images there are ? or just punt the filenames of them all to the view
-    # I WILL HAVE TO CHANGE THIS PATH WHEN I HOST IT, MAYBE USE DJANGO STATIC URL NAMESPACES
+    #try and get the projects image(s) paths.
+    # MAYBE USE DJANGO STATIC URL NAMESPACES
     # get the names and relative paths (i.e. the path after STATIC_URL) of all projects images, punt them through  
     # NEED to handle it having no images     
     def get_img_path(self):
@@ -120,12 +118,10 @@ class Project(models.Model):
     def preview_dict(self):
         # should probably have a folder for thumbnails
         # for now, just picking the first image in a projects image folder as its thumbnail
-       # thumbnail = self.get_img_path()[0]
-        check = self.get_img_path() 
-        if check:
-            thumbnail = check[0]
-        else:
-            thumbnail = None
+        try: 
+            thumbnail = self.get_img_path()[0]
+        except:
+            thumbnail = None 
         data = {'pk':self.pk,'title':self.title,'description':self.description, 'thumbnail': thumbnail}
         return data
 
@@ -167,7 +163,6 @@ class Requirements(models.Model):
     
     def equality(self, other):
         return self.vision == other.vision and self.dexterity == other.dexterity and self.language == other.language and self.memory == other.memory 
-   # maybe something here that drags in its related Tool objects? 
 
 # custom manager for Tools
 class ToolManager(models.Manager):
@@ -178,8 +173,6 @@ class ToolManager(models.Manager):
     def get_choices(self):
         tool_names = Tool.choices_objects.get_names() 
         return [(i, i) for i in tool_names] 
-   # def get_computer(self, name):
-        #return super().get_queryset().filter(name=name)
     def get_req_tools(self, requirements):
         tools = super().get_queryset().filter(requirements=requirements)
         tool_choices = tools.values_list('name','skill_level')
