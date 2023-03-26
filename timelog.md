@@ -140,9 +140,15 @@
 
 ## Week 9 
 ### 21 Nov 2022
+* *2 hours* Getting static files to work on PythonAnywhere
+
+### 22 Nov 2022
+* *1 hour* Reading papers 
+* *2 hours* Working on templates
 
 ## Week 10 
 ### 28 Nov 2022 
+* *3 hours* Creating sample content for site
 
 ## Week 11 
 ### 5 Dec 2022 
@@ -356,11 +362,78 @@
 
 ### 14 Mar 2023
 * *2 hours* customising admin interface and behaviour 
-* *3 hours* individual project view - multiple images per project
+* *4 hours* individual project view - multiple images per project, path behaviour
 * *2 hours* profile error handling done correctly 
 
 ### 15 Mar 2023
 * *3 hours* expanding diss structure plan 
+* *2 hours* applying changes + secret key setup to hosted site 
+
+### 16 Mar 2023
+* *1 hour* working on project view
+* *5 hours* working on dissertation notes
+
+### 17 Mar 2023
+* *2 hours* writing notes for dissertation plan
+* *2 hours* finding CC licenced projects to use 
+* *2 hours* working on Project model to contain materials
+
+### 18 Mar 2023
+* *3 hours* making the forms display user-friendly information
+* *1 hour* error handling for forms
+* *3 hours* writing model functions to get the data needed for views 
+
+### 19 Mar 2023
+* *2 hours* having one model function call another model's function for related objects
+* *2 hours* working on Project template 
+* *2 hours* streamlining view functions
+* *2 hours* writing dissertation
+* *1 hour* writing evaluation introduction & debrief + sending to supervisor
+
+## Week 23
+### 20 Mar 2023 
+* *4 hours* tool formset
+* *2 hours* adding unique together constraint for Tool model and adding appropriate validation for forms 
+* *1 hour* modifying Bootstrap
+* *1 hour* writing dissertation notes
+* *1 hour* finishing evaluation introduction & debrief scripts
+
+### 21 Mar 2023
+* *2 hours* writing custom model managers 
+* *4 hours* writing and testing javascript functions for adding and removing forms from formset
+* *1 hour* modifying templates to use these
+* *1 hour* modifying views to use these
+* *1 hour* fixing display/Bootstrap 
+
+### 22 Mar 2023
+* *2 hours* planning evaluation 
+* *1 hour* in person evaluation 
+* *1 hour* transcribing and compiling notes from evaluation
+* *1 hour* making all templates consistent 
+* *2 hours* writing dissertation 
+
+### 23 Mar 2023
+* *2 hours* implementing tool formset with other forms + display
+* *1 hour* modifying site design 
+* *2 hours* adding help text to form fields 
+* *1 hour* implementing changes on hosted site 
+* *1 hour* making update form work with new changes 
+* *2 hours* writing dissertation
+
+### 24 Mar 2023
+* *2 hours* online evaluations 
+* *1 hour* transcribing + writing up evaluations 
+* *5 hours* writing dissertation 
+
+### 25 Mar 2023
+* *5 hours* writing dissertation 
+
+### 26 Mar 2023
+* *7 hours* writing dissertation
+
+
+## Week 24
+### 27 Mar 2023
 
 
 
