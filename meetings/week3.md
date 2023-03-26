@@ -1,13 +1,13 @@
 # Week 3 Meeting Minutes - 6/10/2022
- Discussed what the project was actually about: a library of 'maker' project idea's that can be adapted to an individuals specific needs.
+Discussed what the project was actually about: a library of 'maker' project idea's that can be adapted to an individuals specific needs.
 
- Suggestion of researching existing online databases of making projects such as: thingiverse, rs online, makezine. Looking into what's already out there and how these current implementations may not be accessible. 
+Suggestion of researching existing online databases of making projects such as: thingiverse, rs online, makezine. Looking into what's already out there and how these current implementations may not be accessible. 
 
- Then went into detail on specific aspects:
+Then went into detail on specific aspects:
 
- The concept of a curriculum/syllabus for a user. Allowing them to select what type of "big"/complex end project they want to complete, and then designing a path of projects which let them gain the skills needed to complete this. 
+The concept of a curriculum/syllabus for a user. Allowing them to select what type of "big"/complex end project they want to complete, and then designing a path of projects which let them gain the skills needed to complete this. 
 
- Having the same project be adaptable so that users with different access requirements can complete it. I.e. having steps be carried out in a different way. Idea of the final way being someone else helping the user as you want to promote independence. 
+Having the same project be adaptable so that users with different access requirements can complete it. I.e. having steps be carried out in a different way. Idea of the final way being someone else helping the user as you want to promote independence. 
 
 This is connected to how to handle the user specifying their ability/access needs for projects in an accurate and inoffensive way. This would be used to tailor the syllabus/steps in projects. Perhaps as a test of their skills.
 
