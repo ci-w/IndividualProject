@@ -43,10 +43,11 @@ Process of learning how to knit: tried to look at online resources first, but du
 Later on, learnt from someone in person and everything clicked because they could walk around and see what their hands were doing at certain moments when the thread was in certain places (at different angles etc), and found this much easier. 
 Point: is only really confident with simple projects i.e. knitting with one stitch, simple twine games (text based adventure). Operating at a very small realm/level. 
 Has issues with clerical processing - cannot hold many ideas and things in their head at one time. So, making things that have very few component parts really works well for them. 
+### Making Projects Interaction
 (Point from me: maybe explain on the site why there's only some tool choices)
 "Now you've done all of this stuff you should be ready and able to do the end project"
 Finds the "you have low dex if you can do y" section really helpful.
-Inacessible: navbar text is not high contrast.
+Inaccessible: navbar text is not high contrast.
 Is it accessible for screen readers?
 Agree's grid project view uses the space better (as long as its accessible for screen readers)
 Makes point of links being labelled correctly for screen readers.
@@ -56,3 +57,34 @@ Noted that writing plain English is really hard.
 Liked the buttons for adding tools, making the profile is good. Thinks its really great that I have examples of "if you can do this, but not this, you have medium language" or something, that's really helpful. 
 Thinks that a colour/scale system of what sort/level of skills you needed for a project before you even clicked on its page would be good. Like if you need level 3 language there would be 3 icons. 
 A way to filter projects: being able to be like "I only want to see things that have low dexterity", filtering on 1 variable and multiple variables. 
+
+## Participant 3
+Has done some computing stuff before, that sort of level of accessibility stuff. 
+Had a relative with an intellectual disability. 
+Has done work for a disability advice organisation. 
+Currently works at a YMCA, which is considered a makerspace. Building burnt down so still rebuilding. More of a digital makerspace, but does have physical stuff too.
+They're currently working with a local museum to make an interactive exhibit. 
+Have done design stuff for video games (which then got sent away to a studio in England to be implemented, collaborative development.)
+Works with young people for these projects. (~12 year olds)
+Projects have involved programming. 
+Learnt the skills needed: background in computing. Areas not known: have training sessions by other co workers to share their knowledge. 
+Otherwise, just googling stuff. 
+Makerspace is a listed building, so have troubles with that. I.e. bathrooms are downstairs with no physical way of adding a ramp (too steep, not enough room etc). Have to also be careful with broken lights/flashing lights as some of the young people have photosensitive epilepsy. 
+Haven't had any problems yet with the machines accessibility wise, but because they are young people, there is always supervisors there. 
+Have some Ukrainian young people who cannot read the English instructions, so require additional assistance. 
+
+### Engagement with tool 
+Was viewing using a browser plugin that automatically turns webpages to darkmode, for personal accessibility reasons. No problems with the site were found with this during the experiment. 
+Was also using a screen reader/word highlighter. 
+Said that the projects were the sort of things they'd do at their makerspace. 
+Other than filing, which presents a health hazard - microplastics in lungs.
+Also stay away from resin printers - if not cured properly you will get a resin allergy. 
+Need to make it alot more clearer when a profile has been successfully created. P3 had issues with this, ended up creating the profile twice. 
+
+Says automated syllabus is the most standout thing. 
+Would maybe like if there was a way to filter the list of projects for the end project selection. Similar things together. Or just alphabetical. 
+Doing something that displays on the projects page if its current achieveable. Or if its not, a suggestion of what other project to do first. 
+
+Last bit that wasn't transcribed:
+Duplo is slightly more obscure than Lego so maybe people won't know about it. Maybe have a little i next to it and it shows a picture of a duplo box or someone holding it. 
+

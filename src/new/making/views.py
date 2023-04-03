@@ -37,10 +37,10 @@ def projects(request):
 # specific project
 def project(request, project_id):
     user_profile = getProfile(request)
-    # turn it into a dict 
+    # turn profile into a dict 
     if user_profile:
         user_profile = UserProfile.view_dict(user_profile)
-    # need to order the tools in the same order as project (zip them together)
+    # need to order profile tools in the same order as project (zip them together)
     paths = None
     try:
         #is there a project with that id?
@@ -50,10 +50,10 @@ def project(request, project_id):
         paths = Project.get_img_path(project_obj)
     except Project.DoesNotExist:
         project = None 
-    return render(request, 'making/project.html', context={'project': project,'paths':paths,'user_profile':user_profile})
+    return render(request, 'making/project.html', context={'user_profile':user_profile,'project': project,'paths':paths})
 
 def register(request):
-    # tells the template if registration was successful 
+    # tells the template if there was an issue in registration
     error = None 
     if request.method == 'POST':
         user_form = UserForm(request.POST)
