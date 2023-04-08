@@ -1,41 +1,38 @@
 # Readme
+This is a Django webapp. 
 
-Put a brief description of your code here. This should at least describe the file structure.
-
-## Build instructions
-
-**You must** include the instructions necessary to build and deploy this project successfully. If appropriate, also include 
-instructions to run automated tests. 
+## Build Instructions
 
 ### Requirements
+* Python 3.8 
+* Django 4.1.6
+* SQLite 3.41.1
+* Packages listed in `requirements.txt`
+* Tested on Windows 11 
 
-List the all of the pre-requisites software required to set up your project (e.g. compilers, packages, libraries, OS, hardware)
+### Build steps 
+It is advised to use a virtual environment. 
 
-For example:
+Clone repository to local machine, cd to src directory. 
+Activate virtual environment, if you are using one. 
 
-* Python 3.7
-* Packages: listed in `requirements.txt` 
-* Tested on Windows 10
+Using pip:
 
-or another example:
+` pip install -r requirements.txt ` 
 
-* Requires Raspberry Pi 3 
-* a Linux host machine with the `arm-none-eabi` toolchain (at least version `x.xx`) installed
-* a working LuaJIT installation > 2.1.0
 
-### Build steps
+Set up secret key: 
 
-List the steps required to build software. 
+Create a file named `.env` in the src directory. 
 
-Hopefully something simple like `pip install -e .` or `make` or `cd build; cmake ..`. In
-some cases you may have much more involved setup required.
+Within it:
 
-### Test steps
+` export SECRET_KEY='key_here' `
 
-List steps needed to show your software works. This might be running a test suite, or just starting the program; but something that could be used to verify your code is working correctly.
+where key_here is your secret key (usually a random combination of symbols)
 
-Examples:
 
-* Run automated tests by running `pytest`
-* Start the software by running `bin/editor.exe` and opening the file `examples/example_01.bin`
+Then to run site on local machine (127.0.0.1:8000/):
+
+`python manage.py runserver`  
 
