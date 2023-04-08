@@ -74,17 +74,16 @@ Haven't had any problems yet with the machines accessibility wise, but because t
 Have some Ukrainian young people who cannot read the English instructions, so require additional assistance. 
 
 ### Engagement with tool 
-Was viewing using a browser plugin that automatically turns webpages to darkmode, for personal accessibility reasons. No problems with the site were found with this during the experiment. 
+Was viewing using a browser plugin that automatically turns webpages to dark mode, for personal accessibility reasons. No problems with the site were found with this during the experiment. 
 Was also using a screen reader/word highlighter. 
 Said that the projects were the sort of things they'd do at their makerspace. 
 Other than filing, which presents a health hazard - microplastics in lungs.
 Also stay away from resin printers - if not cured properly you will get a resin allergy. 
-Need to make it alot more clearer when a profile has been successfully created. P3 had issues with this, ended up creating the profile twice. 
+Need to make it a lot more clearer when a profile has been successfully created. P3 had issues with this, ended up creating the profile twice. 
 
 Says automated syllabus is the most standout thing. 
 Would maybe like if there was a way to filter the list of projects for the end project selection. Similar things together. Or just alphabetical. 
-Doing something that displays on the projects page if its current achieveable. Or if its not, a suggestion of what other project to do first. 
+Doing something that displays on the projects page if its current achievable. Or if its not, a suggestion of what other project to do first. 
 
 Last bit that wasn't transcribed:
-Duplo is slightly more obscure than Lego so maybe people won't know about it. Maybe have a little i next to it and it shows a picture of a duplo box or someone holding it. 
-
+Duplo is slightly more obscure than Lego so maybe people won't know about it. Maybe have a little image next to it and it shows a picture of a duplo box or someone holding it. 

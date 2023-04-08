@@ -105,7 +105,7 @@ LOGIN_URL = '/login/'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-uk'
 
 TIME_ZONE = 'GMT'
 
@@ -120,14 +120,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# Note that these paths should use Unix-style forward slashes, even on Windows 
-# STATICFILES_DIRS = [
-#      BASE_DIR / "static",
-#     ("projects", os.path.join(BASE_DIR, 'static/')), 
-#  ]
-# os.path.join(BASE_DIR, 'static/')
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

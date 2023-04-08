@@ -468,6 +468,36 @@
         }
     },
     {
+        "model": "making.Project",
+        "pk": 19,
+        "fields": {
+            "title": "Paper Card Machine",
+            "description": "Twist the pencil, and one card will appear and the other disappear.",
+            "materials": "standard envelope, pencil, 3-4 rubber bands,card",
+            "instructions": "[] Seal the empty envelope [] Line up a playing card with its short end along the envelopes short side[] Cut envelope about 2cm past the card [] Turn the envelope so the open end faces up. About ¾” below the open end, cut or tear small half circles on either side [] Decorate envelope [] Twist and wrap 3-4 rubber bands around the middle of your pencil [] Carefully push pencil through the holes [] Now, you can put a card on either side of the pencil in the envelope and twist the pencil to reveal each one",
+            "requirements": 19
+        }
+    },
+    {
+        "model": "making.Requirements",
+        "pk": 19,
+        "fields": {
+            "vision": 1,
+            "language": 1,
+            "dexterity": 2,
+            "memory": 1
+        }
+    },
+    {
+        "model": "making.Tool",
+        "pk": 13,
+        "fields": {
+            "name": "scissors",
+            "skill_level": 1,
+            "requirements": 19
+        }
+    },
+    {
         "model": "auth.user",
         "pk": 2,
         "fields": {
@@ -491,12 +521,12 @@
         "fields": {
             "user": 2,
             "profile_name": "Isla",
-            "requirements": 19
+            "requirements": 20
         }
     },
     {
         "model": "making.Requirements",
-        "pk": 19,
+        "pk": 20,
         "fields": {
             "vision": 1,
             "language": 1,
@@ -506,20 +536,20 @@
     },
     {
         "model": "making.Tool",
-        "pk": 13,
+        "pk": 14,
         "fields": {
             "name": "3d printer",
             "skill_level": 1,
-            "requirements": 19
+            "requirements": 20
         }
     },
     {
         "model": "making.Tool",
-        "pk": 14,
+        "pk": 15,
         "fields": {
             "name": "circuits",
             "skill_level": 1,
-            "requirements": 19
+            "requirements": 20
         }
     }
 ]

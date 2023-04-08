@@ -4,8 +4,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django import forms 
 
-# can i use this for both registering and logging in?
-# change behaviour cos its saying stuff abt registering
+# for registering
 class UserForm(ModelForm):  
     password = forms.CharField(widget=forms.PasswordInput())
     username = forms.EmailField(max_length=64, label="Email")
@@ -42,10 +41,10 @@ class SyllabusForm(Form):
     end_project = forms.ChoiceField(choices=CHOICES)
 
 class SwitchProfileForm(Form):
-    #the choices are decided in the View because it depends on the User
+    #the choices are decided in the View because it depends on the user profile
     profile = forms.ChoiceField()
 
-# fancy tool formset validation 
+# tool formset validation 
 class BaseToolFormSet(BaseFormSet):
     # checks no tools have the same name
     def clean(self):

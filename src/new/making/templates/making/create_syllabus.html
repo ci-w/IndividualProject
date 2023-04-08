@@ -7,18 +7,17 @@ Create Syllabus -
 Create Syllabus
 {% endblock %}
 {% block body %}
-<p> A syllabus is a path of projects to follow to help you gain the skills needed to carry out a more complex project that you'd like to do. This more complex project is your "end project". </p>
-<p>
+<p> A syllabus is a path of projects to follow to help you gain the skills needed to carry out a more difficult project that you'd like to do. This more difficult project is your "end project". </p>
 <p>
 <form method="post" action="{% url 'making:create_syllabus' %}">
     {% csrf_token %}
     {{ syllabus_form }}
-    <input type="submit" name="submit" value="Submit" /> 
+    <input type="submit" name="submit" value="Submit" />
 </form>
 </p>
 {% if syllabus %}
 Syllabus: <br>
-{% for i in projects %}  
+{% for i in projects %}
       {{ forloop.counter }}. <a href="{% url 'making:project' i.pk %}">{{ i.title }}:</a>
       {{ i.description }} <br>
       {% if i.thumbnail %}

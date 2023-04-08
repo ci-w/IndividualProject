@@ -9,19 +9,18 @@
 {% block body %}
 {% if project %}
     <p>{{ project.description }} </p>
+        <!-- this is image stuff -->
+    {% for i in paths %}
+       <img src="{% static i %}" class="img-fluid"/>
+    {% endfor %}
     <p><b>Materials:</b> <br>
     {% for i in project.materials %}
         - {{ i }} <br>
     {% endfor %}</p>
-    {% if project.tools %}
-    <b>Tools:</b> <br>
-    {% for i in project.tools %}
-        {{ i.name }}: {{i.skill_level }} <br>
-    {% endfor %}
-    {% endif %}
 
-    {% if user_profile %}    
-    <table class="table">
+
+    {% if user_profile %}
+    <p><table class="table">
         <tr>
           <th></th>
           <th>Project</th>
@@ -48,22 +47,29 @@
             <td>{{ user_profile.memory }}</td>
         </tr>
       </table>
+     </p>
     {% else %}
-    <b>Project information:</b> <br>
+    <p><b>Project information:</b> <br>
     Vision: {{ project.vision }} <br>
     Dexterity: {{ project.dexterity }} <br>
     Language: {{ project.language }} <br>
-    Memory: {{ project.memory }} <br>
+    Memory: {{ project.memory }} <br> </p>
     {% endif %}
+
+    {% if project.tools %}
+    <p><b>Tools:</b> <br>
+    {% for i in project.tools %}
+        {{ i.name }}: {{i.skill_level }} <br>
+    {% endfor %}
+    </p>
+    {% endif %}
+
 
     <p><b>Instructions: </b> <br>
     {% for i in project.instructions %}
         {{ forloop.counter }}. {{ i }} <br>
     {% endfor %} </p>
 
-    <!-- this is image stuff -->
-    {% for i in paths %}
-        <img src="{% static i %}" class="img-fluid"/>
-    {% endfor %} 
+
 {% endif %}
 {% endblock %}

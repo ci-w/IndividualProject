@@ -1,7 +1,7 @@
 {% extends 'making/index.html' %}
 {% load static %}
 {% block title %}
-Create Profile 
+Create Profile
 {% endblock %}
 {% block page_title %}
 Create Profile
@@ -18,7 +18,7 @@ Create Profile
     {% for field in requirements_form %}
     <div class="fieldWrapper">
         {{ field.errors }}
-        <div><b>{{ field.label_tag }} </b></div> 
+        <div><b>{{ field.label_tag }} </b></div>
         <div>{{ field.help_text }}</div>
         <div>{{ field }}</div>
         <br>
@@ -26,27 +26,26 @@ Create Profile
     {% endfor %}
 
     <h6><b>Tools</b></h6>
-
     <ul class="list-unstyled">
-        <li>These are what tools you have access to. </li>
-        <li>Skill level is how much experience you have with that tool. </li>
+        <li>These are what physical tools you have access to. </li> <br>
+        <li>Skill level is how much you have used that tool before. </li>
         <li>None: means you have the tool but have not used it before. </li>
-        <li>Low: means you have used the tool a few times.</li>
-        <li>Medium: means you have used the tool ??? </li>
-        <li>High: means you have used the tool a lot.</li>
+        <li>Beginner: means you have used the tool only a few times.</li>
+        <li>Competent: means you have used the tool several times. </li>
+        <li>Expert: means you have used the tool a lot and are confident using it.</li>
     </ul>
 
     {{ toolFormSet.management_form }}
     <div id="form_set">
-    {% for i in toolFormSet %}   
+    {% for i in toolFormSet %}
         <div class="no_error">
-            {{ i }} 
+            {{ i }}
         </div>
-    {% endfor %}   
+    {% endfor %}
     </div>
     <input type="button" value="Add Tool" id="add_more" />
     <input type="button" value="Delete Tool" id="delete" class="mx-4"/> <br>
-    <input type="submit" value="Create Profile" id="submit" class="mt-4"/> 
+    <input type="submit" value="Create Profile" id="submit" class="mt-4"/>
     <div id="empty_form" style="display:none">
         <div class="no_error">
             {{ toolFormSet.empty_form }} <br><br>
@@ -56,10 +55,10 @@ Create Profile
 
 <script src="{% static 'making/js/addToolForm.js' %}"></script>
 <script>
-    document.querySelector('#add_more').addEventListener("click",addForm)   
+    document.querySelector('#add_more').addEventListener("click",addForm)
 </script>
 <script>
-    document.querySelector('#delete').addEventListener("click",deleteForm)   
+    document.querySelector('#delete').addEventListener("click",deleteForm)
 </script>
 
 {% endblock %}
