@@ -9,12 +9,10 @@ A PDF of my dissertation can be found here: <a href="dissertation/Making_Project
 
 The video of my project presentation can be found here: <a href="https://youtu.be/O18hH8gdqS4">Making Projects Presentation</a>
 
-
-
 ____________________________________
 This project aims to make tangible learning more accessible for people living with intellectual disabilities. 
 
-**Making Projects** is a tool which adapts tangible learning project tutorials to make them easier to complete by people with intellectual disabilities. It creates a customised syllabus of project tutorials based on the individuals needs and chosen project. 
+**Making Projects** is a software tool which adapts tangible learning project tutorials to make them easier to complete by people with intellectual disabilities. It creates a customised syllabus of project tutorials based on the individuals needs and chosen project. 
 
 It is implemented using the Django Python web framework, with a SQLite database, and Bootstrap templates. For more detailed information, view the source code's <a href="src/readme.md">readme</a>. 
 
