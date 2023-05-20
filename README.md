@@ -32,3 +32,6 @@ Directory structure:
 
 Each directory contains a more detailed readme file.
 ____________________________________
+
+Contact:
+Licence: 
