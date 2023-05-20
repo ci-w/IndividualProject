@@ -3,6 +3,10 @@ todo.md
 notes.md
 scripts.md
 
+# videos / zip files #
+*.zip
+*.mp4
+
 # signed consent forms #
 data/ethics/signed_forms/
 # transcripts #
@@ -26,7 +30,6 @@ db.sqlite3
 media
 # Secret key #
 .env 
-
 
 # Python # 
 *.py[cod] 
