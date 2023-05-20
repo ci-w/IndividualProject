@@ -11,7 +11,6 @@
 * **YOU MUST KEEP THIS UP TO DATE AND UNDER VERSION CONTROL.**
 * This timelog should be filled out honestly, regularly (daily) and accurately. It is for *your* benefit.
 * Follow the structure provided, grouping time by weeks.  Quantise time to the half hour.
-* Meant to keep to this exact format. 
 * Started from when project was given.
 
 ## Week 1
@@ -431,9 +430,53 @@
 ### 26 Mar 2023
 * *7 hours* writing dissertation
 
-
 ## Week 24
 ### 27 Mar 2023
+* *6 hours* writing dissertation 
 
+### 28 Mar 2023
+* *5 hours* writing dissertation 
 
+### 29 Mar 2023
+* *0.5 hours* supervisor meeting 
+* *4 hours* writing dissertation 
+
+### 30 Mar 2023
+* *7 hours* writing dissertation 
+
+### 31 Mar 2023
+* *0.5 hours* supervisor meeting 
+
+## Week 25 
+### 3 Apr 2023
+* *6 hours* writing dissertation
+
+### 4 Apr 2023
+* *0.5 hours* supervisor meeting
+* *5 hours* writing dissertation 
+
+### 5 Apr 2023
+* *7 hours* writing dissertation 
+* *2 hors* presentation video
+
+### 6 Apr 2023
+* *5 hours* writing dissertation 
+* *3 hours* presentation video
+
+### 7 Apr 2023
+* *7 hours* writing dissertation 
+* *1 hour* presentation video
+
+### 8 Apr 2023
+* *7 hours* writing dissertation 
+
+### 9 Apr 2023
+* *7 hours* writing dissertation 
+
+## Week 26
+### 10 Apr 2023
+* *8 hours* writing dissertation
+
+### 11 Apr 2023
+* *6 hours* writing dissertation
 

@@ -277,6 +277,9 @@ def create_syllabus(request):
                     new_req, next_proj = find_project(user_profile, arr)
                     user_profile = deepcopy(new_req)
                     syllabus.append(next_proj) 
+                # there is no project
+                else:
+                    break
             # get the view_dicts for every project in the syllabus 
             if end_project not in syllabus:
                 syllabus.append(end_project)

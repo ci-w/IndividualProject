@@ -1,4 +1,4 @@
-from django.forms import ModelForm, Form, formset_factory, BaseFormSet
+from django.forms import ModelForm, Form, BaseFormSet
 from making.models import Requirements, Tool, UserProfile, Project
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError

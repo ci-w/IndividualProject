@@ -1,5 +1,5 @@
 # Readme
-This is a Django webapp. 
+Making Projects Django project. 
 
 ## Build Instructions
 

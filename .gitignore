@@ -3,6 +3,11 @@ todo.md
 notes.md
 scripts.md
 
+# signed consent forms #
+data/ethics/signed_forms/
+# transcripts #
+data/processed/
+
 # code editor #
 .vscode/*
 
