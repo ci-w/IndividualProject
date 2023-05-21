@@ -20,7 +20,7 @@ Making Projects is currently hosted at: https://ciw.eu.pythonanywhere.com/
 
 ____________________________________
 
-Directory structure:
+### Directory structure
 * `data/` all data collected during the project, including all items related to ethics
 * `dissertation/` final project dissertation pdf and its source materials
 * `meetings/` minutes from supervisor meetings
@@ -32,6 +32,3 @@ Directory structure:
 
 Each directory contains a more detailed readme file.
 ____________________________________
-
-Contact:
-Licence: 
